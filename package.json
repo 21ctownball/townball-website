@@ -1,0 +1,22 @@
+{
+  "name": "townball-website",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/ts-plugin": "^1.4.0",
+    "@rollup/plugin-dsv": "^3.0.2",
+    "astro": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/d3-dsv": "^3.0.7",
+    "d3-dsv": "^3.0.1",
+    "sass": "^1.69.4"
+  }
+}

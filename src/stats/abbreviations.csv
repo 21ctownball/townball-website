@@ -1,0 +1,63 @@
+abbreviation,title,description
+g,games,the number of games a player has played in.  the player must have batted or played in the field for this stat to count.
+pa,plate appearances,"the number of times a player was sent up to bat.  "
+ab,at-bats,"the number of times a batter completed an at-bat.  this matters because walk-off plate appearances happen quite often, and do not count to rate stats."
+os,on-stakes,"the number of times a batter reached first stake safely.  is the sum of (h), (s1), and (a1)."
+a1,(hidden stat) passed ball advance,"the number of times a batter reached first safely because of defensive negligence or error.  is the sum of (os), (-s1), and (-h)"
+h,hits,"the number of times a player reached first safely on his own hit.  sum of (1s), (2s), (3s), (4s), and (hr)"
+1s,singles,the number of times a player's hit resulted in a single*
+2s,doubles,the number of times a player's hit resulted in a double*
+3s,triples,the number of times a player's hit resulted in a triple*
+4s,quadruples,the number of times a player's hit resulted in a quadruple*
+hr,home runs,the number of times a player's hit resulted in a home run*
+ws,(hidden stat) weighted stakes,the weighted number of stakes advanced result from a batter hit.  (21*(1s)/55) + (2s) + 2*(3s) + 3*(42) + 4*(5s)
+bi,runs batted in,the number of times a runner (including the hitter) scored on the batter's hit
+ss,stolen stakes,"number of times a runner took a base that was not free, up to the discretion of the scorer.  sume of (s1), (s2), (s3), (s4), and (s5)"
+s1,steals of first,number of times a runner stole first
+s2,steals of second,number of times a runner stole second
+s3,steals of third,number of times a runner stole third
+s4,steals of fourth,number of times a runner stole fourth
+s5,steals of fifth,number of times a runner stole fifth
+r,runs,number of times a runner scored a run
+o,outs,"number of times a batter or runner was put out.  sum of (z), (k), (f), (t), and (p)"
+z,zones,number of times a batter zoned out (including if they hit the zone with their bat)
+k,strikeouts,number of times a batter struck out
+f,(secondary? stat)** flyouts,number of times a batter flies out (batted ball caught on the fly)
+t,(secondary? stat)** tags,number of times a runner is tagged out
+p,(secondary? stat)** pegs,number of times a runner is pegged out
+osp,on-stake percentage,rate stat: (os)/(ab)
+avg,batting average,rate stat: (h)/(at)
+slg,slugging percentage,rate stat: (ws)/(at)
+pg,pegouts,number of times a fielder made a peg out
+po,flyouts,"number of times a fielder made an out.  sum of (fo), (po), and (to)"
+fo,flyouts,number of times a fielder caught a batted ball on the fly
+to,tagouts,number of times a fielder made a tag out
+pi,pickoffs,"number of times a pitcher, catcher, or backup catcher successfully picked off a runner at a base"
+a,defensive assists,"number of times a fielder fielded a ball which led to an out.  baseball counts any time a fielder touches the ball in an out play,"
+G,games pitched,number of ganes in which a player pitched
+CG,complete games,number of games in which a pitcher pitched the entire game
+SO,shutouts,number of times a pitcher gave up 0 runs in a complete game
+W,wins,number of games a pitcher wins
+L,losses,number of games a pitcher loses
+S,saves,number of games a pitcher saved
+Z,zones,number of times a pitcher zones a batter
+K,strikeouts,number of times a pitcher strikes a batter out
+R,runs,number of runs a pitcher gives up
+O,outs,number of times a pitcher finished an inning
+PCT,win percentage,rate stat: (W)/((W)+(L))
+RPO,runs per out,rate stat: (R)/(O)
+OEF,out efficiency,rate stat: (OS)/(O)
+PA,(hidden stat) plate appearances,
+AB,at-bats,
+AT,attempts,
+OS,on-stake,
+H,hits,
+WS,(hidden stat) weighted stakes,
+1S,singles,
+2S,doubles,
+3S,triples,
+4S,quadruples,
+HR,home runs,
+OSP,(oOSP) on-stake percentage,
+AVG,(oAVG) batting average,
+SLG,(oSLG) slugging percentage,

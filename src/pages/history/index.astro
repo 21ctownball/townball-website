@@ -1,0 +1,126 @@
+---
+import { getFormattedDatetime } from '@js/utils';
+import Default from '@layouts/Default.astro';
+import { ContentEntryModule } from 'astro';
+import { getCollection } from 'astro:content';
+
+/**
+ * Filters out all posts written from 2013 and later.
+ * All OG website content was written before then.
+ */
+function postFilter(post: ContentEntryModule) {
+  return (post.data.date as Date).getFullYear() < 2013;
+}
+
+/**
+ * Sorts by post date.
+ */
+function postSorter(a: ContentEntryModule, b: ContentEntryModule) {
+  return (a.data.date as Date).getTime() - (b.data.date as Date).getTime();
+}
+
+const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter);
+---
+
+<Default title="History">
+  <div id="intro">
+    <h2>History</h2>
+    <p>21st Century Townball has a rich backstory, with its roots in historic baseball and its climax in modern-day acedemia. These articles recount the development of the game throughout the years.</p>
+  </div>
+  <ul>
+    {
+      posts.map((p) => (
+        <li>
+          <a href={`/history/${p.slug}`}>
+            <span class="title">{p.data.name}</span>
+            <hr />
+            <div class="details">
+              <span>{p.data.author}</span>
+              <span>{getFormattedDatetime(p.data.date)}</span>
+            </div>
+            <hr />
+            <div class="fake-text">
+              {Array(30)
+                .fill(null)
+                .map((_) => (
+                  <div />
+                ))}
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Default>
+
+<style lang="scss">
+  :global(main) {
+    max-width: none;
+  }
+
+  #intro {
+    max-width: 768px;
+    margin: auto;
+  }
+
+  ul {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-1);
+    margin: var(--sp-2) auto var(--sp-4);
+
+    li {
+      list-style: none;
+
+      a {
+        display: block;
+        text-decoration: none;
+        color: var(--fg);
+        background: var(--bg-bold);
+        padding: var(--sp-1);
+        text-align: center;
+        border-radius: var(--border-radius);
+        box-shadow: 0 0 var(--sp-half) var(--shadow);
+        transition:
+          translate 250ms,
+          rotate 250ms,
+          box-shadow 500ms,
+          scale 500ms;
+
+        &:hover {
+          box-shadow: 0 var(--sp-half) var(--sp-1) var(--shadow);
+          translate: 0 -4px;
+          rotate: -1deg;
+          scale: 1.02;
+        }
+
+        .title {
+          display: block;
+          font-family: 'Big Shoulders Text', sans-serif;
+          font-size: 20px;
+          text-transform: uppercase;
+        }
+
+        .details {
+          display: flex;
+          justify-content: space-between;
+          font-size: 12px;
+          color: var(--fg-mild);
+        }
+
+        .fake-text {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--sp-half);
+
+          div {
+            background-color: var(--fg-mild);
+            opacity: 0.25;
+            height: var(--sp-half);
+          }
+        }
+      }
+    }
+  }
+</style>

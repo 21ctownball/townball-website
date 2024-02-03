@@ -1,0 +1,40 @@
+---
+import { getTeamsPerYear, getTeamStats } from '@js/data';
+import Default from '@layouts/Default.astro';
+
+// create page for each CSV file
+export function getStaticPaths() {
+  const teamsPerYear = getTeamsPerYear();
+  return Object.keys(teamsPerYear).flatMap((year) =>
+    teamsPerYear[year].map((name) => ({
+      params: {
+        year,
+        name,
+      },
+    })),
+  );
+}
+
+// grab route params
+const { year, name } = Astro.params;
+
+if (!name) throw new Error('Team name required to fetch team data');
+if (!year) throw new Error('Year required to fetch team data');
+
+// fetch stats
+const teamStats = await getTeamStats({ team: name, year });
+---
+
+<Default title={`${name} ${year} Statistics`}>
+  <h2>{year} Season Totals</h2>
+  <table>
+    <tr>
+      <th>Runs</th>
+      <th>Hits</th>
+    </tr>
+    <tr>
+      <td>{teamStats.runs}</td>
+      <td>{teamStats.hits}</td>
+    </tr>
+  </table>
+</Default>

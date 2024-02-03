@@ -1,0 +1,81 @@
+---
+import Default from '@layouts/Default.astro';
+import { getEntry } from 'astro:content';
+const rules = await getEntry('general', 'rules');
+const { headings, Content } = await rules.render();
+---
+
+<Default title="Rules">
+  <!-- ensure rules are quickly accessible -->
+  <details style="margin-bottom: var(--sp-4);">
+    <summary>
+      <h2 style="display: inline; font-size: 20px; text-transform: uppercase; line-height: 1;">Contents</h2>
+    </summary>
+    <ol class="table-of-contents">
+      {
+        headings.map((h) => (
+          <li>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        ))
+      }
+    </ol>
+  </details>
+
+  <!-- content populated from markdown file -->
+  <Content />
+</Default>
+
+<style lang="scss">
+  :global(h3) {
+    margin-top: var(--sp-2);
+    position: relative;
+
+    &::before {
+      position: absolute;
+      color: var(--red);
+      font-family: 'Bevan', serif;
+      font-size: 400px;
+      opacity: 10%;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    &:nth-of-type(odd)::before {
+      top: -100px;
+      right: 70%;
+    }
+
+    &:nth-of-type(even)::before {
+      top: -100px;
+      left: 60%;
+    }
+
+    @for $i from 1 through 21 {
+      &:nth-of-type(#{$i})::before {
+        content: '#{$i}.';
+      }
+    }
+  }
+
+  // table of contents (scoped)
+  ol {
+    padding-left: 0;
+
+    li {
+      list-style: none;
+      margin-bottom: var(--sp-half);
+    }
+  }
+
+  :global(ol:not(.table-of-contents)) {
+    padding-left: 0;
+    margin-bottom: var(--sp-4);
+
+    :global(li) {
+      list-style-position: inside;
+      margin-bottom: var(--sp-1);
+      text-align: justify;
+    }
+  }
+</style>

@@ -1,0 +1,52 @@
+---
+import { getScoreboardFilePaths, loadScoreboard } from '@js/data';
+import Default from '@layouts/Default.astro';
+
+// create page for each game
+export function getStaticPaths() {
+  const gameScoreboardFiles = getScoreboardFilePaths();
+  return gameScoreboardFiles.map(({ date, homeTeam, visitingTeam }) => ({
+    params: {
+      date,
+    },
+    props: {
+      file: `${date}-${visitingTeam}${homeTeam}`,
+    },
+  }));
+}
+
+// grab route params
+const { file } = Astro.props;
+
+// fetch game data
+const data = await loadScoreboard(`/src/stats/games/${file}-scbd.csv`);
+const rows = Object.values(data).map((row) => Object.values(row));
+---
+
+<Default name="Townball Statistics">
+  {
+    data.length > 0 && (
+      <figure>
+        <table>
+          <thead>
+            <tr>
+              {Object.keys(Object.values(data)[0]).map((name) => (
+                <th>{name}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr>
+                {row.map((col) => (
+                  <td>{col}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </figure>
+    )
+  }
+  {data.length === 0 && <article>There is no data for this game.</article>}
+</Default>

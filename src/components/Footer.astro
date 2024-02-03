@@ -1,0 +1,89 @@
+---
+import Logo from '@components/Logo.astro';
+import Discord from '@components/icons/Discord.astro';
+import Envelope from '@components/icons/Envelope.astro';
+import Facebook from '@components/icons/Facebook.astro';
+import Instagram from '@components/icons/Instagram.astro';
+import YouTube from '@components/icons/YouTube.astro';
+---
+
+<footer>
+  <nav>
+    <a href="https://www.instagram.com/21ctownball/" target="_blank">
+      <Instagram />
+    </a>
+    <a href="https://www.facebook.com/21ctownball" target="_blank">
+      <Facebook />
+    </a>
+    <a href="https://www.youtube.com/@21stcenturytownball93" target="_blank">
+      <YouTube />
+    </a>
+    <a href="https://discord.gg/5m8G4bZQx5" target="_blank">
+      <Discord />
+    </a>
+    <a href="mailto:21ctownball@gmail.com" target="_blank">
+      <Envelope />
+    </a>
+  </nav>
+  <a href="/" class="logo-link">
+    <Logo width={64} />
+  </a>
+  <nav>
+    <a href="/rules">Rules</a>
+    <a href="/history">History</a>
+    <a href="/stats">Stats</a>
+    <a href="/media">Media</a>
+    <a href="https://thetownballzone.square.site" target="_blank">Shop</a>
+    <a href="/contact">Contact</a>
+  </nav>
+</footer>
+
+<style lang="scss">
+  footer {
+    --box-shadow: 0 var(--sp-2) var(--sp-4) var(--shadow);
+    background-color: var(--bg-bold);
+    padding: var(--sp-half) var(--sp-2);
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    align-items: center;
+    // position: sticky;
+    // bottom: 0;
+
+    .logo-link {
+    }
+
+    nav {
+      display: flex;
+      gap: var(--sp-2);
+
+      &:first-of-type {
+        justify-self: start;
+      }
+
+      &:last-of-type {
+        justify-self: end;
+      }
+
+      a {
+        color: var(--fg);
+        text-decoration: none;
+        font-family: 'Big Shoulders Text', sans-serif;
+        position: relative;
+
+        // dots between links
+        &:not(:last-child)::after {
+          font-family: sans-serif;
+          content: '•';
+          position: absolute;
+          right: calc(var(--sp-1) * -1);
+          pointer-events: none;
+        }
+
+        :global(svg) {
+          width: auto;
+          height: 1em;
+        }
+      }
+    }
+  }
+</style>

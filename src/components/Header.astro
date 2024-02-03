@@ -1,0 +1,82 @@
+---
+import Logo from './Logo.astro';
+---
+
+<header>
+  <div>
+    <!-- left links -->
+    <a href="/">Home</a>
+    <a href="/rules">Rules</a>
+    <a href="/history">History</a>
+    <!-- <a href="/stats">Stats</a> -->
+
+    <!-- logo -->
+    <a href="/" class="logo-link">
+      <Logo width={128} />
+    </a>
+
+    <!-- right links -->
+    <a href="/media">Media</a>
+    <a href="https://thetownballzone.square.site" target="_blank">Shop</a>
+    <a href="/contact">Contact</a>
+  </div>
+</header>
+
+<style lang="scss">
+  header {
+    --box-shadow: 0 calc(var(--sp-1) * -1) var(--sp-4) var(--shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    margin-bottom: var(--sp-4);
+    background-color: var(--bg-bold);
+    box-shadow: var(--box-shadow);
+    z-index: 100;
+
+    // content
+    > div {
+      flex-grow: 1;
+      max-width: 768px;
+      display: flex;
+      justify-content: space-between;
+      align-items: inherit;
+
+      // all links
+      a {
+        color: var(--fg);
+        text-decoration: none;
+        text-transform: uppercase;
+        font-family: 'Big Shoulders Text', sans-serif;
+        font-size: 24px;
+        padding: 0.1em 0.2em;
+        background-color: transparent;
+        transition: 100ms;
+
+        &:not(.logo-link):is(:hover, :focus, :active) {
+          background-color: var(--highlight);
+        }
+      }
+
+      // home link
+      .logo-link {
+        position: relative;
+        padding: var(--sp-1);
+        border-radius: 50%;
+        margin: calc(-0.5 * var(--sp-1)) 0 calc(-2 * var(--sp-1));
+        background-color: var(--bg-bold);
+
+        &:is(:hover, :focus, :active) {
+          rotate: 2deg;
+        }
+
+        img {
+          @media (prefers-color-scheme: dark) {
+            filter: invert(1);
+          }
+        }
+      }
+    }
+  }
+</style>

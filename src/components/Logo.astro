@@ -1,0 +1,10 @@
+---
+interface Props {
+  width: number;
+}
+import logo from '@assets/logo-black.png';
+import { Image } from 'astro:assets';
+const { width } = Astro.props;
+---
+
+<Image src={logo} alt="man in vintage baseball outfit" width={width || 128} title="21st Century Townball Logo" />
