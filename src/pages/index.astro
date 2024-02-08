@@ -9,7 +9,7 @@ import { Image } from 'astro:assets';
 ---
 
 <Default>
-  <div class="container">
+  <div id="origins" class="container">
     <Image src={jones} alt="Batter swinging during Townball game" width={300} />
     <div>
       <h2>Is there a ball in your town?</h2>
@@ -21,7 +21,8 @@ import { Image } from 'astro:assets';
       <a href="/history" class="cta">Discover the Origins</a>
     </div>
   </div>
-  <div class="container wide">
+
+  <div id="roots" class="container wide">
     <Image src={chuck} alt="Fielder in ready position" width={300} />
     <div>
       <h2>Returning to the Roots</h2>
@@ -31,22 +32,24 @@ import { Image } from 'astro:assets';
     </div>
     <Image src={catchers} alt="Backup catcher ready for a wild pitch" width={300} />
   </div>
-  <div class="container wide">
+
+  <div id="history" class="container wide">
+    <Image src={card} alt="Vintage baseball card" width={300} />
     <div>
       <h2>Massachussets to Modern Day</h2>
       <p>Twenty-First Century Townball is a bat-and-ball game based upon the version of base ball played in Massachusetts before the Civil War. We took the original rules of <span>The Massachussets Game</span> and perojected them to what we believe the game <span>would have become</span> if the Massachusetts-style of play had won out over that of New York as America's National Pastime.</p>
-      <a href="/history" class="cta">Discover the Origins</a>
+      <a href="/history" class="cta">Explore the History</a>
     </div>
-    <Image src={card} alt="Vintage baseball card" width={300} />
   </div>
-  <div class="container wide">
-    <Image src={players} alt="Townball players in Newberg, Oregon" width={300} />
+
+  <div id="contact" class="container wide">
     <div class="try-it-out-container">
       <h2>Try it Out!</h2>
       <p>Ready to <span>start playing</span>?</p>
       <p>Townball has been played in the U.S. in California, Oregon, Washington, Michigan, and New York. Send us a message to inquire about getting started with 21st Century Townball!</p>
       <a href="/contact" class="cta">Contact Us</a>
     </div>
+    <Image src={players} alt="Townball players in Newberg, Oregon" width={300} />
   </div>
 </Default>
 
@@ -61,6 +64,21 @@ import { Image } from 'astro:assets';
     gap: var(--sp-2);
     align-items: center;
     max-width: max-content;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+      padding: var(--sp-1);
+      margin: 0;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
 
     h2 {
       margin-top: 0;
@@ -87,11 +105,13 @@ import { Image } from 'astro:assets';
         box-shadow calc(var(--time) * 2),
         rotate calc(var(--time) * 3);
 
-      &:hover {
-        filter: none;
-        rotate: -1deg;
-        scale: 1.05;
-        box-shadow: -0.25rem 1rem 1rem var(--shadow);
+      @media (min-width: 800px) {
+        &:hover {
+          filter: none;
+          rotate: -1deg;
+          scale: 1.05;
+          box-shadow: -0.25rem 1rem 1rem var(--shadow);
+        }
       }
     }
   }
@@ -99,6 +119,14 @@ import { Image } from 'astro:assets';
   .try-it-out-container {
     p {
       max-width: 450px;
+    }
+  }
+
+  #roots {
+    @media (max-width: 1200px) {
+      img:first-child {
+        display: none;
+      }
     }
   }
 </style>

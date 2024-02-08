@@ -68,7 +68,7 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--sp-1);
-    margin: var(--sp-2) auto var(--sp-4);
+    margin: var(--sp-2) auto 0;
 
     li {
       list-style: none;
