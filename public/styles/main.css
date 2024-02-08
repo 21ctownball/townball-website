@@ -60,6 +60,18 @@ a.cta {
   text-align: center;
   text-decoration: none;
   font-weight: bold;
+  box-shadow: 0 0 1em var(--shadow);
+  outline: 2px solid transparent; /* override default browser :focus behavior */
+  transition: 50ms;
+}
+
+a.cta:is(:focus, :hover) {
+  background-color: var(--red-bold);
+  box-shadow: 0 0.5em 1em var(--shadow);
+}
+
+a.cta:is(:active, :focus) {
+  outline-color: var(--red-mild);
 }
 
 header {
@@ -71,4 +83,8 @@ h2,
 h3 {
   font-size: 48px;
   font-family: 'Big Shoulders Text', sans-serif;
+}
+
+h1 {
+  margin-top: 0;
 }

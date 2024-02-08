@@ -1,14 +1,54 @@
 ---
+type Link = {
+  href: string;
+  title: string;
+  target: string;
+  current: boolean;
+};
 import Logo from './Logo.astro';
+const { url } = Astro;
+const links: Link[] = [
+  {
+    title: 'Home',
+    href: '/',
+  },
+  {
+    title: 'Rules',
+    href: '/rules',
+  },
+  {
+    title: 'History',
+    href: '/history',
+  },
+  {
+    title: 'Media',
+    href: '/media',
+  },
+  {
+    title: 'Shop',
+    href: 'https://thetownballzone.square.site',
+  },
+  {
+    title: 'Contact',
+    href: '/contact',
+  },
+].map((link) => ({
+  ...link,
+  target: /^https?/.test(link.href) ? '_blank' : '_self',
+  current: link.href === '/' ? url.pathname === '/' : url.pathname.startsWith(link.href),
+}));
 ---
 
 <header>
   <div>
     <!-- left links -->
-    <a href="/">Home</a>
-    <a href="/rules">Rules</a>
-    <a href="/history">History</a>
-    <!-- <a href="/stats">Stats</a> -->
+    {
+      links.slice(0, 3).map((link) => (
+        <a href={link.href} target={link.target} class:list={[{ current: link.current }]}>
+          {link.title}
+        </a>
+      ))
+    }
 
     <!-- logo -->
     <a href="/" class="logo-link">
@@ -16,9 +56,13 @@ import Logo from './Logo.astro';
     </a>
 
     <!-- right links -->
-    <a href="/media">Media</a>
-    <a href="https://thetownballzone.square.site" target="_blank">Shop</a>
-    <a href="/contact">Contact</a>
+    {
+      links.slice(3).map((link) => (
+        <a href={link.href} target={link.target} class:list={[{ current: link.current }]}>
+          {link.title}
+        </a>
+      ))
+    }
   </div>
 </header>
 
@@ -53,13 +97,20 @@ import Logo from './Logo.astro';
         padding: 0.1em 0.2em;
         background-color: transparent;
         transition: 100ms;
+        border-radius: 1px;
+        outline: none; /* override default :focus browser behavior */
 
         &:not(.logo-link):is(:hover, :focus, :active) {
           background-color: var(--highlight);
         }
+
+        &.current {
+          border-top: 2px solid var(--fg-mild);
+          border-bottom: 2px solid var(--fg-mild);
+        }
       }
 
-      // home link
+      // logo link
       .logo-link {
         position: relative;
         padding: var(--sp-1);
@@ -67,14 +118,13 @@ import Logo from './Logo.astro';
         margin: calc(-0.5 * var(--sp-1)) 0 calc(-2 * var(--sp-1));
         background-color: var(--bg-bold);
 
-        &:is(:hover, :focus, :active) {
-          rotate: 2deg;
+        :global(img) {
+          transition: 200ms;
         }
 
-        img {
-          @media (prefers-color-scheme: dark) {
-            filter: invert(1);
-          }
+        &:is(:hover, :focus, :active) :global(img) {
+          opacity: 0.75;
+          transition: 50ms;
         }
       }
     }

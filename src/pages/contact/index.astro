@@ -17,6 +17,10 @@ import Default from '@layouts/Default.astro';
 <style lang="scss">
   div {
     // WARNING: hard-coded to make content top-aligned instead of centered
-    height: calc(100dvh - 20rem);
+    min-height: calc(100dvh - 20rem);
+  }
+
+  :global(footer) {
+    margin-top: var(--sp-4);
   }
 </style>
