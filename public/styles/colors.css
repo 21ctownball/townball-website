@@ -22,20 +22,4 @@
   --highlight: #fdea3eaa;
   /* shadow */
   --shadow: #0003;
-
-  @media (prefers-color-scheme: dark) {
-    /* background */
-    --bg: #323232;
-    --bg-mild: #464545;
-    --bg-bold: #1a1a1a;
-    /* foreground */
-    --fg: #efefea;
-    --fg-mild: #d4c8c7;
-    --fg-bold: #ffffff;
-    /* accent */
-    --red: #f84545;
-    --red-mild: #c11b1b;
-    --red-bold: #ff7171;
-    --highlight: #fdea3e44;
-  }
 }
