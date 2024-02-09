@@ -50,6 +50,15 @@ import YouTube from '@components/icons/YouTube.astro';
     // position: sticky;
     // bottom: 0;
 
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+      place-items: center;
+
+      nav {
+        justify-self: revert !important;
+      }
+    }
+
     .logo-link {
     }
 

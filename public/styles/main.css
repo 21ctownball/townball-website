@@ -12,7 +12,9 @@
   --sp-half: 0.5rem;
   --sp-1: var(--spacing);
   --sp-2: calc(var(--spacing) * 2);
+  --sp-3: calc(var(--spacing) * 3);
   --sp-4: calc(var(--spacing) * 4);
+  --sp-5: calc(var(--spacing) * 5);
   --content-width: 768px;
   --border-radius: 4px;
   --font-size-header: 48px;
