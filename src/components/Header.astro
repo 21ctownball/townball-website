@@ -140,12 +140,12 @@ const links: Link[] = [
 
       // regular links
       a:not(.logo-link) {
-        :is(:hover, :focus, :active) {
+        &:is(:hover, :focus, :active) {
           background-color: var(--highlight);
-          &.current {
-            border-top: 2px solid var(--fg-mild);
-            border-bottom: 2px solid var(--fg-mild);
-          }
+        }
+        &.current {
+          border-top: 2px solid var(--fg-mild);
+          border-bottom: 2px solid var(--fg-mild);
         }
       }
 
@@ -163,7 +163,7 @@ const links: Link[] = [
         }
 
         &:is(:hover, :focus, :active) :global(img) {
-          opacity: 0.75;
+          scale: 1.05;
           transition: all var(--transition);
         }
 
