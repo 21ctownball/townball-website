@@ -47,24 +47,27 @@ import YouTube from '@components/icons/YouTube.astro';
     grid-template-columns: 1fr max-content 1fr;
     align-items: center;
     margin-top: var(--sp-4);
-    // position: sticky;
-    // bottom: 0;
 
     @media (max-width: 800px) {
       grid-template-columns: 1fr;
       place-items: center;
+      padding: var(--sp-1);
+      gap: var(--sp-1);
 
       nav {
+        --gap: calc(var(--sp-1) * 1.5) !important;
         justify-self: revert !important;
+      }
+
+      .logo-link {
+        display: none;
       }
     }
 
-    .logo-link {
-    }
-
     nav {
+      --gap: var(--sp-2);
       display: flex;
-      gap: var(--sp-2);
+      gap: var(--gap);
 
       &:first-of-type {
         justify-self: start;
@@ -85,7 +88,7 @@ import YouTube from '@components/icons/YouTube.astro';
           font-family: sans-serif;
           content: '•';
           position: absolute;
-          right: calc(var(--sp-1) * -1);
+          right: calc(var(--gap) * -0.5 - 0.1em);
           pointer-events: none;
         }
 
