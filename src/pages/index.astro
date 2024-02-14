@@ -6,6 +6,7 @@ import players from '@assets/players.jpg';
 import card from '@assets/vintage-card.jpg';
 import Default from '@layouts/Default.astro';
 import { Image } from 'astro:assets';
+const { BASE_URL } = import.meta.env;
 ---
 
 <Default>
@@ -18,7 +19,7 @@ import { Image } from 'astro:assets';
         <br />
         <span>mathematically perfected</span> game of bat-and-ball.
       </p>
-      <a href="/history" class="cta">Discover the Origins</a>
+      <a href={`${BASE_URL}/history`} class="cta">Discover the Origins</a>
     </div>
   </div>
 
@@ -28,7 +29,7 @@ import { Image } from 'astro:assets';
       <h2>Returning to the Roots</h2>
       <p>Overcommercialization, steroid use, and poor management have led to the decline of baseball in recent years. Hoever, the game of baseball itself is not completely without blame for its own demise. Townball is a compilation of the very best of what baseball has had to offer in all its various forms throughout the ages.</p>
       <p>Our mission is to <span>bring people back to the game</span>.</p>
-      <a href="/rules" class="cta">Read the Rules</a>
+      <a href={`${BASE_URL}/rules`} class="cta">Read the Rules</a>
     </div>
     <Image src={catchers} alt="Backup catcher ready for a wild pitch" width={300} />
   </div>
@@ -38,7 +39,7 @@ import { Image } from 'astro:assets';
     <div>
       <h2>Massachussets to Modern Day</h2>
       <p>Twenty-First Century Townball is a bat-and-ball game based upon the version of base ball played in Massachusetts before the Civil War. We took the original rules of <span>The Massachussets Game</span> and perojected them to what we believe the game <span>would have become</span> if the Massachusetts-style of play had won out over that of New York as America's National Pastime.</p>
-      <a href="/history" class="cta">Explore the History</a>
+      <a href={`${BASE_URL}/history`} class="cta">Explore the History</a>
     </div>
   </div>
 
@@ -47,7 +48,7 @@ import { Image } from 'astro:assets';
       <h2>Try it Out!</h2>
       <p>Ready to <span>start playing</span>?</p>
       <p>Townball has been played in the U.S. in California, Oregon, Washington, Michigan, and New York. Send us a message to inquire about getting started with 21st Century Townball!</p>
-      <a href="/contact" class="cta">Contact Us</a>
+      <a href={`${BASE_URL}/contact`} class="cta">Contact Us</a>
     </div>
     <Image src={players} alt="Townball players in Newberg, Oregon" width={300} />
   </div>

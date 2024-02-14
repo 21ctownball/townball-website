@@ -7,6 +7,7 @@ type Link = {
 };
 import Logo from './Logo.astro';
 const { url } = Astro;
+const { BASE_URL } = import.meta.env;
 const links: Link[] = [
   {
     title: 'Home',
@@ -34,6 +35,7 @@ const links: Link[] = [
   },
 ].map((link) => ({
   ...link,
+  href: /^https?/.test(link.href) ? link.href : `${BASE_URL}${link.href}`,
   target: /^https?/.test(link.href) ? '_blank' : '_self',
   current: link.href === '/' ? url.pathname === '/' : url.pathname.startsWith(link.href),
 }));
@@ -51,7 +53,7 @@ const links: Link[] = [
     }
 
     <!-- logo -->
-    <a href="/" class="logo-link">
+    <a href={`${BASE_URL}/`} class="logo-link">
       <Logo width={128} />
     </a>
 

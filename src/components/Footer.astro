@@ -5,6 +5,7 @@ import Envelope from '@components/icons/Envelope.astro';
 import Facebook from '@components/icons/Facebook.astro';
 import Instagram from '@components/icons/Instagram.astro';
 import YouTube from '@components/icons/YouTube.astro';
+const { BASE_URL } = import.meta.env;
 ---
 
 <footer>
@@ -25,16 +26,16 @@ import YouTube from '@components/icons/YouTube.astro';
       <Envelope />
     </a>
   </nav>
-  <a href="/" class="logo-link">
+  <a href={`${BASE_URL}/`} class="logo-link">
     <Logo width={64} />
   </a>
   <nav>
-    <a href="/rules">Rules</a>
-    <a href="/history">History</a>
-    <a href="/stats">Stats</a>
-    <a href="/media">Media</a>
+    <a href={`${BASE_URL}/`}>Hom</a>
+    <a href={`${BASE_URL}/rules`}>Rules</a>
+    <a href={`${BASE_URL}/history`}>History</a>
+    <a href={`${BASE_URL}/media`}>Media</a>
     <a href="https://thetownballzone.square.site" target="_blank">Shop</a>
-    <a href="/contact">Contact</a>
+    <a href={`${BASE_URL}/contact`}>Contact</a>
   </nav>
 </footer>
 
