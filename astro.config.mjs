@@ -15,7 +15,7 @@ export default defineConfig({
         '@assets': resolve(PROJECT_ROOT, 'src/assets'),
         '@components': resolve(PROJECT_ROOT, 'src/components'),
         '@layouts': resolve(PROJECT_ROOT, 'src/layouts'),
-        '@js': resolve(PROJECT_ROOT, 'src/js'),
+        '@scripts': resolve(PROJECT_ROOT, 'src/scripts'),
       },
     },
   },

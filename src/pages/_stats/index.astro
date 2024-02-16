@@ -1,7 +1,7 @@
 ---
-import { getAbbreviations, getScoreboardFilePaths, getTeamsPerYear } from '@js/data';
-import { getFormattedDatetime } from '@js/utils';
 import Default from '@layouts/Default.astro';
+import { getAbbreviations, getScoreboardFilePaths, getTeamsPerYear } from '@scripts/data';
+import { getFormattedDatetime } from '@scripts/utils';
 
 const scoreboardFiles = getScoreboardFilePaths();
 const teamsPerYear = getTeamsPerYear();
@@ -65,3 +65,4 @@ const abbreviations = await getAbbreviations();
     }
   </ul>
 </Default>
+src/ts/datasrc/ts/utils src/scripts/datasrc/scripts/utils

@@ -1,6 +1,6 @@
 ---
-import { getFormattedDatetime } from '@js/utils';
 import Default from '@layouts/Default.astro';
+import { getFormattedDatetime } from '@scripts/utils';
 import { ContentEntryModule } from 'astro';
 import { getCollection } from 'astro:content';
 const { BASE_URL } = import.meta.env;
@@ -125,3 +125,4 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
     }
   }
 </style>
+src/ts/utils src/scripts/utils

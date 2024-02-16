@@ -1,6 +1,6 @@
 ---
-import { getScoreboardFilePaths, loadScoreboard } from '@js/data';
 import Default from '@layouts/Default.astro';
+import { getScoreboardFilePaths, loadScoreboard } from '@scripts/data';
 
 // create page for each game
 export function getStaticPaths() {
@@ -50,3 +50,4 @@ const rows = Object.values(data).map((row) => Object.values(row));
   }
   {data.length === 0 && <article>There is no data for this game.</article>}
 </Default>
+src/ts/data src/scripts/data

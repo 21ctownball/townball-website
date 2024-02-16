@@ -1,6 +1,6 @@
 ---
-import { getTeamsPerYear, getTeamStats } from '@js/data';
 import Default from '@layouts/Default.astro';
+import { getTeamsPerYear, getTeamStats } from '@scripts/data';
 
 // create page for each CSV file
 export function getStaticPaths() {
@@ -38,3 +38,4 @@ const teamStats = await getTeamStats({ team: name, year });
     </tr>
   </table>
 </Default>
+src/ts/data src/scripts/data
