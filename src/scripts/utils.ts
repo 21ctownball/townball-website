@@ -13,3 +13,7 @@ export function getFormattedDatetime(datetime: string) {
   }
   return result;
 }
+
+export function isHrefExternal(href: string) {
+  return /^https?:\/\//.test(href);
+}

@@ -1,43 +1,16 @@
 ---
-type Link = {
-  href: string;
-  title: string;
-  target: string;
-  current: boolean;
-};
-import Logo from './Logo.astro';
+import Logo from '@components/Logo.astro';
+import { NAV_LINKS } from '@scripts/constants';
 const { url } = Astro;
 const { BASE_URL } = import.meta.env;
-const links: Link[] = [
-  {
-    title: 'Home',
-    href: '/',
-  },
-  {
-    title: 'Rules',
-    href: '/rules',
-  },
-  {
-    title: 'History',
-    href: '/history',
-  },
-  {
-    title: 'Media',
-    href: '/media',
-  },
-  {
-    title: 'Shop',
-    href: 'https://thetownballzone.square.site',
-  },
-  {
-    title: 'Contact',
-    href: '/contact',
-  },
-].map((link) => ({
+
+function isLinkCurrent(href: string) {
+  return href === '/' ? url.pathname === '/' : url.pathname.startsWith(href);
+}
+
+const links = NAV_LINKS.map((link) => ({
   ...link,
-  href: /^https?/.test(link.href) ? link.href : `${BASE_URL}${link.href}`,
-  target: /^https?/.test(link.href) ? '_blank' : '_self',
-  current: link.href === '/' ? url.pathname === '/' : url.pathname.startsWith(link.href),
+  current: isLinkCurrent(link.href),
 }));
 ---
 
