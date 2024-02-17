@@ -213,7 +213,8 @@ const links = NAV_LINKS.map((link) => ({
 
   /* toggle the mobile menu */
   function toggleOpen(force?: boolean) {
-    header?.classList.toggle('open', force);
+    const value = header?.classList.toggle('open', force) ?? false;
+    if (!!checkbox && checkbox.checked !== value) checkbox.checked = value;
   }
 
   /* checkbox toggles the menu */
