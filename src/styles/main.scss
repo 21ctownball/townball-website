@@ -1,0 +1,96 @@
+/*
+ * Bootstrap breakpoints:
+ * sm  ≥ 576px
+ * md  ≥ 768px
+ * lg  ≥ 992px
+ * xl  ≥ 1200px
+ * xxl ≥ 1400px
+ */
+
+:root {
+  --spacing: 1rem;
+  --sp-half: 0.5rem;
+  --sp-1: var(--spacing);
+  --sp-2: calc(var(--spacing) * 2);
+  --sp-3: calc(var(--spacing) * 3);
+  --sp-4: calc(var(--spacing) * 4);
+  --sp-5: calc(var(--spacing) * 5);
+  --content-width: 768px;
+  --border-radius: 4px;
+  --font-size-header: 48px;
+  box-sizing: border-box;
+  font-size: 16px;
+  overscroll-behavior: none;
+  @media (max-width: 800px) {
+    --font-size-header: 40px;
+  }
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: 'Public Sans', sans-serif;
+  background: var(--bg);
+  color: var(--fg-bold);
+  max-width: 100vw;
+  max-width: 100dvw;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+main {
+  margin: auto;
+  max-width: var(--content-width);
+}
+
+a {
+  color: var(--red);
+
+  &:is(:hover, :focus, :active) {
+    color: var(--red-bold);
+  }
+
+  &.cta {
+    display: block;
+    background-color: var(--red);
+    color: white;
+    padding: 1em;
+    border-radius: var(--border-radius);
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 0 1em var(--shadow);
+    outline: 2px solid transparent; /* override default browser :focus behavior */
+    transition: 50ms;
+
+    &:is(:focus, :hover) {
+      background-color: var(--red-bold);
+      box-shadow: 0 0.5em 1em var(--shadow);
+    }
+
+    &:is(:active, :focus) {
+      outline-color: var(--red-mild);
+    }
+  }
+}
+
+header {
+  margin-bottom: 2rem;
+}
+
+h1,
+h2,
+h3 {
+  font-size: var(--font-size-header);
+  font-family: 'Big Shoulders Text', sans-serif;
+}
+
+h1 {
+  margin-top: 0;
+}
