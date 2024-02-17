@@ -81,7 +81,7 @@ const links = NAV_LINKS.map((link) => ({
       }
     }
 
-    // content
+    /* content */
     > div {
       flex-grow: 1;
       max-width: 768px;
@@ -99,7 +99,7 @@ const links = NAV_LINKS.map((link) => ({
         padding-top: calc(var(--sp-3) + var(--mobile-logo-size));
       }
 
-      // all links
+      /* all links */
       a {
         color: var(--fg);
         text-decoration: none;
@@ -113,7 +113,7 @@ const links = NAV_LINKS.map((link) => ({
         outline: none; /* override default :focus browser behavior */
       }
 
-      // regular links
+      /* regular links */
       a:not(.logo-link) {
         &:is(:hover, :focus, :active) {
           background-color: var(--highlight);
@@ -124,7 +124,7 @@ const links = NAV_LINKS.map((link) => ({
         }
       }
 
-      // logo link
+      /* logo link */
       a.logo-link {
         position: relative;
         padding: var(--sp-1);
@@ -152,7 +152,7 @@ const links = NAV_LINKS.map((link) => ({
           border-radius: 0;
           z-index: 2;
 
-          // pseudo-element hides other links like a blanket 🛏️
+          /* pseudo-element hides other links like a blanket 🛏️ */
           &::after {
             content: '';
             position: absolute;
@@ -172,7 +172,7 @@ const links = NAV_LINKS.map((link) => ({
         }
       }
 
-      // mobile menu toggle
+      /* mobile menu toggle */
       input {
         --size: calc(var(--mobile-logo-size) * 0.8);
         display: none;
@@ -191,8 +191,8 @@ const links = NAV_LINKS.map((link) => ({
         transition: translate var(--transition);
         z-index: 2;
 
-        // logos from https://fontawesome.com
-        // url-encoded at https://yoksel.github.io
+        /* logos from https://fontawesome.com */
+        /* url-encoded at https://yoksel.github.io */
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3C!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--%3E%3Cpath d='M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z'/%3E%3C/svg%3E");
 
         &:checked {
@@ -211,19 +211,19 @@ const links = NAV_LINKS.map((link) => ({
   const header = document.querySelector<HTMLElement>('header');
   const checkbox = header?.querySelector<HTMLInputElement>('input');
 
-  // toggle the mobile menu
+  /* toggle the mobile menu */
   function toggleOpen(force?: boolean) {
     header?.classList.toggle('open', force);
   }
 
-  // checkbox toggles the menu
+  /* checkbox toggles the menu */
   checkbox?.addEventListener('change', () => toggleOpen());
 
-  // close menu on scroll
+  /* close menu on scroll */
   window.addEventListener('scroll', () => toggleOpen(false));
 
-  // if any child of the body is clicked (aside from header)
-  // then the menu will be closed
+  /* if any child of the body is clicked (aside from header) */
+  /* then the menu will be closed */
   Array.from(document.querySelector('body')?.children ?? []).forEach((element) => {
     if (element !== header) {
       element.addEventListener('click', () => toggleOpen(false));
