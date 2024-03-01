@@ -3,30 +3,45 @@ import Default from '@layouts/Default.astro';
 import { getEntry } from 'astro:content';
 const rules = await getEntry('general', 'rules');
 const { headings, Content } = await rules.render();
+const headingPartCount = 3;
+const headingPartLength = Math.floor(headings.length / headingPartCount);
+const headingParts = Array(headingPartCount)
+  .fill(null)
+  .map((_, i) => headings.slice(i * headingPartLength, (i + 1) * headingPartLength));
 ---
 
 <Default title="Rules">
   <!-- ensure rules are quickly accessible -->
-  <details style="margin-bottom: var(--sp-4);">
-    <summary>
-      <h2 style="display: inline; font-size: 20px; text-transform: uppercase; line-height: 1;">Contents</h2>
-    </summary>
-    <ol class="table-of-contents">
-      {
-        headings.map((h) => (
-          <li>
-            <a href={`#${h.slug}`}>{h.text}</a>
-          </li>
-        ))
-      }
-    </ol>
-  </details>
+  <h2>Contents</h2>
+  <ol class="table-of-contents">
+    {
+      headingParts.map((part, i) => (
+        <div>
+          {part.map((h, j) => (
+            <li>
+              <a href={`#${h.slug}`}>
+                <span>{i * headingPartLength + j + 1}</span>
+                <div />
+                <span>{h.text}</span>
+              </a>
+            </li>
+          ))}
+        </div>
+      ))
+    }
+  </ol>
+
+  <hr />
 
   <!-- content populated from markdown file -->
   <Content />
 </Default>
 
 <style lang="scss">
+  :global(main) {
+    padding: 0 var(--sp-2);
+  }
+
   :global(h3) {
     margin-top: var(--sp-2);
     position: relative;
@@ -58,14 +73,52 @@ const { headings, Content } = await rules.render();
     }
   }
 
-  // table of contents (scoped)
+  h2 {
+    text-transform: uppercase;
+    font-size: calc(var(--font-size-header) / 2);
+  }
+
   ol {
     padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-2);
+
+    @media (max-width: 700px) {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
 
     li {
       list-style: none;
-      margin-bottom: var(--sp-half);
+
+      a {
+        color: var(--fg-bold);
+        text-decoration: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        flex-direction: row-reverse;
+        position: relative;
+        gap: 0.2em;
+
+        &:is(:hover, :focus, :active) {
+          background-color: var(--highlight);
+          outline: 2px solid var(--highlight);
+          border-radius: var(--border-radius);
+        }
+
+        div {
+          flex-grow: 1;
+          border-bottom: 2px dotted var(--fg-mild);
+          translate: 0 -0.4em;
+        }
+      }
     }
+  }
+
+  hr {
+    margin: var(--sp-4) 0;
   }
 
   :global(ol:not(.table-of-contents)) {
@@ -82,3 +135,20 @@ const { headings, Content } = await rules.render();
     }
   }
 </style>
+
+<script>
+  import { scrollToElement } from '@scripts/utils';
+
+  document.querySelectorAll<HTMLAnchorElement>('main a').forEach((link) =>
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = link.href.split('#').at(-1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (!el) return;
+      scrollToElement(el, {
+        offset: -120,
+      });
+    }),
+  );
+</script>
