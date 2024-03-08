@@ -32,7 +32,7 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
     {
       posts.map((p) => (
         <li>
-          <a href={`${BASE_URL}/history/${p.slug}`}>
+          <a href={`${BASE_URL}history/${p.slug}`}>
             <span
               class="title"
               class:list={[
