@@ -2,65 +2,103 @@
 import chuck from '@assets/chuck.jpg';
 import catchers from '@assets/double-catcher.jpg';
 import jones from '@assets/jones-swinging.jpg';
-import players from '@assets/players.jpg';
-import card from '@assets/vintage-card.jpg';
+import redCard from '@assets/vintage-card-red.jpg';
+import greenCard from '@assets/vintage-card-green.jpg';
 import Default from '@layouts/Default.astro';
 import { Image } from 'astro:assets';
 const { BASE_URL } = import.meta.env;
 ---
 
 <Default>
-  <div id="origins" class="container">
-    <Image src={jones} alt="Batter swinging during Townball game" width={300} />
+  <div id="origins">
+    <Image src={redCard} alt="Vintage baseball card" width={1000} />
     <div>
       <h2>Is there ball in your town?</h2>
+      <hr />
       <p>
         A <span>historically rooted</span>, <span>player-focused</span>, and
         <br />
         <span>mathematically perfected</span> game of bat-and-ball.
       </p>
-      <a href={`${BASE_URL}history`} class="cta">Discover the Origins</a>
+      <a href="#roots" class="cta inverted">
+        <span class="desktop">Discover 21st Century Townball</span>
+        <span class="mobile">Discover 21C Townball</span>
+      </a>
     </div>
   </div>
 
-  <div id="roots" class="container wide">
-    <Image src={chuck} alt="Fielder in ready position" width={300} />
-    <div>
-      <h2>Returning to the Roots</h2>
-      <p>Overcommercialization, steroid use, and poor management have led to the decline of baseball in recent years. Hoever, the game of baseball itself is not completely without blame for its own demise. Townball is a compilation of the very best of what baseball has had to offer in all its various forms throughout the ages.</p>
-      <p>Our mission is to <span>bring people back to the game</span>.</p>
-      <a href={`${BASE_URL}rules`} class="cta">Read the Rules</a>
-    </div>
-    <Image src={catchers} alt="Backup catcher ready for a wild pitch" width={300} />
-  </div>
-
-  <div id="history" class="container wide">
-    <Image src={card} alt="Vintage baseball card" width={300} />
-    <div>
-      <h2>Massachussets to Modern Day</h2>
-      <p>Twenty-First Century Townball is a bat-and-ball game based upon the version of base ball played in Massachusetts before the Civil War. We took the original rules of <span>The Massachussets Game</span> and perojected them to what we believe the game <span>would have become</span> if the Massachusetts-style of play had won out over that of New York as America's National Pastime.</p>
-      <a href={`${BASE_URL}history`} class="cta">Explore the History</a>
+  <div id="history" class="newspaper">
+    <div class="container wide">
+      <Image src={greenCard} alt="Vintage baseball card" width={300} />
+      <div>
+        <h2>
+          <span>Massachussets</span>
+          <abbr title="Massachussets">MA</abbr> to Modern Day
+        </h2>
+        <p>Twenty-First Century Townball is a bat-and-ball game based upon the version of base ball played in Massachusetts before the Civil War. We took the original rules of <span>The Massachussets Game</span> and perojected them to what we believe the game <span>would have become</span> if the Massachusetts-style of play had won out over that of New York as America's National Pastime.</p>
+        <a href={`${BASE_URL}history`} class="cta">Explore the History</a>
+      </div>
     </div>
   </div>
 
-  <div id="contact" class="container wide">
-    <div class="try-it-out-container">
-      <h2>Try it Out!</h2>
-      <p>Ready to <span>start playing</span>?</p>
-      <p>Townball has been played in the U.S. in California, Oregon, Washington, Michigan, and New York. Send us a message to inquire about getting started with 21st Century Townball!</p>
-      <a href={`${BASE_URL}contact`} class="cta">Contact Us</a>
+  <div id="roots" class="newspaper">
+    <div class="container wide">
+      <Image src={chuck} alt="Fielder in ready position" width={300} />
+      <div>
+        <h2>Returning to the Roots</h2>
+        <p>Overcommercialization, steroid use, and poor management have led to the decline of baseball in recent years. However, the game of baseball itself is not completely without blame for its own demise. Townball is a compilation of the very best of what baseball has had to offer in all its various forms throughout the ages.</p>
+        <p>Our mission is to <strong>bring people back to the game</strong>.</p>
+        <a href={`${BASE_URL}rules`} class="cta">Read the Rules</a>
+      </div>
+      <Image src={jones} alt="Backup catcher ready for a wild pitch" width={300} style="transform: scaleX(-1)" />
     </div>
-    <Image src={players} alt="Townball players in Newberg, Oregon" width={300} />
+  </div>
+
+  <div id="contact" class="newspaper">
+    <div class="container wide">
+      <div class="try-it-out-container">
+        <h2>Try it Out!</h2>
+        <p>Ready to <span>start playing</span>?</p>
+        <p>Townball has been played in the U.S. in California, Oregon, Washington, Michigan, and New York. Send us a message to inquire about getting started with 21st Century Townball!</p>
+        <a href={`${BASE_URL}contact`} class="cta">Contact Us</a>
+      </div>
+      <Image src={catchers} alt="Townball players in Newberg, Oregon" width={300} />
+    </div>
   </div>
 </Default>
 
 <style lang="scss">
+  @mixin mobile {
+    @media (max-width: 800px) {
+      @content;
+    }
+  }
+
   :global(main) {
     max-width: none;
+    margin: 0;
+  }
+
+  .newspaper {
+    --section-spacing-vertical: calc(var(--sp-4) + 5vmin);
+    --section-spacing-horizontal: var(--sp-2);
+    background-image: url('@assets/newspapers.jpg');
+    padding: var(--section-spacing-vertical) var(--section-spacing-horizontal) 0;
+
+    @include mobile {
+      --section-spacing-vertical: calc(var(--sp-2) + 2vmin);
+      --section-spacing-horizontal: var(--sp-1);
+    }
+
+    /* replaces footer margin with padding to retain background */
+    &:last-of-type {
+      padding-bottom: var(--section-spacing-vertical);
+      margin-bottom: calc(var(--sp-4) * -1);
+    }
   }
 
   .container {
-    margin: var(--sp-2) auto calc(var(--sp-4) * 1.5);
+    margin: auto;
     display: flex;
     gap: var(--sp-2);
     align-items: center;
@@ -70,9 +108,10 @@ const { BASE_URL } = import.meta.env;
       margin-bottom: 0;
     }
 
-    @media (max-width: 800px) {
+    @include mobile {
       flex-direction: column;
       padding: var(--sp-1);
+      gap: var(--sp-3);
       margin: 0;
 
       img {
@@ -86,18 +125,14 @@ const { BASE_URL } = import.meta.env;
     }
 
     p {
-      max-width: 500px;
+      max-width: 510px;
       text-align: justify;
-      span {
-        background-color: var(--highlight);
-        outline: var(--highlight) 0.2em solid;
-        border-radius: 1px;
-      }
     }
 
     img {
       --time: 200ms;
       position: relative;
+      border-radius: var(--border-radius);
       filter: grayscale(0.9) sepia(0.25);
       box-shadow: 0 0 0 var(--shadow);
       transition:
@@ -106,7 +141,7 @@ const { BASE_URL } = import.meta.env;
         box-shadow calc(var(--time) * 2),
         rotate calc(var(--time) * 3);
 
-      @media (min-width: 800px) {
+      @include mobile {
         &:hover {
           filter: none;
           rotate: -1deg;
@@ -115,11 +150,151 @@ const { BASE_URL } = import.meta.env;
         }
       }
     }
+
+    .cta {
+      margin-top: var(--sp-2);
+    }
   }
 
   .try-it-out-container {
     p {
       max-width: 450px;
+    }
+  }
+
+  /* first section w/hero image */
+  #origins {
+    /* this counteracts the header margin */
+    margin-top: -152px;
+
+    @include mobile {
+      margin-top: -138px;
+    }
+
+    /* background image */
+    img {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      min-height: 100dvh;
+      object-fit: cover;
+      object-position: right top;
+      z-index: -1;
+      filter: saturate(0.7) brightness(0.9);
+    }
+
+    /* overlay to darken image */
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(50% 50%, #0001 60%, #0002 90%, #0004 120%);
+    }
+
+    /* content */
+    & > div {
+      --text-shadow: 0 1px var(--sp-half) var(--shadow);
+      --margin-top: calc(var(--spacing) * 7);
+      --margin-bottom: var(--sp-4);
+      --margin-x: var(--sp-2);
+      --font-size-header: 80px;
+      --font-size-paragraph: 24px;
+      --font-size-cta: 20px;
+      color: var(--bg-bold);
+      text-align: center;
+      position: relative;
+      z-index: 5;
+      min-height: calc(100dvh - var(--margin-top) - var(--margin-bottom));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: var(--margin-top) var(--margin-x) var(--margin-bottom);
+
+      @include mobile {
+        --margin-x: var(--sp-1);
+        --font-size-header: 55px;
+        --font-size-paragraph: 20px;
+        --font-size-cta: 18px;
+
+        br {
+          display: none;
+        }
+      }
+
+      hr {
+        width: 100%;
+        max-width: 500px;
+        margin: 0.5em auto;
+        background-color: var(--bg-bold);
+        border: none;
+        height: 1px;
+      }
+
+      h2 {
+        line-height: 1;
+        margin-bottom: 0.5em;
+        text-shadow: var(--text-shadow);
+      }
+
+      p {
+        font-size: var(--font-size-paragraph);
+        text-shadow: var(--text-shadow);
+      }
+
+      a {
+        --transition: 300ms;
+        margin-top: 1em;
+        padding-left: 4em;
+        padding-right: 4em;
+        font-size: var(--font-size-cta);
+
+        &:is(:hover, :focus, :active) {
+          --transition: 50ms;
+        }
+
+        .mobile {
+          display: none;
+        }
+
+        @include mobile {
+          padding-left: 1em;
+          padding-right: 1em;
+          width: calc(100% - 2em);
+
+          .desktop {
+            display: none;
+          }
+
+          .mobile {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+
+  #history {
+    @include mobile {
+      .container {
+        flex-direction: column-reverse;
+      }
+    }
+    h2 {
+      span {
+        display: inline;
+      }
+      abbr {
+        display: none;
+      }
+      @include mobile {
+        span {
+          display: none;
+        }
+        abbr {
+          display: inline;
+        }
+      }
     }
   }
 

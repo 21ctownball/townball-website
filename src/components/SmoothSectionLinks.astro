@@ -1,0 +1,17 @@
+<script>
+  import { scrollToElement } from '@scripts/utils';
+  document.querySelectorAll<HTMLAnchorElement>('main a').forEach((link) => {
+    if (link.getAttribute('href')?.at(0) === '#') {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = link.href.split('#').at(-1);
+        if (!id) return;
+        const el = document.getElementById(id);
+        if (!el) return;
+        scrollToElement(el, {
+          offset: -document.querySelector('header')?.clientHeight ?? 0,
+        });
+      });
+    }
+  });
+</script>

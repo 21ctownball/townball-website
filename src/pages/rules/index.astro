@@ -1,5 +1,6 @@
 ---
 import Default from '@layouts/Default.astro';
+import SmoothSectionLinks from '@components/SmoothSectionLinks.astro';
 import { getEntry } from 'astro:content';
 const rules = await getEntry('general', 'rules');
 const { headings, Content } = await rules.render();
@@ -135,20 +136,3 @@ const headingParts = Array(headingPartCount)
     }
   }
 </style>
-
-<script>
-  import { scrollToElement } from '@scripts/utils';
-
-  document.querySelectorAll<HTMLAnchorElement>('main a').forEach((link) =>
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const id = link.href.split('#').at(-1);
-      if (!id) return;
-      const el = document.getElementById(id);
-      if (!el) return;
-      scrollToElement(el, {
-        offset: -120,
-      });
-    }),
-  );
-</script>

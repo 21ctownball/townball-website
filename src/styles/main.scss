@@ -57,25 +57,38 @@ a {
   }
 
   &.cta {
+    --cta-bg: var(--red);
+    --cta-fg: var(--bg-bold);
+    --cta-shadow: 0 0 1em var(--shadow);
+    --cta-transition: var(--transition, 50ms);
     display: block;
-    background-color: var(--red);
-    color: white;
+    background-color: var(--cta-bg);
+    color: var(--cta-fg);
     padding: 1em;
     border-radius: var(--border-radius);
     text-align: center;
     text-decoration: none;
     font-weight: bold;
-    box-shadow: 0 0 1em var(--shadow);
+    box-shadow: var(--cta-shadow);
     outline: 2px solid transparent; /* override default browser :focus behavior */
-    transition: 50ms;
+    transition: all var(--cta-transition);
 
     &:is(:focus, :hover) {
-      background-color: var(--red-bold);
-      box-shadow: 0 0.5em 1em var(--shadow);
+      --cta-bg: var(--red-bold);
+      --cta-shadow: 0 0.5em 1em var(--shadow);
     }
 
     &:is(:active, :focus) {
       outline-color: var(--red-mild);
+    }
+
+    &.inverted {
+      --cta-bg: var(--bg);
+      --cta-fg: var(--red);
+
+      &:is(:focus, :hover) {
+        --cta-bg: var(--bg-bold);
+      }
     }
   }
 }
@@ -89,6 +102,7 @@ h2,
 h3 {
   font-size: var(--font-size-header);
   font-family: 'Big Shoulders Text', sans-serif;
+  line-height: 1.2;
 }
 
 h1 {
