@@ -74,9 +74,10 @@ const { BASE_URL } = import.meta.env;
     }
   }
 
+  /* overrides rules from main.scss to make landing page fancy ✨ */
   :global(main) {
-    max-width: none;
-    margin: 0;
+    max-width: none !important;
+    margin: 0 !important;
   }
 
   .newspaper {
