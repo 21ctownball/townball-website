@@ -8,39 +8,48 @@ function isLinkCurrent(href: string) {
   return href === '/' ? url.pathname === '/' : url.pathname.startsWith(href);
 }
 
-const links = NAV_LINKS.map((link) => ({
+const links = NAV_LINKS.map(link => ({
   ...link,
   current: isLinkCurrent(link.href),
 }));
 ---
 
 <header>
-  <div>
-    <!-- left links -->
-    {
-      links.slice(0, 3).map((link) => (
-        <a href={link.href} target={link.target} class:list={[{ current: link.current }]}>
-          {link.title}
-        </a>
-      ))
-    }
+  <!-- used to prevent clicks below the expanded mobile menu -->
+  <div class="overlay"></div>
 
-    <!-- logo -->
-    <a href={BASE_URL} class="logo-link">
+  <!-- links -->
+  <div class="content">
+    <!-- logo link -->
+    <a href={BASE_URL} class="logo">
       <Logo width={96} />
     </a>
 
+    <div class="standard-links">
+      <!-- left links -->
+      {
+        links.slice(0, 3).map(link => (
+          <a href={link.href} target={link.target} class="standard" class:list={[{ current: link.current }]}>
+            {link.title}
+          </a>
+        ))
+      }
+
+      <!-- leaves room for the logo link -->
+      <div class="spacer"></div>
+
+      <!-- right links -->
+      {
+        links.slice(3).map(link => (
+          <a href={link.href} target={link.target} class="standard" class:list={[{ current: link.current }]}>
+            {link.title}
+          </a>
+        ))
+      }
+    </div>
+
     <!-- mobile menu toggle -->
     <input type="checkbox" />
-
-    <!-- right links -->
-    {
-      links.slice(3).map((link) => (
-        <a href={link.href} target={link.target} class:list={[{ current: link.current }]}>
-          {link.title}
-        </a>
-      ))
-    }
   </div>
 </header>
 
@@ -54,142 +63,158 @@ const links = NAV_LINKS.map((link) => ({
   header {
     --box-shadow: 0 calc(var(--sp-1) * -1) var(--sp-4) var(--shadow);
     --font-size: 24px;
-    --mobile-logo-size: 2em;
-    --transition: 100ms;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    --mobile-logo-size: 96px;
+    --mobile-logo-padding: 8px;
+    --transition: 200ms;
     position: sticky;
     top: 0;
-    margin-bottom: var(--sp-4);
+    left: 0;
+    right: 0;
+    display: grid;
+    place-items: center;
     background-color: var(--bg-bold);
     box-shadow: var(--box-shadow);
-    transition: translate var(--transition);
     z-index: 100;
 
-    @include mobile {
-      margin-bottom: calc(var(--sp-4) * -4 - 4em);
-
-      &:not(.open) {
-        --offset: 14.75;
-        translate: 0 calc(var(--font-size) * var(--offset) * -1);
-
-        input,
-        a.logo-link {
-          translate: 0 calc(var(--font-size) * var(--offset) * 0.75);
-        }
-      }
+    /* overlay only used on mobile */
+    .overlay {
+      display: none;
     }
 
-    /* content */
-    > div {
-      flex-grow: 1;
-      max-width: 768px;
-      display: flex;
-      justify-content: space-between;
-      align-items: inherit;
-      font-size: var(--font-size);
+    .content {
+      display: grid;
+      place-items: center;
 
-      @include mobile {
-        --font-size: 32px;
-        flex-direction: column;
-        justify-content: start;
-        align-items: end;
-        padding: var(--sp-1);
-        padding-top: calc(var(--sp-3) + var(--mobile-logo-size));
+      /* overlap the logo */
+      > * {
+        grid-row: 1;
+        grid-column: 1;
       }
 
-      /* all links */
-      a {
-        color: var(--fg);
-        text-decoration: none;
-        text-transform: uppercase;
-        font-family: 'Big Shoulders Text', sans-serif;
-        font-size: inherit;
-        padding: 0.1em 0.2em;
-        background-color: transparent;
-        transition: all var(--transition);
-        border-radius: 1px;
-        outline: none; /* override default :focus browser behavior */
-      }
+      .standard-links {
+        width: 768px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: var(--font-size);
 
-      /* regular links */
-      a:not(.logo-link) {
-        &:is(:hover, :focus, :active) {
-          background-color: var(--highlight);
+        /* leave room for the logo */
+        .spacer {
+          width: calc(var(--mobile-logo-size) + (var(--mobile-logo-padding) * 2));
         }
-        &.current {
-          border-top: 2px solid var(--fg-mild);
-          border-bottom: 2px solid var(--fg-mild);
+
+        a {
+          outline: none; /* override standard :focus browser behavior */
+          color: var(--fg);
+          text-decoration: none;
+          text-transform: uppercase;
+          font-family: 'Big Shoulders Text', sans-serif;
+          font-size: inherit;
+          padding: 0.1em 0.2em;
+          background-color: transparent;
+          border-radius: 1px;
+          transition: all var(--transition);
+
+          &:is(:hover, :focus, :active) {
+            color: var(--fg-mild);
+          }
+
+          &.current {
+            color: var(--red-bold);
+          }
         }
       }
 
       /* logo link */
-      a.logo-link {
-        position: relative;
-        padding: var(--sp-1);
+      a.logo {
+        padding: var(--mobile-logo-padding);
         border-radius: 50%;
-        margin: calc(-0.5 * var(--sp-1)) 0 calc(-2 * var(--sp-1));
+        margin-bottom: calc(-4 * var(--mobile-logo-padding));
         background-color: var(--bg-bold);
         line-height: 0;
 
         :global(img) {
+          width: var(--mobile-logo-size);
+          height: var(--mobile-logo-size);
+          translate: 0 -0.2em;
           transition: all var(--transition);
         }
 
         &:is(:hover, :focus, :active) :global(img) {
           scale: 1.05;
-          transition: all var(--transition);
+          opacity: 0.8;
+        }
+      }
+
+      /* mobile menu toggle (hidden on desktop) */
+      input {
+        display: none;
+      }
+    }
+
+    @include mobile {
+      --mobile-logo-size: 64px;
+      display: flex;
+
+      /* overlay prevents clicking and blurs background */
+      .overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background-color: var(--fg-mild);
+        opacity: 0.5;
+        z-index: -1;
+        transition: opacity var(--transition);
+        will-change: opacity;
+      }
+
+      /* links */
+      .content {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        padding: var(--sp-1);
+        background-color: var(--bg-bold);
+
+        .standard-links {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          z-index: -1;
+          padding: calc(var(--sp-1) * 1.5) var(--sp-1);
+          // height: calc(100dvh - var(--mobile-logo-size) - var(--sp-2));
+          width: unset;
+          flex-direction: column;
+          justify-content: start;
+          align-items: end;
+          gap: var(--sp-half);
+          background-color: var(--bg);
+          will-change: translate;
+          transition: translate var(--transition);
+
+          /* hide spacer */
+          .spacer {
+            display: none;
+          }
         }
 
-        @include mobile {
-          position: absolute;
-          top: var(--sp-half);
-          left: var(--sp-half);
-          padding: var(--sp-half);
-          margin: 0;
-          background-color: transparent;
-          border-radius: 0;
-          z-index: 2;
-
-          /* pseudo-element hides other links like a blanket 🛏️ */
-          &::after {
-            content: '';
-            position: absolute;
-            top: -1em;
-            bottom: -0.3em;
-            left: -1em;
-            right: calc(-100vw + 2em + var(--sp-2));
-            background-color: var(--bg-bold);
-            z-index: -1;
-            pointer-events: none;
-          }
-
-          :global(img) {
-            width: auto;
-            height: var(--mobile-logo-size);
-          }
+        a.logo {
+          padding: 0;
+          margin-bottom: 0;
         }
       }
 
       /* mobile menu toggle */
       input {
-        --size: calc(var(--mobile-logo-size) * 0.8);
-        display: none;
-        position: absolute;
+        --size: calc(var(--mobile-logo-size) * 0.5);
+        display: block !important;
         appearance: none;
-        font-size: inherit;
-        top: 0.7em;
-        right: var(--sp-half);
         width: var(--size);
         height: var(--size);
-        scale: 0.8;
         background-repeat: no-repeat;
         background-position: center;
-        border-radius: var(--border-radius);
         cursor: pointer;
-        transition: translate var(--transition);
-        z-index: 2;
 
         /* logos from https://fontawesome.com */
         /* url-encoded at https://yoksel.github.io */
@@ -198,9 +223,19 @@ const links = NAV_LINKS.map((link) => ({
         &:checked {
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3C!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--%3E%3Cpath d='M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z'/%3E%3C/svg%3E");
         }
+      }
 
-        @include mobile {
-          display: revert;
+      /* closed menu */
+      &:not(.open) {
+        .overlay {
+          display: none;
+          opacity: 0;
+          pointer-events: none;
+        }
+        .content {
+          .standard-links {
+            translate: 0 -100%;
+          }
         }
       }
     }
@@ -209,6 +244,7 @@ const links = NAV_LINKS.map((link) => ({
 
 <script>
   const header = document.querySelector<HTMLElement>('header');
+  const overlay = header?.querySelector<HTMLElement>('.overlay');
   const checkbox = header?.querySelector<HTMLInputElement>('input');
 
   /* toggle the mobile menu */
@@ -223,9 +259,12 @@ const links = NAV_LINKS.map((link) => ({
   /* close menu on scroll */
   window.addEventListener('scroll', () => toggleOpen(false));
 
+  /* close menu on click */
+  overlay?.addEventListener('click', () => toggleOpen(false));
+
   /* if any child of the body is clicked (aside from header) */
   /* then the menu will be closed */
-  Array.from(document.querySelector('body')?.children ?? []).forEach((element) => {
+  Array.from(document.querySelector('body')?.children ?? []).forEach(element => {
     if (element !== header) {
       element.addEventListener('click', () => toggleOpen(false));
     }
