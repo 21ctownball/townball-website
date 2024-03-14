@@ -24,50 +24,51 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
 ---
 
 <Default title="History">
-  <div id="intro">
-    <h1>History</h1>
-    <p>21st Century Townball has a rich backstory, with its roots in historic baseball and its climax in modern-day acedemia. These articles recount the development of the game throughout the years.</p>
+  <div class="global-px">
+    <div id="intro">
+      <h1>History</h1>
+      <p>21st Century Townball has a rich backstory, with its roots in historic baseball and its climax in modern-day acedemia. These articles recount the development of the game throughout the years.</p>
+    </div>
+    <ul>
+      {
+        posts.map(p => (
+          <li>
+            <a href={`${BASE_URL}history/${p.slug}`}>
+              <span
+                class="title"
+                class:list={[
+                  {
+                    short: p.data.name.length < 20,
+                    long: p.data.name.length > 35,
+                  },
+                ]}
+              >
+                {p.data.name}
+              </span>
+              <hr />
+              <div class="details">
+                <span>{p.data.author}</span>
+                <span>{getFormattedDatetime(p.data.date)}</span>
+              </div>
+              <hr />
+              <div class="fake-text">
+                {Array(30)
+                  .fill(null)
+                  .map(_ => (
+                    <div />
+                  ))}
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </div>
-  <ul>
-    {
-      posts.map((p) => (
-        <li>
-          <a href={`${BASE_URL}history/${p.slug}`}>
-            <span
-              class="title"
-              class:list={[
-                {
-                  short: p.data.name.length < 20,
-                  long: p.data.name.length > 35,
-                },
-              ]}
-            >
-              {p.data.name}
-            </span>
-            <hr />
-            <div class="details">
-              <span>{p.data.author}</span>
-              <span>{getFormattedDatetime(p.data.date)}</span>
-            </div>
-            <hr />
-            <div class="fake-text">
-              {Array(30)
-                .fill(null)
-                .map((_) => (
-                  <div />
-                ))}
-            </div>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
 </Default>
 
 <style lang="scss">
   :global(main) {
     max-width: none;
-    padding: 0 var(--sp-2);
   }
 
   #intro {

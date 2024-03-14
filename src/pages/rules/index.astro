@@ -12,37 +12,35 @@ const headingParts = Array(headingPartCount)
 ---
 
 <Default title="Rules">
-  <!-- ensure rules are quickly accessible -->
-  <h2>Contents</h2>
-  <ol class="table-of-contents">
-    {
-      headingParts.map((part, i) => (
-        <div>
-          {part.map((h, j) => (
-            <li>
-              <a href={`#${h.slug}`}>
-                <span>{i * headingPartLength + j + 1}</span>
-                <div />
-                <span>{h.text}</span>
-              </a>
-            </li>
-          ))}
-        </div>
-      ))
-    }
-  </ol>
+  <div class="global-px">
+    <!-- ensure rules are quickly accessible -->
+    <h2>Contents</h2>
+    <ol class="table-of-contents">
+      {
+        headingParts.map((part, i) => (
+          <div>
+            {part.map((h, j) => (
+              <li>
+                <a href={`#${h.slug}`}>
+                  <span>{i * headingPartLength + j + 1}</span>
+                  <div />
+                  <span>{h.text}</span>
+                </a>
+              </li>
+            ))}
+          </div>
+        ))
+      }
+    </ol>
 
-  <hr />
+    <hr />
 
-  <!-- content populated from markdown file -->
-  <Content />
+    <!-- content populated from markdown file -->
+    <Content />
+  </div>
 </Default>
 
 <style lang="scss">
-  :global(main) {
-    padding: 0 var(--sp-2);
-  }
-
   :global(h3) {
     margin-top: var(--sp-2);
     position: relative;
