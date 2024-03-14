@@ -165,19 +165,15 @@ const { BASE_URL } = import.meta.env;
 
   /* first section w/hero image */
   #origins {
-    /* this counteracts the header margin */
-    margin-top: -152px;
-
-    @include mobile {
-      margin-top: -138px;
-    }
+    position: relative;
+    margin-top: -2rem;
 
     /* background image */
     img {
       position: fixed;
       inset: 0;
       width: 100%;
-      min-height: 100dvh;
+      min-height: 100%;
       object-fit: cover;
       object-position: right top;
       z-index: -1;
@@ -195,8 +191,7 @@ const { BASE_URL } = import.meta.env;
     /* content */
     & > div {
       --text-shadow: 0 1px var(--sp-half) var(--shadow);
-      --margin-top: calc(var(--spacing) * 7);
-      --margin-bottom: var(--sp-4);
+      --margin-y: var(--sp-4);
       --margin-x: var(--sp-2);
       --font-size-header: 80px;
       --font-size-paragraph: 24px;
@@ -205,12 +200,12 @@ const { BASE_URL } = import.meta.env;
       text-align: center;
       position: relative;
       z-index: 5;
-      min-height: calc(100dvh - var(--margin-top) - var(--margin-bottom));
+      min-height: calc(100dvh - 80px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin: var(--margin-top) var(--margin-x) var(--margin-bottom);
+      margin: 0 var(--margin-x);
 
       @include mobile {
         --margin-x: var(--sp-1);
@@ -234,7 +229,7 @@ const { BASE_URL } = import.meta.env;
 
       h2 {
         line-height: 1;
-        margin-bottom: 0.5em;
+        margin: 0.5em 0;
         text-shadow: var(--text-shadow);
       }
 
