@@ -68,6 +68,12 @@ const { BASE_URL } = import.meta.env;
 </Default>
 
 <style lang="scss">
+  @mixin desktop {
+    @media (min-width: 800px) {
+      @content;
+    }
+  }
+
   @mixin mobile {
     @media (max-width: 800px) {
       @content;
@@ -142,7 +148,7 @@ const { BASE_URL } = import.meta.env;
         box-shadow calc(var(--time) * 2),
         rotate calc(var(--time) * 3);
 
-      @include mobile {
+      @include desktop {
         &:hover {
           filter: none;
           rotate: -1deg;
