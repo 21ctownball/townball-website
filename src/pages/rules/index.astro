@@ -12,38 +12,76 @@ const headingParts = Array(headingPartCount)
 ---
 
 <Default title="Rules">
-  <div class="global-px">
-    <!-- ensure rules are quickly accessible -->
-    <h2>Contents</h2>
-    <ol class="table-of-contents">
-      {
-        headingParts.map((part, i) => (
-          <div>
-            {part.map((h, j) => (
-              <li>
-                <a href={`#${h.slug}`}>
-                  <span>{i * headingPartLength + j + 1}</span>
-                  <div />
-                  <span>{h.text}</span>
-                </a>
-              </li>
-            ))}
-          </div>
-        ))
-      }
-    </ol>
-
-    <hr />
-
-    <!-- content populated from markdown file -->
-    <Content />
-
-    <BackToTopButton />
+  <div class="wrapper">
+    <div class="global-px">
+      <!-- ensure rules are quickly accessible -->
+      <h2>Contents</h2>
+      <ol class="table-of-contents">
+        {
+          headingParts.map((part, i) => (
+            <div>
+              {part.map((h, j) => (
+                <li>
+                  <a href={`#${h.slug}`}>
+                    <span>{i * headingPartLength + j + 1}</span>
+                    <div />
+                    <span>{h.text}</span>
+                  </a>
+                </li>
+              ))}
+            </div>
+          ))
+        }
+      </ol>
+      <!-- visual separation -->
+      <hr />
+      <!-- content populated from markdown file -->
+      <Content />
+      <!-- back to top button -->
+      <BackToTopButton />
+    </div>
   </div>
 </Default>
 
 <style lang="scss">
+  @mixin width-medium {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+
+  @mixin width-small {
+    @media (max-width: 950px) {
+      @content;
+    }
+  }
+
+  @mixin width-smaller {
+    @media (max-width: 800px) {
+      @content;
+    }
+  }
+
+  :global(main) {
+    max-width: unset;
+  }
+
+  /* the wrapper ensures that the oversized numbers are don't cause overflow when screen is small */
+  .wrapper {
+    --padding: calc(100vw / 2 - var(--content-width) / 2);
+    padding: 0 var(--padding);
+    contain: paint;
+
+    .global-px {
+      max-width: var(--content-width);
+    }
+  }
+
   :global(h3) {
+    --number-size: 400px;
+    --top-offset: -100px;
+    --right-offset: -250px;
+    --left-offset: -250px;
     margin-top: var(--sp-2);
     position: relative;
 
@@ -51,26 +89,38 @@ const headingParts = Array(headingPartCount)
       position: absolute;
       color: var(--red);
       font-family: 'Bevan', serif;
-      font-size: 400px;
+      font-size: var(--number-size);
       opacity: 10%;
       line-height: 1;
       pointer-events: none;
     }
 
     &:nth-of-type(odd)::before {
-      top: -100px;
-      right: 70%;
+      top: var(--top-offset);
+      left: var(--left-offset);
     }
 
     &:nth-of-type(even)::before {
-      top: -100px;
-      left: 60%;
+      top: var(--top-offset);
+      right: var(--right-offset);
     }
 
     @for $i from 1 through 21 {
       &:nth-of-type(#{$i})::before {
         content: '#{$i}.';
       }
+    }
+
+    @include width-medium {
+      --number-size: 300px;
+      --right-offset: -200px;
+      --left-offset: -200px;
+    }
+
+    @include width-small {
+      --number-size: 250px;
+      --right-offset: -50px;
+      --left-offset: -50px;
     }
   }
 
