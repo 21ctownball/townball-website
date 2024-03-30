@@ -1,0 +1,28 @@
+<div class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+  <button>Back to top</button>
+</div>
+
+<style lang="scss">
+  .back-to-top {
+    position: sticky;
+    bottom: var(--sp-2);
+    transition: opacity 0.5s;
+
+    button {
+      --button-shadow: 0 0 1em var(--bg-mild);
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.back-to-top');
+  const toggleVisibility = () => {
+    if (!button) return;
+    const threshold = window.innerHeight * 0.5;
+    button.style.opacity = window.scrollY > threshold ? '1' : '0';
+  };
+  toggleVisibility();
+  window.addEventListener('scroll', toggleVisibility);
+  window.addEventListener('resize', toggleVisibility);
+</script>

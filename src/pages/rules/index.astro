@@ -1,6 +1,6 @@
 ---
+import BackToTopButton from '@components/BackToTopButton.astro';
 import Default from '@layouts/Default.astro';
-import SmoothSectionLinks from '@components/SmoothSectionLinks.astro';
 import { getEntry } from 'astro:content';
 const rules = await getEntry('general', 'rules');
 const { headings, Content } = await rules.render();
@@ -37,6 +37,8 @@ const headingParts = Array(headingPartCount)
 
     <!-- content populated from markdown file -->
     <Content />
+
+    <BackToTopButton />
   </div>
 </Default>
 
@@ -100,6 +102,7 @@ const headingParts = Array(headingPartCount)
         flex-direction: row-reverse;
         position: relative;
         gap: 0.2em;
+        outline: none;
 
         &:is(:hover, :focus, :active) {
           color: var(--red-bold);

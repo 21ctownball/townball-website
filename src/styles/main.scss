@@ -7,6 +7,64 @@
  * xxl ≥ 1400px
  */
 
+@mixin button {
+  --button-bg: var(--bg-bold);
+  --button-fg: var(--fg-mild);
+  --button-outline-color: transparent;
+  --button-shadow: 0 0 0.5em var(--shadow);
+  --button-transition: var(--transition, 50ms);
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: bold;
+  padding: 1em;
+  border-radius: var(--border-radius);
+  color: var(--button-fg);
+  background: var(--button-bg);
+  box-shadow: var(--button-shadow);
+  transition: all var(--button-transition);
+  outline: 2px solid var(--button-outline-color);
+
+  &:is(:focus, :hover) {
+    --button-fg: var(--red);
+    --button-outline-color: var(--red-mild);
+  }
+
+  &:is(:active) {
+    --button-fg: var(--red-mild);
+    --button-bg: var(--bg);
+  }
+}
+
+@mixin call-to-action {
+  @include button;
+  --button-bg: var(--red);
+  --button-fg: var(--bg-bold);
+  --button-shadow: 0 0 1em var(--shadow);
+  display: block;
+  text-align: center;
+
+  &:is(:focus, :hover) {
+    --button-bg: var(--red-bold);
+    --button-shadow: 0 0.5em 1em var(--shadow);
+  }
+
+  &:is(:active, :focus) {
+    outline-color: var(--red-mild);
+  }
+
+  &.inverted {
+    --button-bg: var(--bg);
+    --button-fg: var(--red);
+
+    &:is(:focus, :hover) {
+      --button-bg: var(--bg-bold);
+    }
+  }
+}
+
 :root {
   --spacing: 1rem;
   --sp-half: 0.5rem;
@@ -57,39 +115,15 @@ a {
   }
 
   &.cta {
-    --cta-bg: var(--red);
-    --cta-fg: var(--bg-bold);
-    --cta-shadow: 0 0 1em var(--shadow);
-    --cta-transition: var(--transition, 50ms);
-    display: block;
-    background-color: var(--cta-bg);
-    color: var(--cta-fg);
-    padding: 1em;
-    border-radius: var(--border-radius);
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: var(--cta-shadow);
-    outline: 2px solid transparent; /* override default browser :focus behavior */
-    transition: all var(--cta-transition);
+    @include call-to-action;
+  }
+}
 
-    &:is(:focus, :hover) {
-      --cta-bg: var(--red-bold);
-      --cta-shadow: 0 0.5em 1em var(--shadow);
-    }
+button {
+  @include button;
 
-    &:is(:active, :focus) {
-      outline-color: var(--red-mild);
-    }
-
-    &.inverted {
-      --cta-bg: var(--bg);
-      --cta-fg: var(--red);
-
-      &:is(:focus, :hover) {
-        --cta-bg: var(--bg-bold);
-      }
-    }
+  &.cta {
+    @include call-to-action;
   }
 }
 

@@ -1,10 +1,11 @@
 ---
+import BackToTopButton from '@components/BackToTopButton.astro';
 import Default from '@layouts/Default.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
-  return posts.map((post) => ({
+  return posts.map(post => ({
     params: {
       slug: post.slug,
     },
@@ -21,18 +22,19 @@ const { Content } = await post.render();
 <Default title={post.data.name}>
   <h1>{post.data.name}</h1>
   <Content />
+  <BackToTopButton />
 </Default>
 
 <style lang="scss">
+  h1 {
+    margin-top: var(--sp-2);
+  }
+
   :global(h2) {
     font-size: 36px;
   }
 
   :global(img) {
     width: 100%;
-  }
-
-  :global(footer) {
-    margin-top: var(--sp-4);
   }
 </style>
