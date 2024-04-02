@@ -6,7 +6,7 @@ date: 2012-01-06
 
 There is something about bat-and-ball games that attracts so many people to them. Perhaps it is the act of hitting a moving object with a stick. Or perhaps it is the challenge of trying to throw a ball past a batter. Or perhaps it is the child-like game of tag that baserunning reminds us all of.
 
-![People are attracted to bat-and-ball games](/public/content/boring-people.jpg)
+![People are attracted to bat-and-ball games](/content/boring-people.jpg)
 
 Even though baseball is our national pastime, if you asked the average American their thoughts about baseball, many, if not most, would probably use the adjective “boring” in their description of the game.
 
@@ -24,7 +24,7 @@ It is not exactly clear why a “foul” territory was originally invented in th
 
 First, it could be that the existence of a foul territory allowed for spectators to view the game from a much closer proximity. This is actually a very good reason. However, we don’t believe that this is a good enough reason as a tradeoff for playability.
 
-![Foul territory may have been introduced into the New York style of play in order to get spectators closer to the action](/public/content/boring-foul.jpg)
+![Foul territory may have been introduced into the New York style of play in order to get spectators closer to the action](/content/boring-foul.jpg)
 
 Second, it could be that the without the existence of a foul territory in baseball, it may be too easy to get on base. It seems that without a foul territory, a simple bunt down the extension of the first-base line back behind home plate would be a bread-and-butter base hit of the game. And with only nine players on the field, this would undoubtedly swing the balance too far in the direction of the offense.
 
@@ -64,7 +64,7 @@ One of the worst ideas in the creation of the New York style of play is the idea
 
 First, it isn’t a very intuitive thing to keep track of as a player or as a fan. Think about it. How many times have you attended a ball game with someone who didn't realize the game just ended when it did?
 
-![The “inning limit” in the New York style of play makes for too much for the fan to keep track of](/public/content/boring-inning-limit.jpg)
+![The “inning limit” in the New York style of play makes for too much for the fan to keep track of](/content/boring-inning-limit.jpg)
 
 Contrast this with the Massachusetts version where a team needs to score a certain number of runs to win. Everyone is constantly aware of the score because the score determines the end.
 

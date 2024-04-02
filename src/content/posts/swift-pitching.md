@@ -22,7 +22,7 @@ Thus it is clear from this language that The Massachusetts Game was originally i
 
 Indeed the fact that there is a foul territory in The New York Game is consistent with the notion that the game was originally intended to be a slow-pitch type of game. In a slow-pitch type of game, such as slow-pitch softball or The New York Game, the ball is expected to be put “in play” more often by the batter. Without foul balls, this would cause there to be too much area that the fielding team would need to cover. Therefore the ball being fair only when it is hit in the forward direction makes sense. In contrast, in a fast-pitch type of game, such as cricket or The Massachusetts Game, it is more difficult to put the ball in play, so any ball hit by the batter, no matter what the direction, should be considered a fair ball.
 
-![Swift pitching in baseball is inconsistent with the existence of a “foul territory” and the original intent of The New York Game](/public/content/swift-pitching-foul.jpg)
+![Swift pitching in baseball is inconsistent with the existence of a “foul territory” and the original intent of The New York Game](/content/swift-pitching-foul.jpg)
 
 It should thus be noted that the original New York version of base ball wasn’t actually baseball as we now now it. Rather, we would probably recognize it more as a game of slow-pitch softball.
 
@@ -30,4 +30,4 @@ In fact, it is no coincidence that many who play the New York style of baseball 
 
 Moreover, many of the more interesting hits both in cricket as well as in Twenty-First Century Townball are those that are hit back behind the batter. The fielders in both of these great games that play back behind are kept very busy. Being the swift-pitching game that it is, this would also be true of baseball today if were not for the foul territory. But alas, none of those great hits amount to much in the way of an offensive threat. What a wasted opportunity, both for the fielder and batter alike!
 
-![The back fielders in Twenty-First Century Townball, as in cricket, are kept very busy](/public/content/swift-pitching-fielders.jpg)
+![The back fielders in Twenty-First Century Townball, as in cricket, are kept very busy](/content/swift-pitching-fielders.jpg)

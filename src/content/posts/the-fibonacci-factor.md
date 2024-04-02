@@ -38,14 +38,14 @@ The playing field, the zone, and the batter’s box all make “golden” rectan
 
 The playing field makes a “golden” spiral. The pitching line is a part of that spiral. The height of the zone above the ground is also found using a golden spiral.
 
-![The Golden Ratio Meets Base Ball](/public/content/fib-geometry.png)
+![The Golden Ratio Meets Base Ball](/content/fib-geometry.png)
 
 The zone is proportional to the human body according to the golden ratio. Take the average male height (about 72 inches) and divide it by the golden ratio and get 45 inches. Dividing again gives 27.5 inches. Dividing one more time gives 17 inches. The Fibonacci zone is thus 27.5 by 17 inches (twice 27.5 and twice 17 are both Fibonacci numbers). Three inches are subtracted from each dimension of the Fibonacci zone to get the physical dimensions of the zone (24.5 by 14 inches) to account for the size of the ball (3 inches in diameter).
 
 Incidentally, the width of home plate in modern baseball is also 17 inches.
 
-![The Human Body and the Golden Ratio](/public/content/fib-human.png)
+![The Human Body and the Golden Ratio](/content/fib-human.png)
 
 As is shown in the diagram above, dividing the average male height of 72 inches by the golden ratio twice also gives you the distance between the navel and the hallow beneath the kneecaps. Thus, the vertical dimensions of the zone is equal to the approximate distance between the navel and the hallow beneath the kneecap of the average person, and the horizontal dimensions of the same is equal to that between the hallow beneath the kneecap and the bottom of the feet.
 
-![The Twenty-First Century Townball zone is proportional to the human body according to the golden ratio](/public/content/fib-zone.jpg)
+![The Twenty-First Century Townball zone is proportional to the human body according to the golden ratio](/content/fib-zone.jpg)

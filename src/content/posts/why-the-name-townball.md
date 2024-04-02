@@ -20,6 +20,6 @@ Thus base ball, town ball, and round ball are really synonomous terms for any ve
 
 However, once The New York Game began to dominate as the National Game in this country, the term “baseball” was soon thereafter adopted to refer to only The New York version of the game. All the other versions of bat-and-ball were then retroactively dubbed “town ball.”
 
-![Once the New York Game began to dominate as the National Game in this country, any other version of “base ball” was retroactively dubbed “town ball”](/public/content/name-vintage.jpg)
+![Once the New York Game began to dominate as the National Game in this country, any other version of “base ball” was retroactively dubbed “town ball”](/content/name-vintage.jpg)
 
 Thus since Twenty-First Century Townball is not "baseball," it must therefore for historical reasons be a version of "town ball." And since this game has been reinvented in this century, it is therefore a twenty-first century version of town ball. Hence the name, “Twenty-First Century Townball.”

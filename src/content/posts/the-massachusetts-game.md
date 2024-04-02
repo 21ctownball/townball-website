@@ -12,7 +12,7 @@ For example, unlike in The New York Game, the Massachusetts Game had no foul ter
 
 Moreover, baserunners were not required to remain within the basepaths while advancing from base to base. A runner could take the fielders, as described by John Thorne, onto “a merry chase into the outfield and beyond” if he wanted to.
 
-![Unlike in the Massachusetts style of play, in the New York style, the baserunners must remain within the basepaths while advancing from base to base](/public/content/massachusetts-running.png)
+![Unlike in the Massachusetts style of play, in the New York style, the baserunners must remain within the basepaths while advancing from base to base](/content/massachusetts-running.png)
 
 However, with the rise in popularity of the New York Game sweeping through the country, the need became apparent to ball players in Massachusetts to organize their efforts in order to ensure the longevity of their state’s version of swat.
 
@@ -22,7 +22,7 @@ In 1857, the Knickerbockers, who had been the first base ball team in America to
 
 But with the defection of the Tri-Mountains to the New York style of play, the Knickerbockers had gotten a foothold in the state, and it wasn’t long before the Massachusetts style of play gave way. Once Massachusetts surrendered, the host of other versions of ball played in this nation likewise fell one-by-one to the more refined game of New York.
 
-![The Massachusetts Association of Base Ball Players eventually caved to the pressure to conform to the New York style of play](/public/content/massachusetts-association.png)
+![The Massachusetts Association of Base Ball Players eventually caved to the pressure to conform to the New York style of play](/content/massachusetts-association.png)
 
 In time, The New York Game came to be known as just “baseball”, and any other version of bat-and-ball was retroactively dubbed “town ball.” The National Pastime was born.
 
@@ -30,7 +30,7 @@ All that is now left of the Massachusetts Game in this country is the list of tw
 
 Here is the complete set of twenty-one rules that the MABBP codified for themselves in that year:
 
-![Diagram of the ball field](/public/content/massachusetts-rules.jpg)
+![Diagram of the ball field](/content/massachusetts-rules.jpg)
 
 1. The Ball must weigh not less than two, nor more than two and three-quarters ounces, avoirdupois. It must measure not less than six and a half, nor more than eight and a half inches in circumference, and must be covered with leather.
 2. The Bat must be round, and must not exceed two and a half inches in diameter in the thickest part. It must be made of wood, and may be of any length to suit the Striker.

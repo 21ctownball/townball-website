@@ -14,7 +14,7 @@ Before the twentieth century, every region in the United States had their own ve
 
 In New York State and the Great Lakes Region, their respective versions of bat-and-ball were referred to as “Base Ball,” or “The Game of the Bases.” In New England, “Base Ball” and “Round Ball” were used interchangeably. In Pennsylvania, Ohio, and in the South, the term “Town Ball” was used.
 
-![A Depiction of an Early Form of Baseball](/public/content/origins-game-1.png)
+![A Depiction of an Early Form of Baseball](/content/origins-game-1.png)
 
 Even when the name of the game was the same, neighboring regions played according to different rules. The town ball of Philadelphia, for example, was a completely different game than that of Cincinnati.
 
@@ -42,13 +42,13 @@ First, the field is a square, one of the most basic and beautiful shapes of geom
 
 Second, almost every part of the game is broken down to the number three.
 
-![Baseball is perfect mathematically in all aspects](/public/content/origins-game-2.jpg)
+![Baseball is perfect mathematically in all aspects](/content/origins-game-2.jpg)
 
 The bases are ninety feet apart (thirty times three), the pitcher is sixty feet, six inches from the batter (twice thirty feet three inches), there are nine innings (three sets of three), and each inning consists of six outs (one set of three for each team). There are three strikes for an out, and there are nine players per side (again, three sets of three). Even the World Series was originally a nine-game series.
 
 The Massachusetts Game in contrast lacks the same mathematical appeal and playability. Yes, as in baseball, the field of The Massachusetts Game is a square, but the batter's box is located between the first and fourth stakes, facing the center of the square. This not only makes for an awkward lack of balance regarding the respective distances between the bases (see image below), but with first being only thirty feet from the batting point, and second sixty feet from first, this puts the pitching distance at a mere thirty-five feet from the batter. With a pitcher throwing swiftly, as is done in baseball today, this hardly makes for a fair contest between the pitcher and the batter (Ironically, it should be noted that swift pitching was originally allowed in The Massachusetts Game but not in the New York Game. Click [here](/history/swift-pitching) for more information about this).
 
-![The Massachusetts Game Infield](/public/content/origins-field.png)
+![The Massachusetts Game Infield](/content/origins-field.png)
 
 However, regardless of the geometric flaws, The Massachusetts Game still happens to be an extraordinarily playable game.
 
@@ -62,7 +62,7 @@ We here at Twenty-First Century Townball have aspired to revive the great game o
 
 In Twenty-First Century Townball (see below), we have kept the square, but instead of batting from right between the first and fourth stakes, as is done in the original Massachusetts version, we started with a distance of 110 feet, and then cut the stakeline into the mean and extreme ratio, making first stake 42 feet from the batter. We then used the Fibonacci sequence to determine the remaining distances between each of the bases so that second is 68 feet from first, and the rest of the stakes are all 110 feet apart.
 
-![The Townball Infield](/public/content/origins-field-21c.png)
+![The Townball Infield](/content/origins-field-21c.png)
 
 The fourth and final stake would have ended up on the batting and first stakeline if we were to keep to the original design, but we extended the distance between third and fourth to be equal to that between second and third, and then completed the square by adding a fifth stake back behind the batter in line with first and second.
 
