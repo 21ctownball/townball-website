@@ -62,8 +62,9 @@ const headingParts = Array(headingPartCount)
     }
   }
 
+  /* this overrides defaults to allow cool oversized numbers */
   :global(main) {
-    max-width: unset;
+    max-width: unset !important;
   }
 
   /* the wrapper ensures that the oversized numbers are don't cause overflow when screen is small */
