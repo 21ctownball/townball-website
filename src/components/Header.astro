@@ -64,6 +64,7 @@ const links = NAV_LINKS.map(link => ({
     --box-shadow: 0 calc(var(--sp-1) * -1) var(--sp-4) var(--shadow);
     --font-size: 24px;
     --mobile-logo-size: 96px;
+    --lines-size: 32px;
     --mobile-logo-padding: 8px;
     --transition: 200ms;
     position: sticky;
@@ -154,7 +155,7 @@ const links = NAV_LINKS.map(link => ({
     }
 
     @include mobile {
-      --mobile-logo-size: 64px;
+      --mobile-logo-size: 56px;
       display: flex;
 
       /* overlay prevents clicking and blurs background */
@@ -208,11 +209,10 @@ const links = NAV_LINKS.map(link => ({
 
       /* mobile menu toggle */
       input {
-        --size: calc(var(--mobile-logo-size) * 0.5);
         display: block !important;
         appearance: none;
-        width: var(--size);
-        height: var(--size);
+        width: var(--lines-size);
+        height: var(--lines-size);
         background-repeat: no-repeat;
         background-position: center;
         cursor: pointer;
