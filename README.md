@@ -1,9 +1,17 @@
 # 21st Century Townball
 
-This project contains content + code to generate the public-facing website for the 21st Century Townball organization.
+This project contains content & code to generate the public-facing website for the 21st Century Townball organization.
 
-It uses Astro for static site generation (SSG) and utilizes Markdown for written content (info pages, blogs, etc) and CSV files for game statistics.
+If you are interested in contributing to the project, check out our [contribution guide](./.github/docs/CONTRIBUTING.md). The project intentionally uses a simple dev stack to make contribution more accessible. Here are the key technologies used in the project:
 
-## Contrubuting
+| Tool                                          | Purpose                |
+| --------------------------------------------- | ---------------------- |
+| [Astro](https://astro.build/)                 | static site generation |
+| [TypeScript](https://www.typescriptlang.org/) | static type analysis   |
+| [SCSS](https://sass-lang.com/)                | elegant styling        |
 
-- [ ] TODO write this section
+## Content
+
+This repository also acts as a simple <abbr title="content management system">CMS</abbr> by composing written content (info pages, blogs, etc) with [Markdown](https://www.markdownguide.org/) and game statistics with CSV files.
+
+This allows writers or scorekeepers to contribute to the project directly while reaping the benefits of version control.
