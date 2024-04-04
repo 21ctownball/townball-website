@@ -181,9 +181,13 @@ const { BASE_URL } = import.meta.env;
       width: 100%;
       min-height: 100%;
       object-fit: cover;
-      object-position: right top;
+      object-position: 45% 20%;
       z-index: -1;
-      filter: saturate(0.7) brightness(0.9);
+      filter: saturate(0.8);
+
+      @include mobile {
+        object-position: 95% 20%;
+      }
     }
 
     /* overlay to darken image */
@@ -191,7 +195,7 @@ const { BASE_URL } = import.meta.env;
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(50% 50%, #0001 60%, #0002 90%, #0004 120%);
+      background: radial-gradient(50% 50%, #0001 60%, #0003 100%, #0005 150%);
     }
 
     /* content */
