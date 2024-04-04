@@ -1,4 +1,4 @@
-# Welcome to the 21C Townball Contribution Guide
+# 21C Townball Website Contribution Guide
 
 Thank you for taking the time to invest in this project! The sport of 21C Townball is a labor of love from the beginning and the website is no exception.
 

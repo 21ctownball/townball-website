@@ -1,4 +1,4 @@
-# 21st Century Townball
+# 21st Century Townball Website
 
 This project contains content & code to generate the public-facing website for the 21st Century Townball organization.
 
