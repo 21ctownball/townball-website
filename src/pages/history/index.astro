@@ -29,7 +29,7 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
   <div class="global-px">
     <div id="intro">
       <h1>History</h1>
-      <p>21st Century Townball has a rich backstory, with its roots in historic baseball and its climax in modern-day acedemia. These articles recount the development of the game throughout the years.</p>
+      <p>21st Century Townball has a rich backstory, with its roots in historic baseball and its climax in modern-day acedemia. These articles recount the development of the sport.</p>
     </div>
     <ul>
       {
@@ -78,21 +78,31 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
 
   #intro {
     margin: auto;
+
+    @media (max-width: 1300px) {
+      max-width: calc(400px * 2 + var(--sp-5));
+    }
+
+    @media (max-width: 900px) {
+      max-width: calc(400px + var(--sp-2));
+    }
   }
 
   ul {
+    --card-width: calc(400px + var(--sp-2));
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(3, calc(400px + var(--sp-2)));
+    grid-template-columns: repeat(3, var(--card-width));
     gap: var(--sp-1);
     margin: var(--sp-2) auto 0;
+    width: max-content;
 
-    @media (max-width: 1000px) {
-      grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 1300px) {
+      grid-template-columns: repeat(2, var(--card-width));
     }
 
-    @media (max-width: 700px) {
-      grid-template-columns: 1fr;
+    @media (max-width: 900px) {
+      grid-template-columns: min(var(--card-width), calc(100dvw - var(--sp-2)));
     }
 
     li {
@@ -157,6 +167,7 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
           object-fit: cover;
           filter: grayscale(0.9) sepia(0.25);
           transition: filter calc(var(--time) * 1);
+          max-width: 100%;
         }
 
         .fake-text {
