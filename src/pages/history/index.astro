@@ -163,11 +163,14 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
         }
 
         .thumbnail {
-          --time: 200ms;
           object-fit: cover;
-          filter: grayscale(0.9) sepia(0.25);
-          transition: filter calc(var(--time) * 1);
           max-width: 100%;
+
+          @media (min-width: 1000px) {
+            --time: 200ms;
+            filter: grayscale(0.9) sepia(0.25);
+            transition: filter calc(var(--time) * 1);
+          }
         }
 
         .fake-text {

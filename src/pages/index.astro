@@ -140,15 +140,15 @@ const { BASE_URL } = import.meta.env;
       --time: 200ms;
       position: relative;
       border-radius: var(--border-radius);
-      filter: grayscale(0.9) sepia(0.25);
-      box-shadow: 0 0 0.5rem var(--shadow);
-      transition:
-        filter calc(var(--time) * 1),
-        scale calc(var(--time) * 2),
-        box-shadow calc(var(--time) * 2),
-        rotate calc(var(--time) * 3);
 
       @include desktop {
+        filter: grayscale(0.9) sepia(0.25);
+        box-shadow: 0 0 0.5rem var(--shadow);
+        transition:
+          filter calc(var(--time) * 1),
+          scale calc(var(--time) * 2),
+          box-shadow calc(var(--time) * 2),
+          rotate calc(var(--time) * 3);
         &:hover {
           filter: none;
           rotate: -1deg;
