@@ -55,23 +55,6 @@ const links = NAV_LINKS.filter(link => link.href !== '/');
     background-color: var(--bg-bold);
     margin-top: var(--sp-4);
 
-    @media (max-width: 800px) {
-      grid-template-columns: 1fr;
-      place-items: center;
-      padding: var(--sp-1);
-      gap: var(--sp-1);
-      margin-top: var(--sp-2);
-
-      nav {
-        --gap: calc(var(--sp-1) * 1.5) !important;
-        justify-self: revert !important;
-      }
-
-      .logo-link {
-        display: none;
-      }
-    }
-
     .subscribe {
       background-color: var(--bg-mild);
       color: var(--fg-mild);
@@ -132,6 +115,26 @@ const links = NAV_LINKS.filter(link => link.href !== '/');
             width: auto;
             height: 1em;
           }
+        }
+      }
+    }
+
+    @media (max-width: 800px) {
+      margin-top: var(--sp-2);
+
+      .content {
+        grid-template-columns: 1fr;
+        place-items: center;
+        padding: var(--sp-1);
+        gap: var(--sp-1);
+
+        nav {
+          --gap: calc(var(--sp-1) * 1.5) !important;
+          justify-self: revert !important;
+        }
+
+        .logo-link {
+          display: none;
         }
       }
     }
