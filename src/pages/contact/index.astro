@@ -1,22 +1,112 @@
 ---
+import MailChimp from '@components/MailChimp.astro';
+import Discord from '@components/icons/Discord.astro';
+import Envelope from '@components/icons/Envelope.astro';
+import Instagram from '@components/icons/Instagram.astro';
 import Default from '@layouts/Default.astro';
 ---
 
 <Default title="Contact">
   <div class="global-px">
-    <h1>Get in Touch</h1>
-    <p>Want to write a long message about how much you love Townball?</p>
-    <a href="mailto:21ctownball@gmail.com" target="_blank" class="cta">Send Us an Email</a>
-    <p>Like looking at pictures while talking online?</p>
-    <a href="https://www.instagram.com/21ctownball/" target="_blank" class="cta">Send Us a DM on Instagram</a>
-    <p>Prefer quick messaging on a trendy communication platform?</p>
-    <a href="https://discord.gg/5m8G4bZQx5" target="_blank" class="cta">Join Our Discord Server</a>
+    <div class="flex">
+      <div class="intro">
+        <h1>Get in Touch</h1>
+        <p>We love talking about the sport and want to hear from <em>you</em>. Pick your preferred platform and we'll respond as soon as we can!</p>
+      </div>
+      <div class="grid">
+        <div>
+          <p>Want to write a long message about how much you love Townball?</p>
+          <a href="mailto:21ctownball@gmail.com" target="_blank" class="cta">
+            <Envelope />
+            Send an Email
+          </a>
+        </div>
+        <div>
+          <p>Like looking at pictures while talking online?</p>
+          <a href="https://www.instagram.com/21ctownball/" target="_blank" class="cta">
+            <Instagram />
+            DM on Insta
+          </a>
+        </div>
+        <div>
+          <p>Prefer quick messaging on a trendy communication platform?</p>
+          <a href="https://discord.gg/5m8G4bZQx5" target="_blank" class="cta">
+            <Discord />
+            Join the Discord
+          </a>
+        </div>
+      </div>
+    </div>
+    <MailChimp client:load />
   </div>
 </Default>
 
 <style lang="scss">
-  div {
-    // WARNING: hard-coded to make content top-aligned instead of centered
-    min-height: calc(100dvh - 20rem);
+  :global(main) {
+    max-width: unset !important;
+  }
+
+  .global-px {
+    --box-shadow: 0 0.5rem 1rem #0002;
+    display: flex;
+    align-items: end;
+    gap: var(--sp-2);
+
+    @media (max-width: 1200px) {
+      flex-direction: column;
+      align-items: unset;
+      gap: 0;
+    }
+
+    .flex {
+      display: flex;
+      flex-direction: column;
+
+      .intro {
+        max-width: 500px;
+        margin-bottom: var(--sp-1);
+
+        h1 {
+          margin: 0;
+        }
+      }
+
+      .grid {
+        // display: grid;
+        // grid-template-columns: repeat(3, 300px);
+        // gap: var(--sp-2);
+        // place-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-1);
+
+        > div {
+          background-color: var(--bg-bold);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
+          padding: var(--sp-1);
+
+          p {
+            text-align: center;
+            margin-top: 0;
+          }
+
+          :global(svg) {
+            fill: white;
+            height: 1.3em;
+            margin-bottom: -0.3em;
+            margin-right: 0.2em;
+          }
+        }
+      }
+    }
+
+    :global(#mc_embed_signup) {
+      background-color: var(--bg-bold);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: var(--sp-1);
+      margin: var(--sp-2) auto 0;
+    }
   }
 </style>
