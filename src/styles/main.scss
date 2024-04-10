@@ -28,12 +28,12 @@
   outline: 2px solid var(--button-outline-color);
 
   &:is(:focus, :hover) {
-    --button-fg: var(--bg-mild);
+    --button-fg: var(--red);
     --button-outline-color: var(--red-mild);
   }
 
   &:is(:active) {
-    --button-fg: var(--bg-bold);
+    --button-fg: var(--red-bold);
     --button-bg: var(--bg);
   }
 }
@@ -120,7 +120,9 @@ a {
 }
 
 button {
-  @include button;
+  &:not(.cta) {
+    @include button;
+  }
 
   &.cta {
     @include call-to-action;
