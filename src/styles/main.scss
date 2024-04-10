@@ -28,12 +28,12 @@
   outline: 2px solid var(--button-outline-color);
 
   &:is(:focus, :hover) {
-    --button-fg: var(--red);
+    --button-fg: var(--bg-mild);
     --button-outline-color: var(--red-mild);
   }
 
   &:is(:active) {
-    --button-fg: var(--red-mild);
+    --button-fg: var(--bg-bold);
     --button-bg: var(--bg);
   }
 }
