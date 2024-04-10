@@ -2,6 +2,7 @@
 name: 'Vintage Baseball'
 author: 'Daniel Jones'
 date: 2012-01-09
+thumbnail: '/content/vintage-modern.jpg'
 ---
 
 There is a longing today in the hearts of many a baseball player to go back to playing ball the way it was played "when it was just a game."

@@ -1,22 +1,24 @@
 ---
 import Default from '@layouts/Default.astro';
 import { getFormattedDatetime } from '@scripts/utils';
-import { ContentEntryModule } from 'astro';
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 const { BASE_URL } = import.meta.env;
+
+type PostType = any; // Awaited<ReturnType<typeof getCollection<'posts'>>>[number];
 
 /**
  * Filters out all posts written from 2013 and later.
  * All OG website content was written before then.
  */
-function postFilter(post: ContentEntryModule) {
+function postFilter(post: PostType) {
   return (post.data.date as Date).getFullYear() < 2013;
 }
 
 /**
  * Sorts by post date.
  */
-function postSorter(a: ContentEntryModule, b: ContentEntryModule) {
+function postSorter(a: PostType, b: PostType) {
   return (a.data.date as Date).getTime() - (b.data.date as Date).getTime();
 }
 
@@ -51,13 +53,16 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
                 <span>{getFormattedDatetime(p.data.date)}</span>
               </div>
               <hr />
-              <div class="fake-text">
-                {Array(30)
-                  .fill(null)
-                  .map(_ => (
-                    <div />
-                  ))}
-              </div>
+              {p.data.thumbnail && <Image src={p.data.thumbnail} alt="" width={400} height={200} class="thumbnail" />}
+              {!p.data.thumbnail && (
+                <div class="fake-text">
+                  {Array(39)
+                    .fill(null)
+                    .map(_ => (
+                      <div />
+                    ))}
+                </div>
+              )}
             </a>
           </li>
         ))
@@ -72,14 +77,13 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
   }
 
   #intro {
-    max-width: 768px;
     margin: auto;
   }
 
   ul {
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, calc(400px + var(--sp-2)));
     gap: var(--sp-1);
     margin: var(--sp-2) auto 0;
 
@@ -115,6 +119,10 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
             translate: 0 -4px;
             rotate: -1deg;
             scale: 1.02;
+
+            .thumbnail {
+              filter: none;
+            }
           }
         }
 
@@ -144,7 +152,15 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
           color: var(--fg-mild);
         }
 
+        .thumbnail {
+          --time: 200ms;
+          object-fit: cover;
+          filter: grayscale(0.9) sepia(0.25);
+          transition: filter calc(var(--time) * 1);
+        }
+
         .fake-text {
+          padding-top: 5px; // match image height
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: var(--sp-half);

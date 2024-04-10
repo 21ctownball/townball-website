@@ -2,6 +2,7 @@
 name: 'Swift Pitching in the Massachusetts Game'
 author: 'Daniel Jones'
 date: 2012-01-05
+thumbnail: '/content/swift-pitching-foul.jpg'
 ---
 
 Rule eight of the 1858 Dedham rules states the following:

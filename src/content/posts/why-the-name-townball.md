@@ -2,6 +2,7 @@
 name: 'Why the Name Townball?'
 author: 'Daniel Jones'
 date: 2012-01-08
+thumbnail: '/content/name-vintage.jpg'
 ---
 
 As is mentioned in our article, [Origins of the American Pastime](/history/origins-of-the-pastime), every region in the United States had their own version of base ball that they played according to the local rules.

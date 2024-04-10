@@ -2,6 +2,7 @@
 name: 'The Origins of the American Pastime'
 author: 'Daniel Jones'
 date: 2012-01-01
+thumbnail: '/content/origins-game-1.png'
 ---
 
 Baseball is America’s National Pastime.

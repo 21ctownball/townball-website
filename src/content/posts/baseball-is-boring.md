@@ -2,6 +2,7 @@
 name: 'Baseball is Boring'
 author: 'Daniel Jones'
 date: 2012-01-06
+thumbnail: '/content/boring-inning-limit.jpg'
 ---
 
 There is something about bat-and-ball games that attracts so many people to them. Perhaps it is the act of hitting a moving object with a stick. Or perhaps it is the challenge of trying to throw a ball past a batter. Or perhaps it is the child-like game of tag that baserunning reminds us all of.

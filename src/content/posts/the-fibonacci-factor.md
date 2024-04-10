@@ -2,6 +2,7 @@
 name: 'The Fibonacci Factor'
 author: 'Daniel Jones'
 date: 2012-01-02
+thumbnail: '/content/fib-geometry.png'
 ---
 
 Every aspect of Twenty-First Century Townball is based upon what is known as the Fibonacci Sequence.

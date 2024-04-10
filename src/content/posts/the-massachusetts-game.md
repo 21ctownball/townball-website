@@ -2,6 +2,7 @@
 name: 'The Massachusetts Game'
 author: 'Daniel Jones'
 date: 2012-01-03
+thumbnail: '/content/massachusetts-running.png'
 ---
 
 During the first half of the nineteenth century, every region in the United States had their own version of base ball that they enjoyed. Massachusetts was no exception. In fact, many historians today consider the version played in Massachusetts to be the early arch-rival of that of New York as our National Pastime.

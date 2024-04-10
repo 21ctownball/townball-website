@@ -8,6 +8,7 @@ const posts = defineCollection({
     name: z.string(),
     author: z.string().default('Anonymous'),
     date: z.date(),
+    thumbnail: z.string().optional(),
   }),
 });
 

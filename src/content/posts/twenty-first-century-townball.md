@@ -2,6 +2,7 @@
 name: 'Twenty-First Century Townball'
 author: 'Daniel Jones'
 date: 2012-01-04
+thumbnail: '/content/21c-today.jpg'
 ---
 
 There were plenty of reasons for the New York version of base ball winning out over that of Massachusetts as our National Pastime. Most notably, the geometry of The New York Version makes the game both aesthetically pleasing as well as playable.
