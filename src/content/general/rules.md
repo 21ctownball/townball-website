@@ -8,7 +8,7 @@
 ### Equipment
 
 5. The ball shall consist of cork, rubber, yarn, and leather. The cork center shall be one inch in diameter, followed by a layer of rubber so that the cork center and rubber together measure no less than six and one-eighth and no more than six and three-eighths inches in circumference. The cork and rubber core shall then be wrapped with yarn until the circumference measures no less than nine-and-three-eighths and no more than nine-and-a-half inches. The ball shall then be covered in one piece of leather stitched together so that it measures no less than nine and five-eighths and no more than nine and seven-eighths inches in circumference, and weighs no less than four and seven-eighths and no more than five and one-eighth avoirdupois ounces.
-6. The bat shall be made of wood, the thickest part thereof not exceeding eight inches in circumference, and shall be of any length so as to suit the batter.
+6. The bat shall be made of wood, the thickest part thereof not exceeding eight and one fifth inches in circumference, and shall be of any length so as to suit the batter.
 7. Fielders’ gloves must measure no more than three inches in length from the base of the fingers to the tip, and no more than eight inches in width from the side of the index finger closest to the thumb, to the side of the pinkie farthest from the same.
 
 ### The Playing Field
