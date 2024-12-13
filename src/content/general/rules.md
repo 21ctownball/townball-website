@@ -1,3 +1,5 @@
+<!-- These rules shall reference and defer to the canonical source, currently hosted on this Google doc: https://docs.google.com/document/d/1JLDd4XVJKXcjAfxsd3r07x9jcOPIpzmdUk67I8Qd6b0/edit?usp=sharing -->
+
 ## Pregame
 
 1. Each team shall consist of thirteen players, one of which, being captain, shall represent the team in every respect.
