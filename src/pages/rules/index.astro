@@ -2,8 +2,10 @@
 import BackToTopButton from '@components/BackToTopButton.astro';
 import Default from '@layouts/Default.astro';
 import { getEntry } from 'astro:content';
+const preamble = await getEntry('general', 'rules-preamble');
 const rules = await getEntry('general', 'rules');
-const { headings, Content } = await rules.render();
+const { Content: PreambleContent } = await preamble.render();
+const { headings, Content: RulesContent } = await rules.render();
 const headingPartCount = 3;
 const headingPartLength = Math.floor(headings.length / headingPartCount);
 const headingParts = Array(headingPartCount)
@@ -14,6 +16,12 @@ const headingParts = Array(headingPartCount)
 <Default title="Rules">
   <div class="wrapper">
     <div class="global-px">
+      <!-- preamble -->
+      <div class="preamble">
+        <PreambleContent />
+      </div>
+      <!-- visual separation -->
+      <hr />
       <!-- ensure rules are quickly accessible -->
       <h2>Contents</h2>
       <ol class="table-of-contents">
@@ -36,7 +44,7 @@ const headingParts = Array(headingPartCount)
       <!-- visual separation -->
       <hr />
       <!-- content populated from markdown file -->
-      <Content />
+      <RulesContent />
       <!-- back to top button -->
       <BackToTopButton />
     </div>
@@ -75,6 +83,23 @@ const headingParts = Array(headingPartCount)
 
     .global-px {
       max-width: var(--content-width);
+    }
+  }
+
+  /* style the preamble to visually stand out */
+  .preamble {
+    text-align: justify;
+    font-size: large;
+
+    @media (min-width: 576px) {
+      text-align: center;
+      padding: 0 3rem;
+    }
+
+    @media (min-width: 992px) {
+      margin-top: 3rem;
+      padding: 0 4rem;
+      font-size: larger;
     }
   }
 
@@ -123,11 +148,6 @@ const headingParts = Array(headingPartCount)
       --right-offset: -50px;
       --left-offset: -50px;
     }
-  }
-
-  h2 {
-    text-transform: uppercase;
-    font-size: calc(var(--font-size-header) / 2);
   }
 
   ol {
