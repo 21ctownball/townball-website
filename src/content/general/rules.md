@@ -69,7 +69,7 @@
 ## Knocking the Stake
 
 36. If while in the process of advancing from stake to stake, a stakerunner either dislodges or causes a stake to fall over, then the stakerunner must set that stake back upright at the place where it was originally stationed before he may legally advance to the next stake. If a stakerunner knocks over more than one stake during his progression from stake to stake, then he must return each stake to an upright position, starting with the stake that he last knocked over before resuming advancement starting from the stake he last set back up.
-37. If a stake falls over after a runner had already advanced to the next stake, then the stake will not be considered to have been knocked over by that runner.
+37. If a stake falls over after a runner has already advanced to the next stake, then the stake will not be considered to have been knocked over by that runner.
 
 ## Obstruction
 
@@ -104,7 +104,7 @@
 
 ## Ground Rules
 
-48. In the case that a ball pitched to the batter hits the batter, then the ball shall be in play without any reservations. Similarly, if a pitched ball hits any part of the zone other than at the rectangle, or in the case that the ball bounces on the ground or off the batter and then his the rectangle, that ball shall be considered to be in play.
+48. In the case that a ball pitched to the batter hits the batter, then the ball shall be in play without any reservations. Similarly, if a pitched ball hits any part of the zone other than at the rectangle, or in the case that the ball bounces on the ground or off the batter and then hits the rectangle, that ball shall be considered to be in play.
 49. Runs that score before an out is made in an inning shall count except in the case of a fly out or force out. In the case of a fly out or force out, no runs that take place after the moment the ball was hit shall count. In every other case, runs that score after the moment an out is made in an inning shall not count.
 50. If a batter hits the ball onto the ground and as a result, the ball exits the playing area on account of the hit, then the batter and any concurrent stake runners shall be granted the stake that they were advancing to at the time the ball was hit, and two more stakes. If a batter hits the ball in the air out of the playing area, then the batter shall be granted an automatic homerun, and thus scoring, along with any stakerunners who were on stake at the time that the ball had been hit. If a ball leaves the playing area without having been hit, then runners will be granted the stake that they were advancing to at the time the ball went out of play, and one more stake.
 51. As long as the ball is in the playing area, the ball shall be considered live at all times, and runners may advance from stake to stake at will, in keeping with the rules outlined in this document. No timeouts shall be granted during play, except in the case of injury or for some other reason deemed necessary by the umpire.
@@ -112,6 +112,6 @@
 
 ## Sportsmanship
 
-53. The set of rules written in this document shall be considered the complete set of rules for 21st Century Townball, and any play during a legal game of the same that does not break nor disobey these rules shall be considered legal, and shall be considered so until a rule is otherwise added to this set.
+53. The set of rules written in this document shall be considered the complete set of rules for 21st Century Townball, and any play during a legal game of the same that does not break or disobey these rules shall be considered legal, and shall be considered so until a rule is otherwise added to this set.
 54. Any rule outlined in this document can be spontaneously modified during or before a game, if agreed upon by both captains. However, unless otherwise agreed upon by both captains, each rule in this document shall be considered binding during game play and shall be followed in all cases, and no rule changes can be made if not agreed upon by both captains.
 55. Players shall use common sense in keeping safety, fair play, and good sportsmanship in mind when playing Twenty-First Century Townball. A player who is unruly or otherwise unreasonable in the opinion of the umpire shall be asked to leave the playing area after being warned.
