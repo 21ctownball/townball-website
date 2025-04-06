@@ -6,7 +6,7 @@ import Facebook from '@components/icons/Facebook.astro';
 import Instagram from '@components/icons/Instagram.astro';
 import YouTube from '@components/icons/YouTube.astro';
 import { NAV_LINKS } from '@scripts/constants';
-const { SITE } = import.meta.env;
+const { BASE_URL } = import.meta.env;
 const { url } = Astro;
 
 const links = NAV_LINKS.filter(link => link.href !== '/');
@@ -34,7 +34,7 @@ const links = NAV_LINKS.filter(link => link.href !== '/');
         <Envelope />
       </a>
     </nav>
-    <a href={`${SITE}`} class="logo-link">
+    <a href={`${BASE_URL}`} class="logo-link">
       <Logo width={64} />
     </a>
     <nav>

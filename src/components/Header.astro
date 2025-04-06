@@ -2,7 +2,7 @@
 import Logo from '@components/Logo.astro';
 import { NAV_LINKS } from '@scripts/constants';
 const { url } = Astro;
-const { SITE } = import.meta.env;
+const { BASE_URL } = import.meta.env;
 
 function isLinkCurrent(href: string) {
   return href === '/' ? url.pathname === '/' : url.pathname.startsWith(href);
@@ -21,7 +21,7 @@ const links = NAV_LINKS.map(link => ({
   <!-- links -->
   <div class="content">
     <!-- logo link -->
-    <a href={SITE} class="logo">
+    <a href={BASE_URL} class="logo">
       <Logo width={96} />
     </a>
 
