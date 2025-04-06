@@ -20,6 +20,10 @@ export const NAV_LINKS: Link[] = [
     title: 'History',
     href: '/history',
   },
+  // {
+  //   title: 'Stats',
+  //   href: '/stats',
+  // },
   {
     title: 'Media',
     href: '/media',

@@ -19,11 +19,11 @@ export function getStaticPaths() {
 const { file } = Astro.props;
 
 // fetch game data
-const data = await loadScoreboard(`/src/stats/games/${file}-scbd.csv`);
+const data = await loadScoreboard(`/src/stats/games/${file}-scbd.csv?url&raw`);
 const rows = Object.values(data).map((row) => Object.values(row));
 ---
 
-<Default name="Townball Statistics">
+<Default title="Statistics">
   {
     data.length > 0 && (
       <figure>
@@ -50,4 +50,3 @@ const rows = Object.values(data).map((row) => Object.values(row));
   }
   {data.length === 0 && <article>There is no data for this game.</article>}
 </Default>
-src/ts/data src/scripts/data
