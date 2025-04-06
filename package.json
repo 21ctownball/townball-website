@@ -5,18 +5,19 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/ts-plugin": "^1.4.0",
-    "@rollup/plugin-dsv": "^3.0.2",
-    "astro": "^4.3.2"
+    "@astrojs/check": "^0.9.4",
+    "astro": "^4.15.11",
+    "typescript": "^5.6.2"
   },
   "devDependencies": {
+    "@rollup/plugin-dsv": "^3.0.5",
     "@types/d3-dsv": "^3.0.7",
     "d3-dsv": "^3.0.1",
-    "sass": "^1.69.4"
+    "sass": "^1.79.4"
   }
 }

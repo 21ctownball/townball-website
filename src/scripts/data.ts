@@ -1,37 +1,11 @@
 import { csvParse } from 'd3-dsv';
-import { z } from 'zod';
+import { abbreviationSchema, scoreboardFileSchema, scoreboardSchema } from './schemas';
 
-const abbreviationSchema = z.array(
-  z.object({
-    abbreviation: z.string(),
-    title: z.string(),
-    description: z.optional(z.string()),
-  }),
-);
-
-const scoreboardFileSchema = z.array(
-  z.object({
-    path: z.string(),
-    date: z.string(),
-    visitingTeam: z.string(),
-    homeTeam: z.string(),
-  }),
-);
-
-const scoreboardSchema = z.array(
-  z
-    .object({
-      Team: z.string(),
-      R: z.string(),
-      H: z.string(),
-      SS: z.string(),
-    })
-    .catchall(z.string()),
-);
+// @ts-expect-error CSVs are not recognized as valid imports
+import abbreviationsString from '../stats/abbreviations.csv?url&raw';
 
 export async function getAbbreviations() {
-  const string = (await import('/src/stats/abbreviations.csv?url&raw')).default;
-  const data = csvParse(string);
+  const data = csvParse(abbreviationsString);
   return abbreviationSchema.parse(data);
 }
 
@@ -39,9 +13,15 @@ export async function getAbbreviations() {
  * @see https://vitejs.dev/guide/features.html#glob-import
  */
 export function getScoreboardFilePaths() {
-  const gameFilePaths = Object.keys(import.meta.glob('/src/stats/games/*-scbd.csv', { as: 'url' }));
+  const gameFilePaths = Object.keys(import.meta.glob('../stats/games/*-scbd.csv', { as: 'url' }));
   const gameFileRegex = /(?<date>\d\d\d\d-\d\d-\d\d)-(?<visitingTeam>\w\w\w)(?<homeTeam>\w\w\w)-scbd\.csv/;
-  return scoreboardFileSchema.parse(gameFilePaths.map((path) => ({ path, ...gameFileRegex.exec(path)?.groups })));
+  return scoreboardFileSchema.parse(
+    gameFilePaths
+      // Ensure file path is correct format, since the file name is "metadata" -- the game date and teams
+      .map((path) => ({ path, ...gameFileRegex.exec(path)?.groups })))
+      // Add "?url&raw" query parameter to ensure dsv plugin works properly
+      .map(({ path, ...others }) => ({ ...others, path: path.concat('?url&raw') })
+  );
 }
 
 /**
@@ -49,8 +29,8 @@ export function getScoreboardFilePaths() {
  */
 export async function loadScoreboard(path: string) {
   const teamString = `${String.fromCharCode(65279)}Team`;
-  const string = (await import(`${path}?url&raw` /* @vite-ignore */)).default;
-  const data = csvParse(string);
+  const string = (await import(/* @vite-ignore */`${path}`)).default;
+  const data = csvParse(String(string));
   return scoreboardSchema.parse(data.map((scores: Record<string, string>) => Object.fromEntries(Object.entries(scores).map((s) => (s[0] === teamString ? ['Team', s[1]] : s)))));
 }
 
@@ -61,7 +41,7 @@ export function getTeamsPerYear() {
     const games = gameScoreboardFiles.filter((game) => game.date.slice(0, 4) === year);
     const teams = [...new Set(games.flatMap((t) => [t.homeTeam, t.visitingTeam]))];
     const result = [year, teams] as const;
-    return result;
+    return result as [string, string[]];
   });
   return Object.fromEntries(teamsPerYear);
 }

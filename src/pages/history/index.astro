@@ -3,7 +3,7 @@ import Default from '@layouts/Default.astro';
 import { getFormattedDatetime } from '@scripts/utils';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-const { BASE_URL } = import.meta.env;
+const { SITE } = import.meta.env;
 
 type PostType = any; // Awaited<ReturnType<typeof getCollection<'posts'>>>[number];
 
@@ -35,7 +35,7 @@ const posts = (await getCollection('posts')).filter(postFilter).sort(postSorter)
       {
         posts.map(p => (
           <li>
-            <a href={`${BASE_URL}history/${p.slug}`}>
+            <a href={`${SITE}history/${p.slug}`}>
               <span
                 class="title"
                 class:list={[
