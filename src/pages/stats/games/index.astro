@@ -1,0 +1,24 @@
+---
+import Default from '@layouts/Default.astro';
+import { getScoreboardFilePaths } from '@scripts/data';
+import { getFormattedDatetime } from '@scripts/utils';
+
+const scoreboardFiles = getScoreboardFilePaths();
+---
+
+<Default title="Statistics">
+	<main>
+		<h2>Game Scoresheets</h2>
+		<ul>
+			{
+				scoreboardFiles.map((game) => (
+				<li>
+					<a href={`/stats/games/${game.date}-${game.visitingTeam}-${game.homeTeam}`}>
+						{getFormattedDatetime(game.date)}: {game.homeTeam} v {game.visitingTeam}
+					</a>
+				</li>
+				))
+			}
+		</ul>
+	</main>
+</Default>

@@ -5,12 +5,14 @@ import { getScoreboardFilePaths, loadScoreboard } from '@scripts/data';
 // create page for each game
 export function getStaticPaths() {
   const gameScoreboardFiles = getScoreboardFilePaths();
-  return gameScoreboardFiles.map(({ date, homeTeam, visitingTeam }) => ({
+  return gameScoreboardFiles.map(({ date, homeTeam, visitingTeam, path }) => ({
     params: {
       date,
+      visitingTeam,
+      homeTeam,
     },
     props: {
-      file: `${date}-${visitingTeam}${homeTeam}`,
+      file: path,
     },
   }));
 }
@@ -19,7 +21,7 @@ export function getStaticPaths() {
 const { file } = Astro.props;
 
 // fetch game data
-const data = await loadScoreboard(`/src/stats/games/${file}-scbd.csv?url&raw`);
+const data = await loadScoreboard(file);
 const rows = Object.values(data).map((row) => Object.values(row));
 ---
 

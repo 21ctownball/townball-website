@@ -1,0 +1,35 @@
+---
+import Default from '@layouts/Default.astro';
+import { getPlayers } from '@scripts/data';
+import { getFormattedDatetime } from '@scripts/utils';
+
+const players = await getPlayers();
+---
+
+<Default title="Statistics">
+	<main>
+		<h2>Abbreviations</h2>
+		
+		<hr style="margin: calc(var(--spacing) * 3) 0">
+		
+		<table>
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Debut</th>
+				</tr>
+			</thead>
+			<tbody>
+				{players.map(player => (
+					<tr>
+						<td>{player.first_name}</td>
+						<td>{player.last_name}</td>
+						<td>{player.debut.toLocaleString(undefined, getFormattedDatetime.options)}</td>
+					</tr>
+				))}
+			</tbody>
+		</table>
+		
+	</main>
+</Default>

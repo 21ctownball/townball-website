@@ -8,6 +8,15 @@ export const abbreviationSchema = z.array(
   }),
 );
 
+export const playerSchema = z.array(
+  z.object({
+    id: z.string(),
+    last_name: z.string(),
+    first_name: z.string(),
+    debut: z.coerce.date(),
+  }),
+);
+
 export const scoreboardFileSchema = z.array(
   z.object({
     path: z.string(),

@@ -1,10 +1,11 @@
+const options: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+};
+
 export function getFormattedDatetime(datetime: string) {
   let result: string;
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  };
   const formatter = new Intl.DateTimeFormat(undefined, options);
   try {
     result = formatter.format(Date.parse(datetime));
@@ -13,6 +14,8 @@ export function getFormattedDatetime(datetime: string) {
   }
   return result;
 }
+
+getFormattedDatetime['options'] = options;
 
 export function isHrefExternal(href: string) {
   return /^https?:\/\//.test(href);
