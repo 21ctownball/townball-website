@@ -1,4 +1,3 @@
-import dsv from '@rollup/plugin-dsv';
 import { defineConfig } from 'astro/config';
 import { resolve } from 'path';
 
@@ -8,15 +7,14 @@ const PROJECT_ROOT = resolve('.');
 export default defineConfig({
   root: PROJECT_ROOT,
   vite: {
-    assetsInclude: ['**/*.jpe?g', '**/*.csv'],
-    plugins: [dsv()],
+    assetsInclude: ['**/*.jpe?g'],
     resolve: {
       alias: {
         '@assets': resolve(PROJECT_ROOT, 'src/assets'),
         '@components': resolve(PROJECT_ROOT, 'src/components'),
+        '@data': resolve(PROJECT_ROOT, 'src/data'),
         '@layouts': resolve(PROJECT_ROOT, 'src/layouts'),
         '@scripts': resolve(PROJECT_ROOT, 'src/scripts'),
-        '@stats': resolve(PROJECT_ROOT, 'src/stats'),
         '@styles': resolve(PROJECT_ROOT, 'src/styles'),
       },
     },

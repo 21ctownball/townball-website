@@ -1,25 +1,34 @@
 ---
 import Default from '@layouts/Default.astro';
-import { getTeamsPerYear } from '@scripts/data';
+import { getTeams } from '@scripts/data';
 
-const teamsPerYear = getTeamsPerYear();
+const teams = await getTeams();
 ---
 
 <Default title="Statistics">
 	<main>
-		<h2>Team Statistics</h2>
-		<ul>
-			{
-				Object.keys(teamsPerYear).flatMap((year) =>
-				teamsPerYear[year].map((team) => (
-				<li>
-					<a href={`/stats/teams/${year}-${team}`}>
-						{year}: {team}
-					</a>
-				</li>
-				)),
-				)
-			}
-		</ul>
+		<h2>Abbreviations</h2>
+		
+		<hr style="margin: calc(var(--spacing) * 3) 0">
+		
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Year Debuted</th>
+					<th>Year Retired</th>
+				</tr>
+			</thead>
+			<tbody>
+				{teams.map(team => (
+					<tr>
+						<td>{team.name}</td>
+						<td>{team.debut_season}</td>
+						<td>{team.final_season}</td>
+					</tr>
+				))}
+			</tbody>
+		</table>
+		
 	</main>
 </Default>

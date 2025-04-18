@@ -1,0 +1,90 @@
+[
+	{
+		"id": 0,
+		"acronym": "NYM",
+		"name": "new york mutuals",
+		"debut_season": 2014,
+		"final_season": 2022,
+		"successor": null
+	},
+	{
+		"id": 1,
+		"acronym": "LVG",
+		"name": "louisville grays",
+		"debut_season": 2014,
+		"final_season": 2018,
+		"successor": null
+	},
+	{
+		"id": 2,
+		"acronym": "BRC",
+		"name": "boston red caps",
+		"debut_season": 2014,
+		"final_season": 2018,
+		"successor": null
+	},
+	{
+		"id": 3,
+		"acronym": "BGB",
+		"name": "bay area golden bears",
+		"debut_season": 2022,
+		"final_season": 2022,
+		"successor": 8
+	},
+	{
+		"id": 4,
+		"acronym": "NBQ",
+		"name": "newberg quakers",
+		"debut_season": 2022,
+		"final_season": null,
+		"successor": null
+	},
+	{
+		"id": 5,
+		"acronym": "FNY",
+		"name": "fresno new york mutuals",
+		"debut_season": 2022,
+		"final_season": 2022,
+		"successor": 9
+	},
+	{
+		"id": 6,
+		"acronym": "FSD",
+		"name": "fresno sundogs",
+		"debut_season": 2022,
+		"final_season": 2022,
+		"successor": null
+	},
+	{
+		"id": 7,
+		"acronym": "FHM",
+		"name": "fresno haymakers",
+		"debut_season": 2022,
+		"final_season": 2022,
+		"successor": null
+	},
+	{
+		"id": 8,
+		"acronym": "MAD",
+		"name": "madera coyotes",
+		"debut_season": 2022,
+		"final_season": null,
+		"successor": null
+	},
+	{
+		"id": 9,
+		"acronym": "CGB",
+		"name": "california golden bears",
+		"debut_season": 2023,
+		"final_season": null,
+		"successor": null
+	},
+	{
+		"id": 10,
+		"acronym": "FRE",
+		"name": "fresno eagles",
+		"debut_season": 2023,
+		"final_season": 2024,
+		"successor": null
+	}
+]

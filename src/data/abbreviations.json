@@ -1,0 +1,312 @@
+[
+	{
+		"abbreviation": "g",
+		"title": "games",
+		"description": "the number of games a player has played in.  the player must have batted or played in the field for this stat to count."
+	},
+	{
+		"abbreviation": "pa",
+		"title": "plate appearances",
+		"description": "the number of times a player was sent up to bat."
+	},
+	{
+		"abbreviation": "ab",
+		"title": "at-bats",
+		"description": "the number of times a batter completed an at-bat.  this matters because walk-off plate appearances happen quite often, and do not count to rate stats."
+	},
+	{
+		"abbreviation": "os",
+		"title": "on-stakes",
+		"description": "the number of times a batter reached first stake safely.  is the sum of (h), (s1), and (a1)."
+	},
+	{
+		"abbreviation": "a1",
+		"title": "(hidden stat) passed ball advance",
+		"description": "the number of times a batter reached first safely because of defensive negligence or error.  is the sum of (os), (-s1), and (-h)"
+	},
+	{
+		"abbreviation": "h",
+		"title": "hits",
+		"description": "the number of times a player reached first safely on his own hit.  sum of (1s), (2s), (3s), (4s), and (hr)"
+	},
+	{
+		"abbreviation": "1s",
+		"title": "singles",
+		"description": "the number of times a player's hit resulted in a single*"
+	},
+	{
+		"abbreviation": "2s",
+		"title": "doubles",
+		"description": "the number of times a player's hit resulted in a double*"
+	},
+	{
+		"abbreviation": "3s",
+		"title": "triples",
+		"description": "the number of times a player's hit resulted in a triple*"
+	},
+	{
+		"abbreviation": "4s",
+		"title": "quadruples",
+		"description": "the number of times a player's hit resulted in a quadruple*"
+	},
+	{
+		"abbreviation": "hr",
+		"title": "home runs",
+		"description": "the number of times a player's hit resulted in a home run*"
+	},
+	{
+		"abbreviation": "ws",
+		"title": "(hidden stat) weighted stakes",
+		"description": "the weighted number of stakes advanced result from a batter hit.  (21*(1s)/55) + (2s) + 2*(3s) + 3*(42) + 4*(5s)"
+	},
+	{
+		"abbreviation": "bi",
+		"title": "runs batted in",
+		"description": "the number of times a runner (including the hitter) scored on the batter's hit"
+	},
+	{
+		"abbreviation": "ss",
+		"title": "stolen stakes",
+		"description": "number of times a runner took a base that was not free, up to the discretion of the scorer.  sume of (s1), (s2), (s3), (s4), and (s5)"
+	},
+	{
+		"abbreviation": "s1",
+		"title": "steals of first",
+		"description": "number of times a runner stole first"
+	},
+	{
+		"abbreviation": "s2",
+		"title": "steals of second",
+		"description": "number of times a runner stole second"
+	},
+	{
+		"abbreviation": "s3",
+		"title": "steals of third",
+		"description": "number of times a runner stole third"
+	},
+	{
+		"abbreviation": "s4",
+		"title": "steals of fourth",
+		"description": "number of times a runner stole fourth"
+	},
+	{
+		"abbreviation": "s5",
+		"title": "steals of fifth",
+		"description": "number of times a runner stole fifth"
+	},
+	{
+		"abbreviation": "r",
+		"title": "runs",
+		"description": "number of times a runner scored a run"
+	},
+	{
+		"abbreviation": "o",
+		"title": "outs",
+		"description": "number of times a batter or runner was put out.  sum of (z), (k), (f), (t), and (p)"
+	},
+	{
+		"abbreviation": "z",
+		"title": "zones",
+		"description": "number of times a batter zoned out (including if they hit the zone with their bat)"
+	},
+	{
+		"abbreviation": "k",
+		"title": "strikeouts",
+		"description": "number of times a batter struck out"
+	},
+	{
+		"abbreviation": "f",
+		"title": "(secondary? stat)** flyouts",
+		"description": "number of times a batter flies out (batted ball caught on the fly)"
+	},
+	{
+		"abbreviation": "t",
+		"title": "(secondary? stat)** tags",
+		"description": "number of times a runner is tagged out"
+	},
+	{
+		"abbreviation": "p",
+		"title": "(secondary? stat)** pegs",
+		"description": "number of times a runner is pegged out"
+	},
+	{
+		"abbreviation": "osp",
+		"title": "on-stake percentage",
+		"description": "rate stat: (os)/(ab)"
+	},
+	{
+		"abbreviation": "avg",
+		"title": "batting average",
+		"description": "rate stat: (h)/(at)"
+	},
+	{
+		"abbreviation": "slg",
+		"title": "slugging percentage",
+		"description": "rate stat: (ws)/(at)"
+	},
+	{
+		"abbreviation": "pg",
+		"title": "pegouts",
+		"description": "number of times a fielder made a peg out"
+	},
+	{
+		"abbreviation": "po",
+		"title": "flyouts",
+		"description": "number of times a fielder made an out.  sum of (fo), (po), and (to)"
+	},
+	{
+		"abbreviation": "fo",
+		"title": "flyouts",
+		"description": "number of times a fielder caught a batted ball on the fly"
+	},
+	{
+		"abbreviation": "to",
+		"title": "tagouts",
+		"description": "number of times a fielder made a tag out"
+	},
+	{
+		"abbreviation": "pi",
+		"title": "pickoffs",
+		"description": "number of times a pitcher, catcher, or backup catcher successfully picked off a runner at a base"
+	},
+	{
+		"abbreviation": "a",
+		"title": "defensive assists",
+		"description": "number of times a fielder fielded a ball which led to an out.  baseball counts any time a fielder touches the ball in an out play,"
+	},
+	{
+		"abbreviation": "G",
+		"title": "games pitched",
+		"description": "number of ganes in which a player pitched"
+	},
+	{
+		"abbreviation": "CG",
+		"title": "complete games",
+		"description": "number of games in which a pitcher pitched the entire game"
+	},
+	{
+		"abbreviation": "SO",
+		"title": "shutouts",
+		"description": "number of times a pitcher gave up 0 runs in a complete game"
+	},
+	{
+		"abbreviation": "W",
+		"title": "wins",
+		"description": "number of games a pitcher wins"
+	},
+	{
+		"abbreviation": "L",
+		"title": "losses",
+		"description": "number of games a pitcher loses"
+	},
+	{
+		"abbreviation": "S",
+		"title": "saves",
+		"description": "number of games a pitcher saved"
+	},
+	{
+		"abbreviation": "Z",
+		"title": "zones",
+		"description": "number of times a pitcher zones a batter"
+	},
+	{
+		"abbreviation": "K",
+		"title": "strikeouts",
+		"description": "number of times a pitcher strikes a batter out"
+	},
+	{
+		"abbreviation": "R",
+		"title": "runs",
+		"description": "number of runs a pitcher gives up"
+	},
+	{
+		"abbreviation": "O",
+		"title": "outs",
+		"description": "number of times a pitcher finished an inning"
+	},
+	{
+		"abbreviation": "PCT",
+		"title": "win percentage",
+		"description": "rate stat: (W)/((W)+(L))"
+	},
+	{
+		"abbreviation": "RPO",
+		"title": "runs per out",
+		"description": "rate stat: (R)/(O)"
+	},
+	{
+		"abbreviation": "OEF",
+		"title": "out efficiency",
+		"description": "rate stat: (OS)/(O)"
+	},
+	{
+		"abbreviation": "PA",
+		"title": "(hidden stat) plate appearances",
+		"description": ""
+	},
+	{
+		"abbreviation": "AB",
+		"title": "at-bats",
+		"description": ""
+	},
+	{
+		"abbreviation": "AT",
+		"title": "attempts",
+		"description": ""
+	},
+	{
+		"abbreviation": "OS",
+		"title": "on-stake",
+		"description": ""
+	},
+	{
+		"abbreviation": "H",
+		"title": "hits",
+		"description": ""
+	},
+	{
+		"abbreviation": "WS",
+		"title": "(hidden stat) weighted stakes",
+		"description": ""
+	},
+	{
+		"abbreviation": "1S",
+		"title": "singles",
+		"description": ""
+	},
+	{
+		"abbreviation": "2S",
+		"title": "doubles",
+		"description": ""
+	},
+	{
+		"abbreviation": "3S",
+		"title": "triples",
+		"description": ""
+	},
+	{
+		"abbreviation": "4S",
+		"title": "quadruples",
+		"description": ""
+	},
+	{
+		"abbreviation": "HR",
+		"title": "home runs",
+		"description": ""
+	},
+	{
+		"abbreviation": "OSP",
+		"title": "(oOSP) on-stake percentage",
+		"description": ""
+	},
+	{
+		"abbreviation": "AVG",
+		"title": "(oAVG) batting average",
+		"description": ""
+	},
+	{
+		"abbreviation": "SLG",
+		"title": "(oSLG) slugging percentage",
+		"description": ""
+	}
+]
