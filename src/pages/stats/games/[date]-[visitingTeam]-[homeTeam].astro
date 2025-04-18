@@ -67,7 +67,7 @@ const header = `${getFormattedDatetime(date)}: ${visitingTeamAcronym} v ${homeTe
 					<thead>
 						<tr>
 							{columns.map((col) => (
-								<th>{col}</th>
+								<th title={gameSchema.element.shape[col as keyof typeof gameSchema.element.shape].description}>{col}</th>
 							))}
 						</tr>
 					</thead>
