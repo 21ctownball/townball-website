@@ -1,9 +1,9 @@
 ---
 import Default from '@layouts/Default.astro';
-import { getScoreboardFilePaths } from '@scripts/data';
+import { getGameFilePaths } from '@scripts/data';
 import { getFormattedDatetime } from '@scripts/utils';
 
-const scoreboardFiles = getScoreboardFilePaths();
+const scoreboardFiles = getGameFilePaths();
 ---
 
 <Default title="Statistics">

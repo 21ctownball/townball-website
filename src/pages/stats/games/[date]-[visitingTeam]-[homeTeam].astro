@@ -1,10 +1,11 @@
 ---
 import Default from '@layouts/Default.astro';
-import { getScoreboardFilePaths, loadScoreboard } from '@scripts/data';
+import { getGameFilePaths, getPlayers, getTeams, loadGame } from '@scripts/data';
+import { gameSchema } from '@scripts/schemas';
 
-// create page for each game
+// Create page for each game
 export function getStaticPaths() {
-  const gameScoreboardFiles = getScoreboardFilePaths();
+  const gameScoreboardFiles = getGameFilePaths();
   return gameScoreboardFiles.map(({ date, homeTeam, visitingTeam, path }) => ({
     params: {
       date,
@@ -17,31 +18,60 @@ export function getStaticPaths() {
   }));
 }
 
-// grab route params
+// Extract route params
 const { file } = Astro.props;
 
-// fetch game data
-const data = await loadScoreboard(file);
-const rows = Object.values(data).map((row) => Object.values(row));
+// Fetch data
+const data = await loadGame(file);
+const columns = Object.keys(gameSchema.element.shape);
+
+const teams = await getTeams();
+const players = await getPlayers();
+
+// Replace GUIDs with team and player names
+const teamMap = data.flatMap(row => [row.batting_team, row.pitching_team]).reduce((acc, team) => {
+  if (!acc[team]) {
+    // This will throw if team is not found
+    acc[team] = teams.find(t => t.id === team)!.acronym;
+  }
+  return acc;
+}, {} as Record<number, string>);
+const playerMap = data.flatMap(row => [row.batter, row.pitcher, row.fielder, row.assist]).reduce((acc, player) => {
+  if (player && !acc[player]) {
+    // This will throw if player is not found
+    acc[player] = players.find(p => p.id === player)!.first_name + ' ' + players.find(p => p.id === player)!.last_name;
+  }
+  return acc;
+}, {} as Record<number, string>);
+
+const transformedData = data.map(row => ({
+  ...row,
+  batting_team: teamMap[row.batting_team],
+  pitching_team: teamMap[row.pitching_team],
+  batter: playerMap[row.batter],
+  pitcher: playerMap[row.pitcher],
+  fielder: row.fielder && playerMap[row.fielder],
+  assist: row.assist && playerMap[row.assist],
+}));
 ---
 
 <Default title="Statistics">
   {
     data.length > 0 && (
-      <figure>
+      <figure style="overflow-x: scroll;">
         <table>
           <thead>
             <tr>
-              {Object.keys(Object.values(data)[0]).map((name) => (
-                <th>{name}</th>
+              {columns.map((col) => (
+                <th>{col}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => (
+            {transformedData.map((row) => (
               <tr>
-                {row.map((col) => (
-                  <td>{col}</td>
+                {columns.map((col) => (
+                  <td>{row[col as keyof typeof row]?.toString() || 'null'}</td>
                 ))}
               </tr>
             ))}
@@ -52,3 +82,15 @@ const rows = Object.values(data).map((row) => Object.values(row));
   }
   {data.length === 0 && <article>There is no data for this game.</article>}
 </Default>
+
+<style is:global>
+main {
+  max-width: unset;
+}
+
+td {
+  background-color: #fff8;
+  white-space: nowrap;
+  padding: 0.5em;
+}
+</style>
