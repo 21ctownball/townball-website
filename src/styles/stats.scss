@@ -1,0 +1,34 @@
+hr.stats {
+	border-top: none;
+	margin: var(--sp-2) 0 var(--sp-3);
+}
+
+table.stats {
+	--sp-quarter: calc(var(--sp-half) / 2);
+
+	width: 100%;
+	text-align: left;
+	border-spacing: 0px;
+	border-collapse: collapse;
+
+	thead {
+		tr {
+			th {
+				font-weight: bold;
+				background-color: color-mix(in srgb, var(--bg-mild), transparent 50%);
+				padding: var(--sp-quarter) var(--sp-half);
+				border: 1px solid var(--bg-mild);
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			td {
+				background-color: color-mix(in srgb, var(--bg-bold), transparent 50%);
+				padding: var(--sp-quarter) var(--sp-half);
+				border: 1px solid var(--bg-mild);
+			}
+		}
+	}
+}

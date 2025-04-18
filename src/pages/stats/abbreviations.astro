@@ -9,9 +9,9 @@ const abbreviations = await getAbbreviations();
 	<main>
 		<h2>Abbreviations</h2>
 		
-		<hr style="margin: calc(var(--spacing) * 3) 0">
+		<hr class="stats">
 		
-		<table>
+		<table class="stats">
 			<thead>
 				<tr>
 					{Object.keys(abbreviations[0]).map((name) => (

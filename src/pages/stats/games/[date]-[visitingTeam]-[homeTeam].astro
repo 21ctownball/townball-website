@@ -2,27 +2,22 @@
 import Default from '@layouts/Default.astro';
 import { getGameFilePaths, getPlayers, getTeams, loadGame } from '@scripts/data';
 import { gameSchema } from '@scripts/schemas';
+import { getFormattedDatetime } from '@scripts/utils';
 
 // Create page for each game
 export function getStaticPaths() {
-  const gameScoreboardFiles = getGameFilePaths();
-  return gameScoreboardFiles.map(({ date, homeTeam, visitingTeam, path }) => ({
-    params: {
-      date,
-      visitingTeam,
-      homeTeam,
-    },
-    props: {
-      file: path,
-    },
-  }));
+	const gameScoreboardFiles = getGameFilePaths();
+	return gameScoreboardFiles.map(data => ({
+		params: data,
+		props: data,
+	}));
 }
 
 // Extract route params
-const { file } = Astro.props;
+const { path, date, visitingTeam, homeTeam } = Astro.props;
 
 // Fetch data
-const data = await loadGame(file);
+const data = await loadGame(path);
 const columns = Object.keys(gameSchema.element.shape);
 
 const teams = await getTeams();
@@ -30,67 +25,76 @@ const players = await getPlayers();
 
 // Replace GUIDs with team and player names
 const teamMap = data.flatMap(row => [row.batting_team, row.pitching_team]).reduce((acc, team) => {
-  if (!acc[team]) {
-    // This will throw if team is not found
-    acc[team] = teams.find(t => t.id === team)!.acronym;
-  }
-  return acc;
+	if (!acc[team]) {
+		// This will throw if team is not found
+		acc[team] = teams.find(t => t.id === team)!.acronym;
+	}
+	return acc;
 }, {} as Record<number, string>);
 const playerMap = data.flatMap(row => [row.batter, row.pitcher, row.fielder, row.assist]).reduce((acc, player) => {
-  if (player && !acc[player]) {
-    // This will throw if player is not found
-    acc[player] = players.find(p => p.id === player)!.first_name + ' ' + players.find(p => p.id === player)!.last_name;
-  }
-  return acc;
+	if (player && !acc[player]) {
+		// This will throw if player is not found
+		acc[player] = players.find(p => p.id === player)!.first_name + ' ' + players.find(p => p.id === player)!.last_name;
+	}
+	return acc;
 }, {} as Record<number, string>);
 
 const transformedData = data.map(row => ({
-  ...row,
-  batting_team: teamMap[row.batting_team],
-  pitching_team: teamMap[row.pitching_team],
-  batter: playerMap[row.batter],
-  pitcher: playerMap[row.pitcher],
-  fielder: row.fielder && playerMap[row.fielder],
-  assist: row.assist && playerMap[row.assist],
+	...row,
+	batting_team: teamMap[row.batting_team],
+	pitching_team: teamMap[row.pitching_team],
+	batter: playerMap[row.batter],
+	pitcher: playerMap[row.pitcher],
+	fielder: row.fielder && playerMap[row.fielder],
+	assist: row.assist && playerMap[row.assist],
 }));
+
+// Create header
+const visitingTeamAcronym = teams.find(team => team.id === visitingTeam)?.acronym;
+const homeTeamAcronym = teams.find(team => team.id === homeTeam)?.acronym;
+const header = `${getFormattedDatetime(date)}: ${visitingTeamAcronym} v ${homeTeamAcronym}`;
 ---
 
 <Default title="Statistics">
-  {
-    data.length > 0 && (
-      <figure style="overflow-x: scroll;">
-        <table>
-          <thead>
-            <tr>
-              {columns.map((col) => (
-                <th>{col}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {transformedData.map((row) => (
-              <tr>
-                {columns.map((col) => (
-                  <td>{row[col as keyof typeof row]?.toString() || 'null'}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </figure>
-    )
-  }
-  {data.length === 0 && <article>There is no data for this game.</article>}
+	<figure>
+		<h1>{header}</h1>
+		<hr class="stats">
+	</figure>
+	<figure style="overflow-x: scroll">
+		{
+			data.length > 0 && (
+				<table class="stats">
+					<thead>
+						<tr>
+							{columns.map((col) => (
+								<th>{col}</th>
+							))}
+						</tr>
+					</thead>
+					<tbody>
+						{transformedData.map((row) => (
+							<tr>
+								{columns.map((col) => (
+									<td>{row[col as keyof typeof row]?.toString() || 'null'}</td>
+								))}
+							</tr>
+						))}
+					</tbody>
+				</table>
+			)
+		}
+		{data.length === 0 && <article>There is no data for this game.</article>}
+	</figure>
 </Default>
 
 <style is:global>
 main {
-  max-width: unset;
+	max-width: unset;
 }
 
 td {
-  background-color: #fff8;
-  white-space: nowrap;
-  padding: 0.5em;
+	background-color: #fff8;
+	white-space: nowrap;
+	padding: 0.5em;
 }
 </style>
