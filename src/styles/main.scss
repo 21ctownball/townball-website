@@ -116,6 +116,7 @@ main {
   margin: auto;
   width: 100%;
   max-width: var(--content-width);
+  flex-grow: 1;
 }
 
 a {

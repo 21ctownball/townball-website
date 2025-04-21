@@ -8,19 +8,19 @@ const teams = await getTeams();
 ---
 
 <Default title="Statistics">
-	<h2>Games</h2>
-
-	<hr class="stats">
-
-	<ul>
-		{
-			scoreboardFiles.map((game) => (
-			<li>
-				<a href={`/stats/games/${game.date}-${game.visitingTeam}-${game.homeTeam}`}>
-					{getFormattedDatetime(game.date)}: {teams.find(team => team.id === game.visitingTeam)?.acronym} v {teams.find(team => team.id === game.homeTeam)?.acronym}
-				</a>
-			</li>
-			))
-		}
-	</ul>
+	<section class="stats">
+		<h2>Games</h2>
+		<hr class="stats">
+		<ul>
+			{
+				scoreboardFiles.map((game) => (
+				<li>
+					<a href={`/stats/games/${game.date}-${game.visitingTeam}-${game.homeTeam}`}>
+						{getFormattedDatetime(game.date)}: {teams.find(team => team.id === game.visitingTeam)?.acronym} v {teams.find(team => team.id === game.homeTeam)?.acronym}
+					</a>
+				</li>
+				))
+			}
+		</ul>
+	</section>
 </Default>

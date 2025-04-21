@@ -3,6 +3,20 @@ hr.stats {
 	margin: var(--sp-2) 0 var(--sp-3);
 }
 
+section.stats {
+	--margin-x: var(--sp-1);
+	margin-right: var(--margin-x);
+	margin-left: var(--margin-x);
+
+	@media (min-width: 576px) {
+		--margin-x: var(--sp-2);
+	}
+
+	@media (min-width: 768px) {
+		--margin-x: none;
+	}
+}
+
 table.stats {
 	--sp-quarter: calc(var(--sp-half) / 2);
 

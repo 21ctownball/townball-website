@@ -56,11 +56,11 @@ const header = `${getFormattedDatetime(date)}: ${visitingTeamAcronym} v ${homeTe
 ---
 
 <Default title="Statistics">
-	<figure>
+	<div class="header">
 		<h1>{header}</h1>
 		<hr class="stats">
-	</figure>
-	<figure style="overflow-x: scroll">
+	</div>
+	<div class="table-container">
 		{
 			data.length > 0 && (
 				<table class="stats">
@@ -84,12 +84,33 @@ const header = `${getFormattedDatetime(date)}: ${visitingTeamAcronym} v ${homeTe
 			)
 		}
 		{data.length === 0 && <article>There is no data for this game.</article>}
-	</figure>
+	</div>
 </Default>
 
-<style is:global>
+<style lang="scss" is:global>
 main {
 	max-width: unset;
+}
+
+.header {
+	margin-top: var(--sp-2);
+	margin-left: auto;
+	margin-right: auto;
+	max-width: var(--content-width);
+}
+
+.table-container {
+	overflow-x: scroll;
+
+	table {
+		--margin-x: var(--sp-1);
+		margin-left: var(--margin-x);
+		margin-right: var(--margin-x);
+
+		@media (min-width: 576px) {
+			--margin-x: var(--sp-2);
+		}
+	}
 }
 
 td {

@@ -16,7 +16,7 @@ export const gameSchema = z.array(
     pitching_team: z.coerce.number().describe('GUID of pitching team'),
     pitcher: z.coerce.number().describe('GUID of pitcher'),
     attempt: z.coerce.number().nullable(),
-    rbi: z.coerce.boolean().describe('Was this an RBI?'),
+    rbi: z.coerce.number().describe('How many runs were scored during this at-bat?'),
     single: z.coerce.boolean().describe('Was this a single?'),
     double: z.coerce.boolean().describe('Was this a double?'),
     triple: z.coerce.boolean().describe('Was this a triple?'),

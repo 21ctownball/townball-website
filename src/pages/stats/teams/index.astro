@@ -6,11 +6,9 @@ const teams = await getTeams();
 ---
 
 <Default title="Statistics">
-	<main>
+	<section class="stats">
 		<h2>Abbreviations</h2>
-		
 		<hr class="stats">
-		
 		<table class="stats">
 			<thead>
 				<tr>
@@ -24,11 +22,10 @@ const teams = await getTeams();
 					<tr>
 						<td>{team.name}</td>
 						<td>{team.debut_season}</td>
-						<td>{team.final_season}</td>
+						<td>{team.final_season || 'Present'}</td>
 					</tr>
 				))}
 			</tbody>
 		</table>
-		
-	</main>
+	</section>
 </Default>
