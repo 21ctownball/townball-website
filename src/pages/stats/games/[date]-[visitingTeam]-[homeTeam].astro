@@ -55,7 +55,7 @@ const homeTeamAcronym = teams.find(team => team.id === homeTeam)?.acronym;
 const header = `${getFormattedDatetime(date)}: ${visitingTeamAcronym} v ${homeTeamAcronym}`;
 ---
 
-<Default title="Statistics">
+<Default title={`Statistics | Games | ${date} ${visitingTeamAcronym} v ${homeTeamAcronym}`}>
 	<div class="header">
 		<h1>{header}</h1>
 		<hr class="stats">
@@ -93,9 +93,7 @@ main {
 }
 
 .header {
-	margin-top: var(--sp-2);
-	margin-left: auto;
-	margin-right: auto;
+	margin: auto;
 	max-width: var(--content-width);
 }
 
