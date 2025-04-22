@@ -73,3 +73,11 @@ export async function loadGame(path: string) {
   const data = csvParse(string);
   return gameSchema.parse(data);
 }
+
+/**
+ * Loads all scoreboards.
+ */
+export async function getGames() {
+  const gameFilePaths = getGameFilePaths();
+  return Promise.all(gameFilePaths.map(game => loadGame(game.path)));
+}

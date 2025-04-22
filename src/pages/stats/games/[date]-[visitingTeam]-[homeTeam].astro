@@ -18,7 +18,6 @@ const { path, date, visitingTeam, homeTeam } = Astro.props;
 
 // Fetch data
 const data = await loadGame(path);
-const columns = Object.keys(gameSchema.element.shape);
 
 const teams = await getTeams();
 const players = await getPlayers();
@@ -27,27 +26,30 @@ const players = await getPlayers();
 const teamMap = data.flatMap(row => [row.batting_team, row.pitching_team]).reduce((acc, team) => {
 	if (!acc[team]) {
 		// This will throw if team is not found
-		acc[team] = teams.find(t => t.id === team)!.acronym;
+		acc[team] = teams.find(t => t.id === team)!;
 	}
 	return acc;
-}, {} as Record<number, string>);
+}, {} as Record<number, typeof teams[number]>);
 const playerMap = data.flatMap(row => [row.batter, row.pitcher, row.fielder, row.assist]).reduce((acc, player) => {
 	if (player && !acc[player]) {
 		// This will throw if player is not found
-		acc[player] = players.find(p => p.id === player)!.first_name + ' ' + players.find(p => p.id === player)!.last_name;
+		acc[player] = players.find(p => p.id === player)!;
 	}
 	return acc;
-}, {} as Record<number, string>);
+}, {} as Record<number, typeof players[number]>);
 
-const transformedData = data.map(row => ({
-	...row,
-	batting_team: teamMap[row.batting_team],
-	pitching_team: teamMap[row.pitching_team],
-	batter: playerMap[row.batter],
-	pitcher: playerMap[row.pitcher],
-	fielder: row.fielder && playerMap[row.fielder],
-	assist: row.assist && playerMap[row.assist],
-}));
+// Columns that are not GUIDs
+const rawColumns = Object.keys(gameSchema.element.shape).filter(key => key !== 'batting_team' && key !== 'pitching_team' && key !== 'batter' && key !== 'pitcher' && key !== 'fielder' && key !== 'assist');
+
+// const rawData = data.map(row => ({
+// 	...row,
+// 	batting_team: teamMap[row.batting_team],
+// 	pitching_team: teamMap[row.pitching_team],
+// 	batter: playerMap[row.batter],
+// 	pitcher: playerMap[row.pitcher],
+// 	fielder: row.fielder && playerMap[row.fielder],
+// 	assist: row.assist && playerMap[row.assist],
+// }));
 
 // Create header
 const visitingTeamAcronym = teams.find(team => team.id === visitingTeam)?.acronym;
@@ -66,15 +68,39 @@ const header = `${getFormattedDatetime(date)}: ${visitingTeamAcronym} v ${homeTe
 				<table class="stats">
 					<thead>
 						<tr>
-							{columns.map((col) => (
+							<th title={gameSchema.element.shape.batting_team.description}>Batting Team</th>
+							<th title={gameSchema.element.shape.pitching_team.description}>Pitching Team</th>
+							<th title={gameSchema.element.shape.batter.description}>Batter</th>
+							<th title={gameSchema.element.shape.pitcher.description}>Pitcher</th>
+							<th title={gameSchema.element.shape.fielder.description}>Fielder</th>
+							<th title={gameSchema.element.shape.assist.description}>Assist</th>
+							{rawColumns.map(col => (
 								<th title={gameSchema.element.shape[col as keyof typeof gameSchema.element.shape].description}>{col}</th>
 							))}
 						</tr>
 					</thead>
 					<tbody>
-						{transformedData.map((row) => (
+						{data.map((row) => (
 							<tr>
-								{columns.map((col) => (
+								<td>
+									<a href={`/stats/teams/${row.batting_team}`}>{teamMap[row.batting_team].acronym}</a>
+								</td>
+								<td>
+									<a href={`/stats/teams/${row.pitching_team}`}>{teamMap[row.pitching_team].acronym}</a>
+								</td>
+								<td>
+									<a href={`/stats/players/${row.batter}`}>{playerMap[row.batter].first_name} {playerMap[row.batter].last_name}</a>
+								</td>
+								<td>
+									<a href={`/stats/players/${row.pitcher}`}>{playerMap[row.pitcher].first_name} {playerMap[row.pitcher].last_name}</a>
+								</td>
+								<td>
+									{row.fielder && <a href={`/stats/players/${row.fielder}`}>{playerMap[row.fielder].first_name} {playerMap[row.fielder].last_name}</a>}
+								</td>
+								<td>
+									{row.assist && <a href={`/stats/players/${row.assist}`}>{playerMap[row.assist].first_name} {playerMap[row.assist].last_name}</a>}
+								</td>
+								{rawColumns.map((col) => (
 									<td>{row[col as keyof typeof row]?.toString() || 'null'}</td>
 								))}
 							</tr>

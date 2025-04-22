@@ -1,0 +1,94 @@
+---
+import Default from '@layouts/Default.astro';
+import { getPlayers, getGames } from '@scripts/data';
+import { getFormattedDatetime } from '@scripts/utils';
+
+// Create page for each player
+export async function getStaticPaths() {
+	const players = await getPlayers();
+	return players.map(player => ({
+		params: {
+			id: player.id,
+		},
+		props: player,
+	}));
+}
+
+// Extract route params
+const player = Astro.props;
+
+// Fetch data
+const games = await getGames();
+const gamesBatted = games.filter(game => game.some(atBat => atBat.batter === player.id));
+const gamesPitched = games.filter(game => game.some(atBat => atBat.pitcher === player.id));
+const gamesFielded = games.filter(game => game.some(atBat => atBat.fielder === player.id));
+
+// Calculate stats
+const batterStats: Record<string, string> = {
+	'Games': gamesBatted.length.toString(),
+	'Plate Appearances': gamesBatted.flatMap(game => game).filter(atBat => atBat.batter === player.id).length.toString(),
+	'Hits': gamesBatted.flatMap(game => game).reduce((acc, atBat) => acc + (atBat.batter === player.id ? Number(atBat.single || atBat.double || atBat.triple || atBat.quadruple || atBat.home_run ? 1 : 0) : 0), 0).toString(),
+};
+const pitcherStats: Record<string, string> = {
+	'Games': gamesPitched.length.toString(),
+	'Pitching Appearances': gamesPitched.map(game => game.some(atBat => atBat.pitcher === player.id)).filter(Boolean).length.toString(),
+};
+const fielderStats: Record<string, string> = {
+	'Games': gamesFielded.length.toString(),
+	'Fielding Appearances': gamesFielded.map(game => game.some(atBat => atBat.fielder === player.id)).filter(Boolean).length.toString(),
+};
+---
+
+<Default title={`Statistics | ${player.first_name} ${player.last_name}`}>
+	<section class="stats">
+		<h1>
+			<span title="First Name">{player.first_name}</span>
+			<span title="Last Name">{player.last_name}</span>
+		</h1>
+		<p>
+			<ul>
+				<li>Debut: {player.debut.toLocaleString(undefined, getFormattedDatetime.options)}</li>
+			</ul>
+		</p>
+		<hr class="stats">
+		<h2>Batter / Runner</h2>
+		<table class="stats">
+			<tbody>
+				{
+					Object.entries(batterStats).map(([name, value]) => (
+						<tr>
+							<td>{name}</td>
+							<td>{value}</td>
+						</tr>
+					))
+				}
+			</tbody>
+		</table>
+		<h2>Pitcher</h2>
+		<table class="stats">
+			<tbody>
+				{
+					Object.entries(pitcherStats).map(([name, value]) => (
+						<tr>
+							<td>{name}</td>
+							<td>{value}</td>
+						</tr>
+					))
+				}
+			</tbody>
+		</table>
+		<h2>Fielder</h2>
+		<table class="stats">
+			<tbody>
+				{
+					Object.entries(fielderStats).map(([name, value]) => (
+						<tr>
+							<td>{name}</td>
+							<td>{value}</td>
+						</tr>
+					))
+				}
+			</tbody>
+		</table>
+	</section>
+</Default>
