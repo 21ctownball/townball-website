@@ -1,12 +1,12 @@
 id,acronym,name,debut_season,final_season,successor
-0,NYM,new york mutuals,2014,2022,
-1,LVG,louisville grays,2014,2018,
-2,BRC,boston red caps,2014,2018,
-3,BGB,bay area golden bears,2022,2022,8
-4,NBQ,newberg quakers,2022,,
-5,FNY,fresno new york mutuals,2022,2022,9
-6,FSD,fresno sundogs,2022,2022,
-7,FHM,fresno haymakers,2022,2022,
-8,MAD,madera coyotes,2022,,
-9,CGB,california golden bears,2023,,
-10,FRE,fresno eagles,2023,2024,
+0,NYM,New York Mutuals,2014,2022,
+1,LVG,Louisville Grays,2014,2018,
+2,BRC,Boston Red Caps,2014,2018,
+3,BGB,Bay Area Golden Bears,2022,2022,8
+4,NBQ,Newberg Quakers,2022,,
+5,FNY,Fresno New York Mutuals,2022,2022,9
+6,FSD,Fresno Sundogs,2022,2022,
+7,FHM,Fresno Haymakers,2022,2022,
+8,MAD,Madera Coyotes,2022,,
+9,CGB,California Golden Bears,2023,,
+10,FRE,Fresno Eagles,2023,2024,
