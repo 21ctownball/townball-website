@@ -20,7 +20,9 @@ const teams = await getTeams();
 			<tbody>
 				{teams.map(team => (
 					<tr>
-						<td>{team.name}</td>
+						<td>
+							<a href={`/stats/teams/${team.id}`}>{team.name}</a>
+						</td>
 						<td>{team.debut_season}</td>
 						<td>{team.final_season || 'Present'}</td>
 					</tr>
