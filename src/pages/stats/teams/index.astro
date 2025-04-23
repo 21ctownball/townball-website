@@ -3,31 +3,119 @@ import Default from '@layouts/Default.astro';
 import { getTeams } from '@scripts/data';
 
 const teams = await getTeams();
+
+// Group teams by season
+const teamsBySeason = teams.reduce((acc, team) => {
+	if (!acc[team.season]) {
+		acc[team.season] = [];
+	}
+	acc[team.season].push(team);
+	return acc;
+}, {} as Record<number, typeof teams>);
 ---
 
 <Default title="Statistics | Teams">
 	<section class="stats">
-		<h1>Abbreviations</h1>
+		<h1>Teams</h1>
 		<hr class="stats">
-		<table class="stats">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Year Debuted</th>
-					<th>Year Retired</th>
-				</tr>
-			</thead>
-			<tbody>
-				{teams.map(team => (
-					<tr>
-						<td>
-							<a href={`/stats/teams/${team.id}`}>{team.name}</a>
-						</td>
-						<td>{team.debut_season}</td>
-						<td>{team.final_season || 'Present'}</td>
-					</tr>
-				))}
-			</tbody>
-		</table>
+		<h2>List by Year</h2>
+		<ul>
+			{
+				Object.entries(teamsBySeason).map(([season, teams]) => (
+					<li>
+						{season} Season
+						<ul>
+							{teams.sort((a, b) => a.club - b.club).map(team => (
+								<li>
+									<a href={`/stats/teams/${team.id}`}>{team.name}</a>
+								</li>
+							))}
+						</ul>
+					</li>
+				))
+			}
+		</ul>
+		<h2>Graph</h2>
+		<div id="graph"></div>
 	</section>
 </Default>
+
+<script>
+/**
+ * Based on this example: https://observablehq.com/@d3/cancer-survival-rates/2
+ * 
+ * See D3 docs: https://d3js.org/what-is-d3
+ */
+
+import * as d3 from 'd3';
+import { getTeams } from '@scripts/data';
+
+const teams = await getTeams();
+
+const PADDING = 40;
+const WIDTH = 800;
+const HEIGHT = 50 + teams.length * PADDING * 0.25;
+
+const x = d3.scalePoint<number>()
+	.domain([...new Set(teams.map(d => d.season))])
+	.range([PADDING, WIDTH - PADDING]);
+
+const y = d3.scalePoint<number>()
+	.domain([...new Set(teams.map(d => d.club))])
+	.range([PADDING * 1.8, HEIGHT - PADDING]);
+
+const line = d3.line<(typeof teams)[number]>()
+	.x(d => x(d.season) ?? 0)
+	.y(d => y(d.club) ?? 0);
+
+const svg = d3.select('#graph')
+	.append('svg')
+		.attr('width', `${WIDTH}px`)
+		.attr('height', `${HEIGHT}px`)
+		.attr('viewBox', `0 0 ${WIDTH} ${HEIGHT}`)
+		.attr('preserveAspectRatio', 'xMinYMin meet')
+		.style('border', '1px solid currentColor')
+		.style('background-color', '#fff8')
+		.style('width', '100%')
+		.style('height', 'auto');
+
+svg.append('g')
+		.attr('text-anchor', 'middle')
+		.attr('transform', `translate(0, ${PADDING})`)
+	.selectAll('g')
+	.data([...new Set(teams.map(d => d.season))])
+	.join('g')
+		.attr('transform', d => `translate(${x(d)}, 0)`)
+		.call(g => g.append('text').text(d => d))
+		.call(g => g.append('line').attr('y1', PADDING / 10).attr('y2', HEIGHT - PADDING * 2).attr('stroke', 'var(--bg-mild)'));
+
+svg.append('g')
+		.attr('fill', 'none')
+		.attr('stroke', 'var(--bg)')
+	.selectAll('path')
+	.data(d3.group(teams, d => d.club))
+	.join('path')
+		.attr('d', ([, values]) => line(values))
+		.attr('stroke-width', 8);
+
+svg.append('g')
+	.selectAll('g')
+	.data(d3.group(teams, d => d.season))
+	.join('g')
+		.attr('transform', ([step]) => `translate(${x(step)}, 0)`)
+		.attr('text-anchor', 'middle')
+	.selectAll('a')
+	.data(([, values]) => values)
+	.join('a')
+		.attr('href', d => `/stats/teams/${d.id}`)
+	.call(g => g.append('text')
+		.text(d => d.acronym)
+		.attr('y', d => y(d.club) ?? 0)
+		.attr('dy', '0.35em')
+		.attr('fill', 'currentColor')
+		.attr('stroke', 'var(--bg-bold)')
+		.attr('stroke-width', 5)
+		.attr('paint-order', 'stroke'))
+	.call(g => g.append('title')
+		.text(d => d.name));
+</script>

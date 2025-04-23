@@ -23,6 +23,7 @@ const games = getGameFilePaths().filter(game => game.visitingTeam === team.id ||
 <Default title={`Statistics | ${team.name}`}>
 	<section class="header">
 		<h1>{team.name}</h1>
+		<p>{team.season} Season</p>
 		<hr class="stats">
 		<h2>Games</h2>
 		<p>All recorded games involving {team.name}.</p>

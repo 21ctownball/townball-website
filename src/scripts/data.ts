@@ -10,10 +10,13 @@
  */
 
 import { csvParse } from 'd3-dsv';
-import { abbreviationSchema, playerSchema, teamSchema, gameFileSchema, gameSchema } from './schemas';
+import { abbreviationSchema, playerSchema, teamSchema, gameFileSchema, gameSchema, leagueSchema } from './schemas';
 
 // @ts-expect-error CSVs are not recognized as valid imports
 import abbreviationsString from '@stats/abbreviations.csv?url&raw';
+
+// @ts-expect-error CSVs are not recognized as valid imports
+import leaguesString from '@stats/leagues.csv?url&raw';
 
 // @ts-expect-error CSVs are not recognized as valid imports
 import playersString from '@stats/players.csv?url&raw';
@@ -33,6 +36,13 @@ const GAME_FILEPATH_REGEX = /(?<date>\d\d\d\d-\d\d-\d\d)-(?<visitingTeam>\d+)-(?
  */
 export async function getAbbreviations() {
   return abbreviationSchema.parse( csvParse(abbreviationsString) );
+}
+
+/**
+ * Loads information from the league table.
+ */
+export async function getLeagues() {
+  return leagueSchema.parse( csvParse(leaguesString) );
 }
 
 /**

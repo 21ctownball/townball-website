@@ -1,12 +1,37 @@
-id,acronym,name,debut_season,final_season,successor
-0,NYM,New York Mutuals,2014,2022,
-1,LVG,Louisville Grays,2014,2018,
-2,BRC,Boston Red Caps,2014,2018,
-3,BGB,Bay Area Golden Bears,2022,2022,8
-4,NBQ,Newberg Quakers,2022,,
-5,FNY,Fresno New York Mutuals,2022,2022,9
-6,FSD,Fresno Sundogs,2022,2022,
-7,FHM,Fresno Haymakers,2022,2022,
-8,MAD,Madera Coyotes,2022,,
-9,CGB,California Golden Bears,2023,,
-10,FRE,Fresno Eagles,2023,2024,
+league,club,id,acronym,name,season
+0,0,0,NYM,New York Mutuals,2014
+0,0,1,NYM,New York Mutuals,2015
+0,0,2,NYM,New York Mutuals,2016
+0,0,3,NYM,New York Mutuals,2017
+0,0,4,NYM,New York Mutuals,2018
+0,0,5,NYM,New York Mutuals,2019
+0,0,6,NYM,New York Mutuals,2020
+0,0,7,NYM,New York Mutuals,2021
+0,0,8,NYM,New York Mutuals,2022
+0,1,9,LVG,Louisville Grays,2014
+0,1,10,LVG,Louisville Grays,2015
+0,1,11,LVG,Louisville Grays,2016
+0,1,12,LVG,Louisville Grays,2017
+0,1,13,LVG,Louisville Grays,2018
+0,2,14,BRC,Boston Red Caps,2014
+0,2,15,BRC,Boston Red Caps,2015
+0,2,16,BRC,Boston Red Caps,2016
+0,2,17,BRC,Boston Red Caps,2017
+0,2,18,BRC,Boston Red Caps,2018
+0,3,19,BGB,Bay Area Golden Bears,2022
+0,3,20,CGB,California Golden Bears,2023
+0,3,21,CGB,California Golden Bears,2024
+0,3,22,CGB,California Golden Bears,2025
+0,4,23,NBQ,Newberg Quakers,2022
+0,4,24,NBQ,Newberg Quakers,2023
+0,4,25,NBQ,Newberg Quakers,2024
+0,4,26,NBQ,Newberg Quakers,2025
+0,5,27,FNY,Fresno New York Mutuals,2022
+0,5,28,FRE,Fresno Eagles,2023
+0,5,29,FRE,Fresno Eagles,2024
+0,6,30,FSD,Fresno Sundogs,2022
+0,7,31,FHM,Fresno Haymakers,2022
+0,8,32,MAD,Madera Coyotes,2022
+0,8,33,MAD,Madera Coyotes,2023
+0,8,34,MAD,Madera Coyotes,2024
+0,8,35,MAD,Madera Coyotes,2025

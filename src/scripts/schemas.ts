@@ -8,6 +8,14 @@ export const abbreviationSchema = z.array(
   }),
 );
 
+export const leagueSchema = z.array(
+  z.object({
+    id: z.coerce.number().describe('GUID of league'),
+    acronym: z.string().describe('Acronym of league'),
+    name: z.string().describe('Full name of league'),
+  }),
+);
+
 export const gameSchema = z.array(
   z.object({
     at_bat: z.coerce.number().describe('The at-bat number (sequential, starting at 0)'),
@@ -73,11 +81,11 @@ export const playerSchema = z.array(
 
 export const teamSchema = z.array(
   z.object({
+    league: z.coerce.number().describe('GUID of league'),
+    club: z.coerce.number().describe('GUID of club'),
     id: z.coerce.number().describe('GUID'),
     acronym: z.string().describe('Three letter acronym of team'),
     name: z.string().describe('Name of team'),
-    debut_season: z.coerce.number().describe('Year team debuted'),
-    final_season: z.coerce.number().nullable().describe('Year team retired'),
-    successor: z.coerce.number().nullable().describe('GUID of successor team'),
-  }),
+    season: z.coerce.number().describe('Year this team played (season)'),
+  }).describe('A team is a single season of a club'),
 );
