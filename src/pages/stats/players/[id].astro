@@ -19,23 +19,23 @@ const player = Astro.props;
 
 // Fetch data
 const games = await getGames();
-const gamesBatted = games.filter(game => game.some(atBat => atBat.batter === player.id));
-const gamesPitched = games.filter(game => game.some(atBat => atBat.pitcher === player.id));
-const gamesFielded = games.filter(game => game.some(atBat => atBat.fielder === player.id));
+const gamesBatted = games.filter(game => game.atBats.some(atBat => atBat.batter === player.id));
+const gamesPitched = games.filter(game => game.atBats.some(atBat => atBat.pitcher === player.id));
+const gamesFielded = games.filter(game => game.atBats.some(atBat => atBat.fielder === player.id));
 
 // Calculate stats
 const batterStats: Record<string, string> = {
 	'Games': gamesBatted.length.toString(),
-	'Plate Appearances': gamesBatted.flatMap(game => game).filter(atBat => atBat.batter === player.id).length.toString(),
-	'Hits': gamesBatted.flatMap(game => game).reduce((acc, atBat) => acc + (atBat.batter === player.id ? Number(atBat.single || atBat.double || atBat.triple || atBat.quadruple || atBat.home_run ? 1 : 0) : 0), 0).toString(),
+	'Plate Appearances': gamesBatted.flatMap(game => game.atBats).filter(atBat => atBat.batter === player.id).length.toString(),
+	'Hits': gamesBatted.flatMap(game => game.atBats).reduce((acc, atBat) => acc + (atBat.batter === player.id ? Number(atBat.single || atBat.double || atBat.triple || atBat.quadruple || atBat.home_run ? 1 : 0) : 0), 0).toString(),
 };
 const pitcherStats: Record<string, string> = {
 	'Games': gamesPitched.length.toString(),
-	'Pitching Appearances': gamesPitched.map(game => game.some(atBat => atBat.pitcher === player.id)).filter(Boolean).length.toString(),
+	'Pitching Appearances': gamesPitched.map(game => game.atBats.some(atBat => atBat.pitcher === player.id)).filter(Boolean).length.toString(),
 };
 const fielderStats: Record<string, string> = {
 	'Games': gamesFielded.length.toString(),
-	'Fielding Appearances': gamesFielded.map(game => game.some(atBat => atBat.fielder === player.id)).filter(Boolean).length.toString(),
+	'Fielding Appearances': gamesFielded.map(game => game.atBats.some(atBat => atBat.fielder === player.id)).filter(Boolean).length.toString(),
 };
 ---
 

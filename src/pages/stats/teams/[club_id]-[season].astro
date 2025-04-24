@@ -1,6 +1,6 @@
 ---
 import Default from '@layouts/Default.astro';
-import { getGameFilePaths, getTeams } from '@scripts/data';
+import { getGames, getTeamId, getTeams } from '@scripts/data';
 import { getFormattedDatetime } from '@scripts/utils';
 
 // Create page for each team
@@ -16,8 +16,7 @@ export async function getStaticPaths() {
 const team = Astro.props;
 
 // Get games that include this team
-const teams = await getTeams();
-const games = getGameFilePaths().filter(game => game.visitingTeam === team.id || game.homeTeam === team.id);
+const games = (await getGames()).filter(game => getTeamId(game.homeTeam) === getTeamId(team) || getTeamId(game.visitingTeam) === getTeamId(team));
 ---
 
 <Default title={`Statistics | ${team.name}`}>
@@ -31,8 +30,8 @@ const games = getGameFilePaths().filter(game => game.visitingTeam === team.id ||
 			{
 				games.map(game => (
 					<li>
-						<a href={`/stats/games/${game.date}-${game.visitingTeam}-${game.homeTeam}`}>
-							{getFormattedDatetime(game.date)}: {teams.find(team => team.id === game.visitingTeam)?.acronym} v {teams.find(team => team.id === game.homeTeam)?.acronym}
+						<a href={`/stats/games/${game.date}-${game.homeTeam.acronym}`}>
+							{getFormattedDatetime(game.date)}: {game.homeTeam.acronym} v {game.visitingTeam.acronym}
 						</a>
 					</li>
 				))

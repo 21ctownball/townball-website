@@ -1,4 +1,6 @@
-import { z } from 'zod';
+import { z } from "astro/zod";
+
+const TEAM_ID_REGEX = /^\d+-\d{4}$/;
 
 export const abbreviationSchema = z.array(
   z.object({
@@ -19,9 +21,9 @@ export const leagueSchema = z.array(
 export const gameSchema = z.array(
   z.object({
     at_bat: z.coerce.number().describe('The at-bat number (sequential, starting at 0)'),
-    batting_team: z.coerce.number().describe('GUID of batting team'),
+    batting_team: z.string().regex(TEAM_ID_REGEX, 'Team composite key must be in format <team_id>-YYYY').describe('Composite key of batting team'),
     batter: z.coerce.number().describe('GUID of batter'),
-    pitching_team: z.coerce.number().describe('GUID of pitching team'),
+    pitching_team: z.string().regex(TEAM_ID_REGEX, 'Team composite key must be in format <team_id>-YYYY').describe('Composite key of pitching team'),
     pitcher: z.coerce.number().describe('GUID of pitcher'),
     attempt: z.coerce.number().nullable(),
     rbi: z.coerce.number().describe('How many runs were scored during this at-bat?'),
@@ -63,9 +65,8 @@ export const gameSchema = z.array(
 
 export const gameFileSchema = z.array(
   z.object({
-    date: z.string().describe('Date of game in format YYYY-MM-DD'),
-    visitingTeam: z.coerce.number().describe('GUID of visiting team'),
-    homeTeam: z.coerce.number().describe('GUID of home team'),
+    date: z.string().describe('Date of game in format YYYYMMDD'),
+    homeTeamAcronym: z.string().describe('Acronym of home team'),
     path: z.string().describe('Path to game data file'),
   }),
 );
@@ -81,11 +82,10 @@ export const playerSchema = z.array(
 
 export const teamSchema = z.array(
   z.object({
-    league: z.coerce.number().describe('GUID of league'),
-    club: z.coerce.number().describe('GUID of club'),
-    id: z.coerce.number().describe('GUID'),
+    league_id: z.coerce.number().describe('GUID of league'),
+    club_id: z.coerce.number().describe('GUID of club'),
     acronym: z.string().describe('Three letter acronym of team'),
     name: z.string().describe('Name of team'),
-    season: z.coerce.number().describe('Year this team played (season)'),
+    season: z.string().describe('Year this team played (season) in format YYYY'),
   }).describe('A team is a single season of a club'),
 );

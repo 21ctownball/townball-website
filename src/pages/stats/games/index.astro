@@ -1,10 +1,9 @@
 ---
 import Default from '@layouts/Default.astro';
-import { getGameFilePaths, getTeams } from '@scripts/data';
+import { getGames } from '@scripts/data';
 import { getFormattedDatetime } from '@scripts/utils';
 
-const scoreboardFiles = getGameFilePaths();
-const teams = await getTeams();
+const games = await getGames();
 ---
 
 <Default title="Statistics | Games">
@@ -13,12 +12,12 @@ const teams = await getTeams();
 		<hr class="stats">
 		<ul>
 			{
-				scoreboardFiles.map((game) => (
-				<li>
-					<a href={`/stats/games/${game.date}-${game.visitingTeam}-${game.homeTeam}`}>
-						{getFormattedDatetime(game.date)}: {teams.find(team => team.id === game.visitingTeam)?.acronym} v {teams.find(team => team.id === game.homeTeam)?.acronym}
-					</a>
-				</li>
+				games.map((game) => (
+					<li>
+						<a href={`/stats/games/${game.date}-${game.homeTeam.acronym}`}>
+							{getFormattedDatetime(game.date)}: {game.homeTeam.acronym} vs {game.visitingTeam.acronym}
+						</a>
+					</li>
 				))
 			}
 		</ul>
