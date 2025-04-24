@@ -1,0 +1,44 @@
+---
+import Default from '@layouts/Default.astro';
+import { getClubs } from '@scripts/data';
+
+// Create page for each team
+export async function getStaticPaths() {
+	const clubs = await getClubs();
+	return Object.keys(clubs).map(club_id => ({
+		params: {
+			club_id,
+		},
+		props: {
+			club_id,
+			teams: clubs[club_id],
+		},
+	}));
+}
+
+// Extract route params
+const { club_id, teams } = Astro.props;
+
+teams.sort((a, b) => a.season.localeCompare(b.season));
+const latestAcronym = teams.at(0)?.acronym;
+---
+
+<Default title={`Statistics | Club ${latestAcronym ?? club_id}`}>
+	<section class="header">
+		<h1>{latestAcronym ?? club_id}</h1>
+		<hr class="stats">
+		<h2>Teams</h2>
+		<p>All teams of club {latestAcronym ?? club_id}.</p>
+		<ul>
+			{
+				teams.map(team => (
+					<li>
+						<a href={`/stats/teams/${team.club_id}/${team.season}`}>
+							{team.season}: {team.name}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Default>

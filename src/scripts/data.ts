@@ -47,6 +47,20 @@ export async function getAbbreviations() {
 }
 
 /**
+ * Loads information from the teams table and reduces it to a list of unique clubs.
+ */
+export async function getClubs() {
+  const teams = await getTeams();
+  return teams.reduce((acc, team) => {
+    if (!acc[team.club_id]) {
+      acc[team.club_id] = [];
+    }
+    acc[team.club_id].push(team);
+    return acc;
+  }, {} as Record<string, typeof teams>);
+}
+
+/**
  * Loads information from the league table.
  */
 export async function getLeagues() {

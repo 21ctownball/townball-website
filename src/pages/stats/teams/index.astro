@@ -18,7 +18,7 @@ const teamsBySeason = teams.reduce((acc, team) => {
 	<section class="stats">
 		<h1>Teams</h1>
 		<hr class="stats">
-		<h2>List by Year</h2>
+		<h2>All Teams by Year</h2>
 		<ul>
 			{
 				Object.entries(teamsBySeason).map(([season, teams]) => (
@@ -27,7 +27,7 @@ const teamsBySeason = teams.reduce((acc, team) => {
 						<ul>
 							{teams.sort((a, b) => a.club_id - b.club_id).map(team => (
 								<li>
-									<a href={`/stats/teams/${team.club_id}-${team.season}`}>{team.name}</a>
+									<a href={`/stats/teams/${team.club_id}/${team.season}`}>{team.name}</a>
 								</li>
 							))}
 						</ul>
