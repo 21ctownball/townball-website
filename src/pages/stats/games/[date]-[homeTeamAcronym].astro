@@ -25,16 +25,29 @@ const teamMap = {
 	[getTeamId(game.homeTeam)]: game.homeTeam,
 	[getTeamId(game.visitingTeam)]: game.visitingTeam,
 };
-const playerMap = game.atBats.flatMap(row => [row.batter, row.pitcher, row.fielder, row.assist]).reduce((acc, player) => {
+const playerMap = game.atBats.flatMap(row => [
+	row.batter,
+	row.pitcher,
+	row.fielder,
+	row.assist,
+	row.assist_1,
+	row.assist_2,
+	row.assist_3,
+	row.assist_4,
+	row.assist_5,
+	row.assist_6,
+	row.error,
+	row.error_1,
+	row.error_2,
+	row.error_3,
+	row.error_4,
+]).reduce((acc, player) => {
 	if (player && !acc[player]) {
 		// This will throw if player is not found
 		acc[player] = players.find(p => p.id === player)!;
 	}
 	return acc;
 }, {} as Record<number, typeof players[number]>);
-
-// Columns that are not GUIDs
-const rawColumns = Object.keys(gameSchema.element.shape).filter(key => key !== 'batting_team' && key !== 'pitching_team' && key !== 'batter' && key !== 'pitcher' && key !== 'fielder' && key !== 'assist');
 
 // Create header
 const homeTeamAcronym = game.homeTeam.acronym;
@@ -52,20 +65,42 @@ const header = `${getFormattedDatetime(game.date)}: ${visitingTeamAcronym} v ${h
 			<table class="stats">
 				<thead>
 					<tr>
+						<th title={gameSchema.element.shape.at_bat.description}>At-bat</th>
 						<th title={gameSchema.element.shape.batting_team.description}>Batting Team</th>
 						<th title={gameSchema.element.shape.pitching_team.description}>Pitching Team</th>
 						<th title={gameSchema.element.shape.batter.description}>Batter</th>
 						<th title={gameSchema.element.shape.pitcher.description}>Pitcher</th>
+						<th title={gameSchema.element.shape.attempt.description}>Attempt</th>
+						<th title={gameSchema.element.shape.rbi.description}>Runs batted in</th>
+						<th title={gameSchema.element.shape.single.description}>Single</th>
+						<th title={gameSchema.element.shape.double.description}>Double</th>
+						<th title={gameSchema.element.shape.triple.description}>Triple</th>
+						<th title={gameSchema.element.shape.quadruple.description}>Quadruple</th>
+						<th title={gameSchema.element.shape.home_run.description}>Home Run</th>
+						<th title={gameSchema.element.shape.steal1.description}>Steal 1st</th>
+						<th title={gameSchema.element.shape.steal2.description}>Steal 2nd</th>
+						<th title={gameSchema.element.shape.steal3.description}>Steal 3rd</th>
+						<th title={gameSchema.element.shape.steal4.description}>Steal 4th</th>
+						<th title={gameSchema.element.shape.steal5.description}>Steal Home</th>
+						<th title={gameSchema.element.shape.adv1.description}>Advanced to First</th>
+						<th title={gameSchema.element.shape.adv2.description}>Advanced to Second</th>
+						<th title={gameSchema.element.shape.adv3.description}>Advanced to Third</th>
+						<th title={gameSchema.element.shape.adv4.description}>Advanced to Fourth</th>
+						<th title={gameSchema.element.shape.adv5.description}>Advanced to Home</th>
+						<th title={gameSchema.element.shape.zone.description}>Zone</th>
+						<th title={gameSchema.element.shape.strikeout.description}>Strikeout</th>
+						<th title={gameSchema.element.shape.flyout.description}>Flyout</th>
+						<th title={gameSchema.element.shape.tag.description}>Tag</th>
+						<th title={gameSchema.element.shape.peg.description}>Peg</th>
 						<th title={gameSchema.element.shape.fielder.description}>Fielder</th>
 						<th title={gameSchema.element.shape.assist.description}>Assist</th>
-						{rawColumns.map(col => (
-							<th title={gameSchema.element.shape[col as keyof typeof gameSchema.element.shape].description}>{col}</th>
-						))}
+						<th title={gameSchema.element.shape.error.description}>Error</th>
 					</tr>
 				</thead>
 				<tbody>
 					{game.atBats.map(atBat => (
 						<tr>
+							<td>{atBat.at_bat}</td>
 							<td>
 								<a href={`/stats/teams/${atBat.batting_team}`}>{teamMap[atBat.batting_team].acronym}</a>
 							</td>
@@ -78,15 +113,109 @@ const header = `${getFormattedDatetime(game.date)}: ${visitingTeamAcronym} v ${h
 							<td>
 								<a href={`/stats/players/${atBat.pitcher}`}>{playerMap[atBat.pitcher].first_name} {playerMap[atBat.pitcher].last_name}</a>
 							</td>
+							<td>{atBat.attempt}</td>
+							<td>{atBat.rbi}</td>
+							<td>{atBat.single}</td>
+							<td>{atBat.double}</td>
+							<td>{atBat.triple}</td>
+							<td>{atBat.quadruple}</td>
+							<td>{atBat.home_run}</td>
+							<td>{atBat.steal1}</td>
+							<td>{atBat.steal2}</td>
+							<td>{atBat.steal3}</td>
+							<td>{atBat.steal4}</td>
+							<td>{atBat.steal5}</td>
+							<td>{atBat.adv1}</td>
+							<td>{atBat.adv2}</td>
+							<td>{atBat.adv3}</td>
+							<td>{atBat.adv4}</td>
+							<td>{atBat.adv5}</td>
+							<td>{atBat.zone}</td>
+							<td>{atBat.strikeout}</td>
+							<td>{atBat.flyout}</td>
+							<td>{atBat.tag}</td>
+							<td>{atBat.peg}</td>
 							<td>
-								{atBat.fielder && <a href={`/stats/players/${atBat.fielder}`}>{playerMap[atBat.fielder].first_name} {playerMap[atBat.fielder].last_name}</a>}
+								{atBat.fielder !== null && <a href={`/stats/players/${atBat.fielder}`}>{playerMap[atBat.fielder].first_name} {playerMap[atBat.fielder].last_name}</a>}
 							</td>
 							<td>
-								{atBat.assist && <a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist].first_name} {playerMap[atBat.assist].last_name}</a>}
+								{atBat.assist !== null && <a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist].first_name} {playerMap[atBat.assist].last_name}</a>}
+								{atBat.assist_1 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_1].first_name} {playerMap[atBat.assist_1].last_name}</a>
+									</span>
+								)}
+								{atBat.assist_2 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_2].first_name} {playerMap[atBat.assist_2].last_name}</a>
+									</span>
+								)}
+								{atBat.assist_3 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_3].first_name} {playerMap[atBat.assist_3].last_name}</a>
+									</span>
+								)}
+								{atBat.assist_3 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_3].first_name} {playerMap[atBat.assist_3].last_name}</a>
+									</span>
+								)}
+								{atBat.assist_3 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_3].first_name} {playerMap[atBat.assist_3].last_name}</a>
+									</span>
+								)}
+								{atBat.assist_4 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_4].first_name} {playerMap[atBat.assist_4].last_name}</a>
+									</span>
+								)}
+								{atBat.assist_5 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_5].first_name} {playerMap[atBat.assist_5].last_name}</a>
+									</span>
+								)}
+								{atBat.assist_6 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_6].first_name} {playerMap[atBat.assist_6].last_name}</a>
+									</span>
+								)}
 							</td>
-							{rawColumns.map((col) => (
-								<td>{atBat[col as keyof typeof atBat]?.toString() || 'null'}</td>
-							))}
+							<td>
+								{atBat.error !== null && <a href={`/stats/players/${atBat.error}`}>{playerMap[atBat.error].first_name} {playerMap[atBat.error].last_name}</a>}
+								{atBat.error_1 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.error}`}>{playerMap[atBat.error_1].first_name} {playerMap[atBat.error_1].last_name}</a>
+									</span>
+								)}
+								{atBat.error_2 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.error}`}>{playerMap[atBat.error_2].first_name} {playerMap[atBat.error_2].last_name}</a>
+									</span>
+								)}
+								{atBat.error_3 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.error}`}>{playerMap[atBat.error_3].first_name} {playerMap[atBat.error_3].last_name}</a>
+									</span>
+								)}
+								{atBat.error_4 !== null && (
+									<span>
+										{', '}
+										<a href={`/stats/players/${atBat.error}`}>{playerMap[atBat.error_4].first_name} {playerMap[atBat.error_4].last_name}</a>
+									</span>
+								)}
+							</td>
 						</tr>
 					))}
 				</tbody>
@@ -119,9 +248,12 @@ main {
 	}
 }
 
+th, td {
+	white-space: nowrap;
+}
+
 td {
 	background-color: #fff8;
-	white-space: nowrap;
 	padding: 0.5em;
 }
 </style>
