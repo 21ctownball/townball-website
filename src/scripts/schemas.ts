@@ -37,6 +37,7 @@ export const gameSchema = z.array(
     steal3: z.coerce.boolean().describe('Did the batter steal third?'),
     steal4: z.coerce.boolean().describe('Did the batter steal fourth?'),
     steal5: z.coerce.boolean().describe('Did the batter steal fifth?'),
+    //the next five specifically ask if the batter advanced *without* stealing/hitting his way there.
     adv1: z.coerce.boolean().describe('Did the batter advance to first?'),
     adv2: z.coerce.boolean().describe('Did the batter advance to second?'),
     adv3: z.coerce.boolean().describe('Did the batter advance to third?'),
