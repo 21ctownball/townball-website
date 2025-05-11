@@ -1,4 +1,4 @@
-league_id,club_id,season,team_acr,team_name
+league_id,club_id,season,acronym,name
 0,0,2014,LVG,Louisville Grays
 0,1,2014,NYM,New York Mutuals
 0,2,2014,BRC,Boston Red Caps
