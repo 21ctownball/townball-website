@@ -15,3 +15,5 @@ If you are interested in contributing to the project, check out our [contributio
 This repository also acts as a simple <abbr title="content management system">CMS</abbr> by composing written content (info pages, blogs, etc) with [Markdown](https://www.markdownguide.org/) and game statistics with CSV files.
 
 This allows writers or scorekeepers to contribute to the project directly while reaping the benefits of version control.
+
+See [`src/scripts/data/README`](./src/scripts/data/README.md) for more information on data sources.

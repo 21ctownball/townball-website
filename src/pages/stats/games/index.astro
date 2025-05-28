@@ -1,6 +1,6 @@
 ---
 import Default from '@layouts/Default.astro';
-import { getGames } from '@scripts/data';
+import { getGames } from '@scripts/data/games';
 import { getFormattedDatetime } from '@scripts/utils';
 
 const games = await getGames();

@@ -47,9 +47,6 @@ export const gameSchema = z.array(
     flyout: z.coerce.boolean().describe('Did the batter fly out?'),
     tag: z.coerce.boolean().describe('Was the batter tagged out?'),
     peg: z.coerce.boolean().describe("Was the batter pegged out?"),
-    fielder: z.coerce.number().nullable().describe('GUID of fielder who made the out'),
-    assist: z.coerce.number().nullable().describe('GUID of fielder who made the assist'),
-    //assist_1 through assist_6 and error_3 through error_4 are not necessary.  I do not know the extent of the code which references those fields, so I shall have to leave this part up to you
     //also wondering if ".nullable" means that it will detect " " seperately from "0".  if it does not, or if the existence of an ID#0 would cause issues, we can assign the player with ID#0 to another number
     fielder: z.string().transform(s => !s.length ? null : Number(s)).describe('GUID of fielder'),
     assist: z.string().transform(s => !s.length ? null : Number(s)).describe('GUID of player who made the assist'),

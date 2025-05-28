@@ -1,6 +1,8 @@
 ---
 import Default from '@layouts/Default.astro';
-import { getGameFilePaths, getPlayers, getTeamId, loadGame } from '@scripts/data';
+import { getGameFilePaths, loadGame } from '@scripts/data/games';
+import { getPlayers } from '@scripts/data/players';
+import { getTeamId } from '@scripts/data/teams';
 import { gameSchema } from '@scripts/schemas';
 import { convertDateStringToIso, getFormattedDatetime } from '@scripts/utils';
 
@@ -87,7 +89,6 @@ const header = `${getFormattedDatetime(game.date)}: ${visitingTeamAcronym} v ${h
 						<th title={gameSchema.element.shape.adv3.description}>Advanced to Third</th>
 						<th title={gameSchema.element.shape.adv4.description}>Advanced to Fourth</th>
 						<th title={gameSchema.element.shape.adv5.description}>Advanced to Home</th>
-						<th title={gameSchema.element.shape.zone.description}>Zone</th>
 						<th title={gameSchema.element.shape.strikeout.description}>Strikeout</th>
 						<th title={gameSchema.element.shape.flyout.description}>Flyout</th>
 						<th title={gameSchema.element.shape.tag.description}>Tag</th>
@@ -130,7 +131,6 @@ const header = `${getFormattedDatetime(game.date)}: ${visitingTeamAcronym} v ${h
 							<td>{atBat.adv3}</td>
 							<td>{atBat.adv4}</td>
 							<td>{atBat.adv5}</td>
-							<td>{atBat.zone}</td>
 							<td>{atBat.strikeout}</td>
 							<td>{atBat.flyout}</td>
 							<td>{atBat.tag}</td>
