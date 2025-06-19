@@ -1,5 +1,5 @@
 import { gameFileSchema, gameSchema } from '@scripts/schemas';
-import type { z } from 'astro/zod';
+import type { z } from 'zod/v4';
 import { csvParse } from 'd3-dsv';
 import { getTeamById } from './teams';
 
@@ -8,7 +8,7 @@ import { getTeamById } from './teams';
  *
  * Used to extract metadata from file name.
  */
-const GAME_FILEPATH_REGEX = /(?<date>\d{8})-(?<homeTeamAcronym>\w{3})\.csv$/;
+const GAME_FILEPATH_REGEX = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})-(?<awayTeamAcronym>\w{3})-(?<homeTeamAcronym>\w{3})\.csv$/;
 
 /**
  * Returns the file paths and metadata of all "scoreboard" files.
@@ -43,9 +43,9 @@ export async function loadGame(metaData: z.infer<typeof gameFileSchema>[number])
   if (!visitingTeam) throw new Error(`Visiting team not found: ${firstAtBat.batting_team} from file ${metaData.path}`);
   return {
     atBats,
-    homeTeam: homeTeam,
-    visitingTeam: visitingTeam,
-    date: metaData.date,
+    homeTeam,
+    visitingTeam,
+    ...metaData,
   };
 }
 

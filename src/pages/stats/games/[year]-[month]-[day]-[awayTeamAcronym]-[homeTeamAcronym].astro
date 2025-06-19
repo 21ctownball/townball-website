@@ -4,7 +4,7 @@ import { getGameFilePaths, loadGame } from '@scripts/data/games';
 import { getPlayers } from '@scripts/data/players';
 import { getTeamId } from '@scripts/data/teams';
 import { gameSchema } from '@scripts/schemas';
-import { convertDateStringToIso, getFormattedDatetime } from '@scripts/utils';
+import { getFormattedDatetime } from '@scripts/utils';
 
 // Create page for each game
 export function getStaticPaths() {
@@ -54,10 +54,10 @@ const playerMap = game.atBats.flatMap(row => [
 // Create header
 const homeTeamAcronym = game.homeTeam.acronym;
 const visitingTeamAcronym = game.visitingTeam.acronym;
-const header = `${getFormattedDatetime(game.date)}: ${visitingTeamAcronym} v ${homeTeamAcronym}`;
+const header = `${getFormattedDatetime(`${game.year}-${game.month}-${game.day}`)}: ${visitingTeamAcronym} v ${homeTeamAcronym}`;
 ---
 
-<Default title={`Statistics | Games | ${convertDateStringToIso(game.date)} ${visitingTeamAcronym} v ${homeTeamAcronym}`}>
+<Default title={`Statistics | Games | ${game.year}-${game.month}-${game.day} ${visitingTeamAcronym} v ${homeTeamAcronym}`}>
 	<div class="header">
 		<h1>{header}</h1>
 		<hr class="stats">
@@ -109,10 +109,10 @@ const header = `${getFormattedDatetime(game.date)}: ${visitingTeamAcronym} v ${h
 								<a href={`/stats/teams/${atBat.pitching_team}`}>{teamMap[atBat.pitching_team].acronym}</a>
 							</td>
 							<td>
-								<a href={`/stats/players/${atBat.batter}`}>{playerMap[atBat.batter].first_name} {playerMap[atBat.batter].last_name}</a>
+								{atBat.batter !== null && <a href={`/stats/players/${atBat.batter}`}>{playerMap[atBat.batter].first_name} {playerMap[atBat.batter].last_name}</a>}
 							</td>
 							<td>
-								<a href={`/stats/players/${atBat.pitcher}`}>{playerMap[atBat.pitcher].first_name} {playerMap[atBat.pitcher].last_name}</a>
+								{atBat.pitcher !== null && <a href={`/stats/players/${atBat.pitcher}`}>{playerMap[atBat.pitcher].first_name} {playerMap[atBat.pitcher].last_name}</a>}
 							</td>
 							<td>{atBat.attempt}</td>
 							<td>{atBat.rbi}</td>

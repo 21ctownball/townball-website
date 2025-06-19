@@ -1,5 +1,5 @@
 import { teamSchema } from '@scripts/schemas';
-import type { z } from 'astro/zod';
+import type { z } from 'zod/v4';
 import { csvParse } from 'd3-dsv';
 
 // @ts-expect-error CSVs are not recognized as valid imports
@@ -17,13 +17,20 @@ export async function getTeams() {
  */
 export async function getClubs() {
   const teams = await getTeams();
+  const result: Record<string, typeof teams> = {};
   return teams.reduce((acc, team) => {
-    if (!acc[team.club_id]) {
-      acc[team.club_id] = [];
-    }
+    // Skip teams that don't have a club_id
+    if (!team.club_id) return acc;
+
+    // Initialize the club if it doesn't exist
+    if (!acc[team.club_id]) acc[team.club_id] = [];
+
+    // Add the team to the club
     acc[team.club_id].push(team);
+
+    // Return the accumulator
     return acc;
-  }, {} as Record<string, typeof teams>);
+  }, result);
 }
 
 /**

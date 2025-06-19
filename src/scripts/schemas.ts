@@ -1,4 +1,4 @@
-import { z } from "astro/zod";
+import { z } from 'zod/v4';
 
 const TEAM_ID_REGEX = /^\d+-\d{4}$/;
 
@@ -49,25 +49,28 @@ export const gameSchema = z.array(
     peg: z.coerce.boolean().describe("Was the batter pegged out?"),
     fielder: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)).describe('GUID of fielder'),
     assist: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)).describe('GUID of player who made the assist'),
-    assist_1: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)),
-    assist_2: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)),
-    assist_3: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)),
-    assist_4: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)),
-    assist_5: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)),
-    assist_6: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)),
+    assist_1: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
+    assist_2: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
+    assist_3: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
+    assist_4: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
+    assist_5: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
+    assist_6: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
     error: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)).describe('GUID of player who made the error'),
-    error_1: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)),
-    error_2: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)),
-    error_3: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)),
-    error_4: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)),
+    error_1: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
+    error_2: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
+    error_3: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
+    error_4: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
   }).describe('A single at bat'),
 );
 
 export const gameFileSchema = z.array(
   z.object({
-    date: z.string().describe('Date of game in format YYYYMMDD'),
+    awayTeamAcronym: z.string().describe('Acronym of away team'),
+    day: z.string().describe('Day of game'),
     homeTeamAcronym: z.string().describe('Acronym of home team'),
+    month: z.string().describe('Month of game'),
     path: z.string().describe('Path to game data file'),
+    year: z.string().describe('Year of game'),
   }),
 );
 
