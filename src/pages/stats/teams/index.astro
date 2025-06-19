@@ -1,6 +1,6 @@
 ---
 import Default from '@layouts/Default.astro';
-import { getTeams } from '@scripts/data';
+import { getTeams } from '@scripts/data/teams';
 
 const teams = await getTeams();
 
@@ -25,7 +25,7 @@ const teamsBySeason = teams.reduce((acc, team) => {
 					<li>
 						{season} Season
 						<ul>
-							{teams.sort((a, b) => a.club_id - b.club_id).map(team => (
+							{teams.sort((a, b) => (a.club_id ?? -1) - (b.club_id ?? -1)).map(team => (
 								<li>
 									<a href={`/stats/teams/${team.club_id}/${team.season}`}>{team.name}</a>
 								</li>

@@ -1,6 +1,7 @@
 ---
 import Default from '@layouts/Default.astro';
-import { getGames, getTeamId, getTeams } from '@scripts/data';
+import { getGames } from '@scripts/data/games';
+import { getTeamId, getTeams } from '@scripts/data/teams';
 import { getFormattedDatetime } from '@scripts/utils';
 
 // Create page for each team
@@ -30,8 +31,8 @@ const games = (await getGames()).filter(game => getTeamId(game.homeTeam) === get
 			{
 				games.map(game => (
 					<li>
-						<a href={`/stats/games/${game.date}-${game.homeTeam.acronym}`}>
-							{getFormattedDatetime(game.date)}: {game.homeTeam.acronym} v {game.visitingTeam.acronym}
+						<a href={`/stats/games/${game.year}-${game.month}-${game.day}-${game.awayTeamAcronym}-${game.homeTeamAcronym}`}>
+							{getFormattedDatetime(`${game.year}-${game.month}-${game.day}`)}: {game.homeTeam.acronym} v {game.visitingTeam.acronym}
 						</a>
 					</li>
 				))
