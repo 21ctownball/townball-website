@@ -109,10 +109,14 @@ const header = `${getFormattedDatetime(`${game.year}-${game.month}-${game.day}`)
 								<a href={`/stats/teams/${atBat.pitching_team}`}>{teamMap[atBat.pitching_team].acronym}</a>
 							</td>
 							<td>
-								{atBat.batter !== null && <a href={`/stats/players/${atBat.batter}`}>{playerMap[atBat.batter].first_name} {playerMap[atBat.batter].last_name}</a>}
+								{atBat.batter !== null && playerMap[atBat.batter] && <a href={`/stats/players/${atBat.batter}`}>{playerMap[atBat.batter].first_name} {playerMap[atBat.batter].last_name}</a>}
+								{atBat.batter !== null && !playerMap[atBat.batter] && <span hidden>Player {atBat.batter} not found</span>}
+								{atBat.batter === null && <span hidden>Unspecified</span>}
 							</td>
 							<td>
-								{atBat.pitcher !== null && <a href={`/stats/players/${atBat.pitcher}`}>{playerMap[atBat.pitcher].first_name} {playerMap[atBat.pitcher].last_name}</a>}
+								{atBat.pitcher !== null && playerMap[atBat.pitcher] && <a href={`/stats/players/${atBat.pitcher}`}>{playerMap[atBat.pitcher].first_name} {playerMap[atBat.pitcher].last_name}</a>}
+								{atBat.pitcher !== null && !playerMap[atBat.pitcher] && <span hidden>Player {atBat.pitcher} not found</span>}
+								{atBat.pitcher === null && <span hidden>Unspecified</span>}
 							</td>
 							<td>{atBat.attempt}</td>
 							<td>{atBat.rbi}</td>
@@ -136,53 +140,53 @@ const header = `${getFormattedDatetime(`${game.year}-${game.month}-${game.day}`)
 							<td>{atBat.tag}</td>
 							<td>{atBat.peg}</td>
 							<td>
-								{atBat.fielder !== null && <a href={`/stats/players/${atBat.fielder}`}>{playerMap[atBat.fielder].first_name} {playerMap[atBat.fielder].last_name}</a>}
+								{atBat.fielder !== null && playerMap[atBat.fielder] && <a href={`/stats/players/${atBat.fielder}`}>{playerMap[atBat.fielder].first_name} {playerMap[atBat.fielder].last_name}</a>}
 							</td>
 							<td>
-								{atBat.assist !== null && <a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist].first_name} {playerMap[atBat.assist].last_name}</a>}
-								{atBat.assist_1 !== null && (
+								{atBat.assist !== null && playerMap[atBat.assist] && <a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist].first_name} {playerMap[atBat.assist].last_name}</a>}
+								{atBat.assist_1 !== null && playerMap[atBat.assist_1] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_1].first_name} {playerMap[atBat.assist_1].last_name}</a>
 									</span>
 								)}
-								{atBat.assist_2 !== null && (
+								{atBat.assist_2 !== null && playerMap[atBat.assist_2] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_2].first_name} {playerMap[atBat.assist_2].last_name}</a>
 									</span>
 								)}
-								{atBat.assist_3 !== null && (
+								{atBat.assist_3 !== null && playerMap[atBat.assist_3] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_3].first_name} {playerMap[atBat.assist_3].last_name}</a>
 									</span>
 								)}
-								{atBat.assist_3 !== null && (
+								{atBat.assist_3 !== null && playerMap[atBat.assist_3] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_3].first_name} {playerMap[atBat.assist_3].last_name}</a>
 									</span>
 								)}
-								{atBat.assist_3 !== null && (
+								{atBat.assist_3 !== null && playerMap[atBat.assist_3] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_3].first_name} {playerMap[atBat.assist_3].last_name}</a>
 									</span>
 								)}
-								{atBat.assist_4 !== null && (
+								{atBat.assist_4 !== null && playerMap[atBat.assist_4] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_4].first_name} {playerMap[atBat.assist_4].last_name}</a>
 									</span>
 								)}
-								{atBat.assist_5 !== null && (
+								{atBat.assist_5 !== null && playerMap[atBat.assist_5] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_5].first_name} {playerMap[atBat.assist_5].last_name}</a>
 									</span>
 								)}
-								{atBat.assist_6 !== null && (
+								{atBat.assist_6 !== null && playerMap[atBat.assist_6] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.assist}`}>{playerMap[atBat.assist_6].first_name} {playerMap[atBat.assist_6].last_name}</a>
@@ -190,26 +194,26 @@ const header = `${getFormattedDatetime(`${game.year}-${game.month}-${game.day}`)
 								)}
 							</td>
 							<td>
-								{atBat.error !== null && <a href={`/stats/players/${atBat.error}`}>{playerMap[atBat.error].first_name} {playerMap[atBat.error].last_name}</a>}
-								{atBat.error_1 !== null && (
+								{atBat.error !== null && playerMap[atBat.error] && <a href={`/stats/players/${atBat.error}`}>{playerMap[atBat.error].first_name} {playerMap[atBat.error].last_name}</a>}
+								{atBat.error_1 !== null && playerMap[atBat.error_1] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.error}`}>{playerMap[atBat.error_1].first_name} {playerMap[atBat.error_1].last_name}</a>
 									</span>
 								)}
-								{atBat.error_2 !== null && (
+								{atBat.error_2 !== null && playerMap[atBat.error_2] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.error}`}>{playerMap[atBat.error_2].first_name} {playerMap[atBat.error_2].last_name}</a>
 									</span>
 								)}
-								{atBat.error_3 !== null && (
+								{atBat.error_3 !== null && playerMap[atBat.error_3] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.error}`}>{playerMap[atBat.error_3].first_name} {playerMap[atBat.error_3].last_name}</a>
 									</span>
 								)}
-								{atBat.error_4 !== null && (
+								{atBat.error_4 !== null && playerMap[atBat.error_4] && (
 									<span>
 										{', '}
 										<a href={`/stats/players/${atBat.error}`}>{playerMap[atBat.error_4].first_name} {playerMap[atBat.error_4].last_name}</a>
