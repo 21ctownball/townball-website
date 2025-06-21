@@ -90,12 +90,14 @@ const header = `${getFormattedDatetime(`${game.year}-${game.month}-${game.day}`)
 						<th title={gameSchema.element.shape.adv4.description}>Advanced to Fourth</th>
 						<th title={gameSchema.element.shape.adv5.description}>Advanced to Home</th>
 						<th title={gameSchema.element.shape.strikeout.description}>Strikeout</th>
+						<th title={gameSchema.element.shape.zone.description}>Zone</th>
 						<th title={gameSchema.element.shape.flyout.description}>Flyout</th>
 						<th title={gameSchema.element.shape.tag.description}>Tag</th>
 						<th title={gameSchema.element.shape.peg.description}>Peg</th>
 						<th title={gameSchema.element.shape.fielder.description}>Fielder</th>
 						<th title={gameSchema.element.shape.assist.description}>Assist</th>
 						<th title={gameSchema.element.shape.error.description}>Error</th>
+						<th title={gameSchema.element.shape.notes.description}>Notes</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -136,6 +138,7 @@ const header = `${getFormattedDatetime(`${game.year}-${game.month}-${game.day}`)
 							<td>{atBat.adv4}</td>
 							<td>{atBat.adv5}</td>
 							<td>{atBat.strikeout}</td>
+							<td>{atBat.zone}</td>
 							<td>{atBat.flyout}</td>
 							<td>{atBat.tag}</td>
 							<td>{atBat.peg}</td>
@@ -220,6 +223,7 @@ const header = `${getFormattedDatetime(`${game.year}-${game.month}-${game.day}`)
 									</span>
 								)}
 							</td>
+							<td>{atBat.notes}</td>
 						</tr>
 					))}
 				</tbody>

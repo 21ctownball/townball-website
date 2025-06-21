@@ -37,12 +37,12 @@ export const gameSchema = z.array(
     steal3: z.coerce.boolean().describe('Did the batter steal third?'),
     steal4: z.coerce.boolean().describe('Did the batter steal fourth?'),
     steal5: z.coerce.boolean().describe('Did the batter steal fifth?'),
-    //the next five specifically ask if the batter advanced *without* stealing/hitting his way there.
-    adv1: z.coerce.boolean().describe('Did the batter advance to first?'),
-    adv2: z.coerce.boolean().describe('Did the batter advance to second?'),
-    adv3: z.coerce.boolean().describe('Did the batter advance to third?'),
-    adv4: z.coerce.boolean().describe('Did the batter advance to fourth?'),
-    adv5: z.coerce.boolean().describe('Did the batter advance to fifth?'),
+    adv1: z.coerce.boolean().describe('Did the batter advance to first without stealing/hitting his way there?'),
+    adv2: z.coerce.boolean().describe('Did the batter advance to second without stealing/hitting his way there?'),
+    adv3: z.coerce.boolean().describe('Did the batter advance to third without stealing/hitting his way there?'),
+    adv4: z.coerce.boolean().describe('Did the batter advance to fourth without stealing/hitting his way there?'),
+    adv5: z.coerce.boolean().describe('Did the batter advance to fifth without stealing/hitting his way there?'),
+    zone: z.coerce.boolean().describe('Did the batter get zoned?'),
     strikeout: z.coerce.boolean().describe('Did the batter strike out?'),
     flyout: z.coerce.boolean().describe('Did the batter fly out?'),
     tag: z.coerce.boolean().describe('Was the batter tagged out?'),
@@ -60,6 +60,7 @@ export const gameSchema = z.array(
     error_2: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
     error_3: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
     error_4: z.string().optional().transform(s => !s?.length ? null : Number(s.trim() || NaN)),
+    notes: z.string().optional().describe('Notes about the at-bat'),
   }).describe('A single at bat'),
 );
 
