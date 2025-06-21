@@ -103,10 +103,10 @@ const header = `${getFormattedDatetime(`${game.year}-${game.month}-${game.day}`)
 						<tr>
 							<td>{atBat.at_bat}</td>
 							<td>
-								<a href={`/stats/teams/${atBat.batting_team}`}>{teamMap[atBat.batting_team].acronym}</a>
+								<a href={`/stats/teams/${atBat.batting_team.split('-').join('/')}`}>{teamMap[atBat.batting_team].acronym}</a>
 							</td>
 							<td>
-								<a href={`/stats/teams/${atBat.pitching_team}`}>{teamMap[atBat.pitching_team].acronym}</a>
+								<a href={`/stats/teams/${atBat.pitching_team.split('-').join('/')}`}>{teamMap[atBat.pitching_team].acronym}</a>
 							</td>
 							<td>
 								{atBat.batter !== null && playerMap[atBat.batter] && <a href={`/stats/players/${atBat.batter}`}>{playerMap[atBat.batter].first_name} {playerMap[atBat.batter].last_name}</a>}
