@@ -111,14 +111,19 @@ function getOnStakes(plateAppearances: PlateAppearance[]) {
  */
 function getOnStakePercentage(plateAppearances: PlateAppearance[]) {
   const onStakes = getOnStakes(plateAppearances);
-  return (onStakes / getAtBats(plateAppearances)) * 100;
+  const atBats = getAtBats(plateAppearances);
+  if (atBats === 0) return 0;
+  return (onStakes / atBats) * 100;
 }
 
 /**
  * `hits` / `atBats`.
  */
 function getBattingAverage(plateAppearances: PlateAppearance[]) {
-  return getHits(plateAppearances) / getAtBats(plateAppearances);
+  const hits = getHits(plateAppearances);
+  const atBats = getAtBats(plateAppearances);
+  if (atBats === 0) return 0;
+  return hits / atBats;
 }
 
 /**
@@ -139,7 +144,9 @@ function getWeightedStakes(plateAppearances: PlateAppearance[]) {
  */
 function getSluggingPercentage(plateAppearances: PlateAppearance[]) {
   const weightedStakes = getWeightedStakes(plateAppearances);
-  return (weightedStakes / getAttempts(plateAppearances)) * 100;
+  const attempts = getAttempts(plateAppearances);
+  if (attempts === 0) return 0;
+  return (weightedStakes / attempts) * 100;
 }
 
 /**
@@ -189,6 +196,7 @@ export function getBatterStats(playerId: number, games: Games) {
  * the *same* inning that his team scored the go-ahead run is granted the win.
  */
 function getWins(playerId: number, games: Games) {
+  if (games.length === 0) return 0;
   const lastAtBats = games.map(game => game.atBats.at(-1));
   const pitchedLastAtBats = lastAtBats.filter(atBat => atBat?.pitcher === playerId);
   return pitchedLastAtBats.length;
@@ -200,9 +208,10 @@ function getWins(playerId: number, games: Games) {
  * The pitcher who *gave up* the go-ahead run is credited with the loss.
  */
 function getLosses(playerId: number, games: Games) {
+  if (games.length === 0) return 0;
   const lastAtBats = games.map(game => game.atBats.at(-1));
-  const pitcherTeam = games.at(0)?.atBats.find(atBat => atBat.pitcher === playerId)?.pitching_team;
-  if (pitcherTeam === undefined) throw new Error(`Team not found for player ${playerId}`);
+  const pitcherTeam = games[0].atBats.find(atBat => atBat.pitcher === playerId)?.pitching_team;
+  if (pitcherTeam === undefined) return 0;
   const opponentPitchedLastAtBats = lastAtBats.filter(atBat => atBat?.pitching_team !== pitcherTeam);
   return opponentPitchedLastAtBats.length;
 }
@@ -242,6 +251,7 @@ function getOuts(atBats: PlateAppearance[]) {
 function getRunsPerOut(plateAppearances: PlateAppearance[]) {
   const runs = getRuns(plateAppearances);
   const outs = getOuts(plateAppearances);
+  if (outs === 0) return 0;
   return runs / outs;
 }
 
@@ -251,6 +261,7 @@ function getRunsPerOut(plateAppearances: PlateAppearance[]) {
 function getOutEfficiency(plateAppearances: PlateAppearance[]) {
   const onStakes = getOnStakes(plateAppearances);
   const outs = getOuts(plateAppearances);
+  if (outs === 0) return 0;
   return onStakes / outs;
 }
 

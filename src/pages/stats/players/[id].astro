@@ -81,7 +81,7 @@ const totalPitcherStats = getPitcherStats(player.id, games);
 					<tr>
 						<th>Year</th>
 						{
-							Object.keys(Object.values(yearlyBatterStats)[0]).map(key => <th>{key}</th>)
+							Object.keys(totalBatterStats).map(key => <th>{key}</th>)
 						}
 					</tr>
 				</thead>
@@ -114,7 +114,7 @@ const totalPitcherStats = getPitcherStats(player.id, games);
 					<tr>
 						<th>Year</th>
 						{
-							Object.keys(Object.values(yearlyPitcherStats)[0]).map(key => <th>{key}</th>)
+							Object.keys(totalPitcherStats).map(key => <th>{key}</th>)
 						}
 					</tr>
 				</thead>
