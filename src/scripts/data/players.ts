@@ -80,7 +80,7 @@ function getHomeRuns(plateAppearances: PlateAppearance[]) {
  * Increment once per `steal1`, `steal2`, `steal3`, `steal4`, or `steal5`.
  */
 function getStolenStakes(plateAppearances: PlateAppearance[]) {
-  return plateAppearances.filter(pa => pa.steal1 || pa.steal2 || pa.steal3 || pa.steal4 || pa.steal5).length;
+  return plateAppearances.reduce((acc, pa) => acc + Number(pa.steal1) + Number(pa.steal2) + Number(pa.steal3) + Number(pa.steal4) + Number(pa.steal5), 0);
 }
 
 /**
