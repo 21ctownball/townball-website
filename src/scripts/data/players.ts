@@ -9,6 +9,22 @@ type Games = Awaited<ReturnType<typeof getGames>>;
 
 type PlateAppearance = Games[number]['atBats'][number];
 
+function formatDecimal(decimal: number, format: 'x.xx' | '.xxx') {
+  let formatted: string;
+  switch (format) {
+    case '.xxx':
+      formatted = decimal.toFixed(3);
+      if (formatted.startsWith('0.')) formatted = formatted.slice(1);
+      break;
+    case 'x.xx':
+      formatted = decimal.toFixed(2);
+      break;
+    default:
+      throw new Error(`Invalid format: ${format}`);
+  }
+  return formatted;
+}
+
 /**
  * Loads information from the player table.
  */
@@ -113,7 +129,7 @@ function getOnStakePercentage(plateAppearances: PlateAppearance[]) {
   const onStakes = getOnStakes(plateAppearances);
   const atBats = getAtBats(plateAppearances);
   if (atBats === 0) return 0;
-  return (onStakes / atBats) * 100;
+  return onStakes / atBats;
 }
 
 /**
@@ -146,7 +162,7 @@ function getSluggingPercentage(plateAppearances: PlateAppearance[]) {
   const weightedStakes = getWeightedStakes(plateAppearances);
   const attempts = getAttempts(plateAppearances);
   if (attempts === 0) return 0;
-  return (weightedStakes / attempts) * 100;
+  return weightedStakes / attempts;
 }
 
 /**
@@ -183,9 +199,9 @@ export function getBatterStats(playerId: number, games: Games) {
 		'Stolen Stakes': stolenStakes.toString(),
 		'Runs': runs.toString(),
 		'Runs Batted In': runsBattedIn.toString(),
-		'On-Stake Percentage': onStakePercentage.toFixed(3).slice(1),
-		'Batting Average': battingAverage.toFixed(3).slice(1),
-		'Slugging Percentage': sluggingPercentage.toFixed(3).slice(1),
+		'On-Stake Percentage': formatDecimal(onStakePercentage, '.xxx'),
+		'Batting Average': formatDecimal(battingAverage, '.xxx'),
+		'Slugging Percentage': formatDecimal(sluggingPercentage, '.xxx'),
 	};
 }
 
@@ -290,7 +306,7 @@ export function getPitcherStats(playerId: number, games: Games) {
     'Saves': saves.toString(),
     'Zones': zones.toString(),
     'Strikeouts': strikeouts.toString(),
-    'Runs Per Out': runsPerOut.toFixed(3),
-    'Out Efficiency': outEfficiency.toFixed(2),
+    'Runs Per Out': formatDecimal(runsPerOut, '.xxx'),
+    'Out Efficiency': formatDecimal(outEfficiency, 'x.xx'),
   };
 }
