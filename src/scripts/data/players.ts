@@ -183,9 +183,9 @@ export function getBatterStats(playerId: number, games: Games) {
 		'Stolen Stakes': stolenStakes.toString(),
 		'Runs': runs.toString(),
 		'Runs Batted In': runsBattedIn.toString(),
-		'On-Stake Percentage': `${onStakePercentage.toFixed(1)}%`,
+		'On-Stake Percentage': onStakePercentage.toFixed(3).slice(1),
 		'Batting Average': battingAverage.toFixed(3).slice(1),
-		'Slugging Percentage': `${sluggingPercentage.toFixed(1)}%`,
+		'Slugging Percentage': sluggingPercentage.toFixed(3).slice(1),
 	};
 }
 
@@ -290,7 +290,7 @@ export function getPitcherStats(playerId: number, games: Games) {
     'Saves': saves.toString(),
     'Zones': zones.toString(),
     'Strikeouts': strikeouts.toString(),
-    'Runs Per Out': runsPerOut.toFixed(2),
+    'Runs Per Out': runsPerOut.toFixed(3),
     'Out Efficiency': outEfficiency.toFixed(2),
   };
 }
