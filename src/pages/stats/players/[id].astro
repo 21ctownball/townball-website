@@ -1,7 +1,7 @@
 ---
 import Default from '@layouts/Default.astro';
 import { getGames } from '@scripts/data/games';
-import { getPlayers } from '@scripts/data/players';
+import { getBatterStats, getPitcherStats, getPlayers } from '@scripts/data/players';
 import { getFormattedDatetime } from '@scripts/utils';
 
 // Create page for each player
@@ -43,132 +43,21 @@ const gamesPitchedPerYear = totalGamesPitched.reduce((acc, game) => {
 	return acc;
 }, {} as Record<string, typeof totalGamesPitched>);
 
-// Calculate stats
-function calculateBatterStats(games: typeof totalGamesBatted) {
-	const playerGames = games.filter(game => game.atBats.some(atBat => atBat.batter === player.id));
-	const plateAppearances = playerGames.flatMap(game => game.atBats).filter(atBat => atBat.batter === player.id);
-
-	const atBats = plateAppearances.length;
-
-	const attempts = plateAppearances.filter(pa => pa.attempt).length;
-
-	const hits = plateAppearances.filter(pa => pa.single || pa.double || pa.triple || pa.quadruple || pa.home_run).length;
-
-	const singles = plateAppearances.filter(pa => pa.single).length;
-	const doubles = plateAppearances.filter(pa => pa.double).length;
-	const triples = plateAppearances.filter(pa => pa.triple).length;
-	const quadruples = plateAppearances.filter(pa => pa.quadruple).length;
-	const homeRuns = plateAppearances.filter(pa => pa.home_run).length;
-
-	const stolenStakes = plateAppearances.filter(pa => pa.steal1 || pa.steal2 || pa.steal3 || pa.steal4 || pa.steal5).length;
-
-	// TODO fix how runs are calculated if necessary
-	const runs = plateAppearances.reduce((acc, pa) => acc + Number(pa.steal5 || pa.adv5 || pa.home_run), 0);
-
-	const runsBattedIn = plateAppearances.reduce((acc, pa) => acc + (pa.rbi || 0), 0);
-
-	const onStakes = stolenStakes + hits;
-	const onStakePercentage = (onStakes / atBats) * 100;
-
-	const battingAverage = hits / atBats;
-
-	const weightedStakes = (21 * singles / 55) + doubles + (2 * triples) + (3 * quadruples) + (4 * homeRuns);
-	const sluggingPercentage = (weightedStakes / attempts) * 100;
-
-	return {
-		'Games': games.length.toString(),
-		'At Bats': atBats.toString(),
-		'Attempts': attempts.toString(),
-		'Hits': hits.toString(),
-		'Triples': triples.toString(),
-		'Quadruples': quadruples.toString(),
-		'Home Runs': homeRuns.toString(),
-		'Stolen Stakes': stolenStakes.toString(),
-		'Runs': runs.toString(),
-		'Runs Batted In': runsBattedIn.toString(),
-		'On-Stake Percentage': `${onStakePercentage.toFixed(1)}%`,
-		'Batting Average': battingAverage.toFixed(3).slice(1),
-		'Slugging Percentage': `${sluggingPercentage.toFixed(1)}%`,
-	};
-}
-
-function calculatePitcherStats(games: typeof totalGamesPitched) {
-	const pitcherGames = games.filter(game => game.atBats.some(atBat => atBat.pitcher === player.id));
-
-	const outcomes = games.map(game => {
-		// Check which team the pitcher was on
-		const pitcherTeam = game.atBats.find(atBat => atBat.pitcher === player.id)!.pitching_team;
-		// Tally the score for both teams
-		const scores = game.atBats.reduce((acc, atBat) => {
-			// TODO fix how runs are calculated if necessary
-			const runs = Number(atBat.steal5 || atBat.adv5 || atBat.home_run || 0);
-			if (atBat.pitching_team === pitcherTeam) {
-				acc[atBat.pitching_team] = (acc[atBat.pitching_team] || 0) + runs;
-			} else {
-				acc['opponent'] = (acc['opponent'] || 0) + runs;
-			}
-			return acc;
-		}, {} as Record<string, number>);
-		// Calculate the outcome of the game
-		let outcome: number;
-		if (scores[pitcherTeam] > scores['opponent']) {
-			outcome = 1;
-		} else if (scores[pitcherTeam] < scores['opponent']) {
-			outcome = -1;
-		} else {
-			outcome = 0;
-		}
-		// Return the outcome with the game
-		return { game, outcome };
-	});
-
-	const wins = outcomes.filter(outcome => outcome.outcome === 1).length;
-
-	const losses = outcomes.filter(outcome => outcome.outcome === -1).length;
-
-	// TODO
-	const saves = '?';
-
-	const atBats = pitcherGames.flatMap(game => game.atBats).filter(atBat => atBat.pitcher === player.id);
-	const zones = atBats.filter(pa => pa.zone).length;
-
-	const strikeouts = atBats.filter(pa => pa.strikeout).length;
-
-	// TODO
-	const runs = '?';
-	const outs = '?';
-	const runsPerOut = `${runs} / ${outs}`;
-
-	// TODO
-	const outEfficiency = '?';
-
-	return {
-		'Games': pitcherGames.length.toString(),
-		'Wins': wins.toString(),
-		'Losses': losses.toString(),
-		'Saves': saves,
-		'Zones': zones.toString(),
-		'Strikeouts': strikeouts.toString(),
-		'Runs Per Out': runsPerOut,
-		'Out Efficiency': outEfficiency.toString(),
-	};
-}
-
 const yearlyBatterStats = Object.keys(gamesBattedPerYear).reduce((acc, year) => {
 	const games = gamesBattedPerYear[year];
-	acc[year] = calculateBatterStats(games);
+	acc[year] = getBatterStats(player.id, games);
 	return acc;
 }, {} as Record<string, Record<string, string>>);
 
-const totalBatterStats = calculateBatterStats(totalGamesBatted);
+const totalBatterStats = getBatterStats(player.id, games);
 
 const yearlyPitcherStats = Object.keys(gamesPitchedPerYear).reduce((acc, year) => {
 	const games = gamesPitchedPerYear[year];
-	acc[year] = calculatePitcherStats(games);
+	acc[year] = getPitcherStats(player.id, games);
 	return acc;
 }, {} as Record<string, Record<string, string>>);
 
-const totalPitcherStats = calculatePitcherStats(totalGamesPitched);
+const totalPitcherStats = getPitcherStats(player.id, games);
 ---
 
 <Default title={`Statistics | ${player.first_name} ${player.last_name}`}>

@@ -77,7 +77,7 @@ export const gameFileSchema = z.array(
 
 export const playerSchema = z.array(
   z.object({
-    id: z.string().transform(s => !s.length ? null : Number(s.trim() || NaN)).describe('GUID'),
+    id: z.string().transform(s => Number(s.trim() || NaN)).describe('GUID of player'),
     last_name: z.string().describe('Last name of player'),
     first_name: z.string().describe('First name of player'),
     debut: z.coerce.date().describe('Date player debuted'),
