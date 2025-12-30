@@ -5,24 +5,42 @@ interface Props {
 import '@styles/colors.scss';
 import '@styles/main.scss';
 const { title } = Astro.props;
-let titleContent = '21c Townball';
+
+let titleContent = 'Twenty-first Century Townball';
 if (title) titleContent += ` | ${title}`;
+
+const description = 'A historically rooted, player-focused, and mathematically perfected game of bat-and-ball.';
 ---
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" type="image/jpg" href="/logo-black-on-white.jpg" />
-  <meta property="og:title" content="Twenty-first Century Townball" />
-  <meta property="og:url" content="https://21ctownball.com/" />
-  <meta property="og:image" content="/social.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="A historically rooted, player-focused, and mathematically perfected game of bat-and-ball." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content={Astro.generator} />
+  <link rel="icon" type="image/jpg" href="/logo-black-on-white.jpg" />
+
+  <!-- Primary Meta Tags -->
+  <title>Twenty-first Century Townball</title>
+  <meta name="title" content="Twenty-first Century Townball" />
+  <meta name="description" content={description} />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://21ctownball.com/" />
+  <meta property="og:title" content="Twenty-first Century Townball" />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="/social.jpg" />
+
+  <!-- X (Twitter) -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://21ctownball.com/" />
+  <meta property="twitter:title" content="Twenty-first Century Townball" />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content="/social.jpg" />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bevan&family=Big+Shoulders+Text&family=Public+Sans:wght@400;700&display=swap" rel="stylesheet" />
-  <title>{titleContent}</title>
 </head>
