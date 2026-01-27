@@ -11,7 +11,7 @@ One aspect, however, that we felt needed to be improved upon was with respect to
 
 In baseball this is rectified by an imaginary strike zone, defined as "that area over home plate the upper limit of which is a horizontal line at the midpoint between the top of the shoulders and the top of the uniform pants, and the lower level is a line at the hollow beneath the kneecap" and is determined by "the batter's stance as the batter is prepared to swing at a pitched ball." If the ball is thrown within that zone, and if the batter does not swing, then a strike is called against the batter.
 
-![MLB illustration of the strike zone](/content/tmg-zone.jpg)
+<!-- ![MLB illustration of the strike zone](/content/tmg-zone.jpg) -->
 
 We realized a similar need for some kind of a “strike zone” such that if the pitcher pitched it into that zone, then the batter was in some way obligated to swing.
 

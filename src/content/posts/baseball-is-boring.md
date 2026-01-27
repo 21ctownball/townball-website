@@ -65,7 +65,7 @@ One of the worst ideas in the creation of the New York style of play is the idea
 
 First, it isn’t a very intuitive thing to keep track of as a player or as a fan. Think about it. How many times have you attended a ball game with someone who didn't realize the game just ended when it did?
 
-![The “inning limit” in the New York style of play makes for too much for the fan to keep track of](/content/boring-inning-limit.jpg)
+<!-- ![The “inning limit” in the New York style of play makes for too much for the fan to keep track of](/content/boring-inning-limit.jpg) -->
 
 Contrast this with the Massachusetts version where a team needs to score a certain number of runs to win. Everyone is constantly aware of the score because the score determines the end.
 
