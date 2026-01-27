@@ -2,7 +2,8 @@
 name: 'TMG and the Zone: A Match Made in Heaven'
 author: 'Daniel Jones'
 date: 2012-01-07
-thumbnail: '/content/tmg-zone.jpg'
+# thumbnail: '/content/tmg-zone.jpg'
+thumbnail: '/content/tmg-pvc.jpg'
 ---
 
 When we first tried out The Massachusetts Game in the thirteenth year of this century, we knew we had stumbled across a gem of a game. The game has a flow to it that smacks of raw, innocent fun.
