@@ -17,7 +17,7 @@ Suppose a family from Ohio were to witness a base ball game while traveling thro
 
 Thus it could be said that to the family from Ohio, any version of bat-and-ball, regardless of where it was being played, would be referred to as “town ball,” and to the family from Massachusetts, any version of bat-and-ball, regardless of where it was being played, would be referred to as “base ball.”
 
-Thus base ball, town ball, and round ball are really synonomous terms for any version of ball that was being played in this country in the nineteenth century.
+Thus base ball, town ball, and round ball are really synonymous terms for any version of ball that was being played in this country in the nineteenth century.
 
 However, once The New York Game began to dominate as the National Game in this country, the term “baseball” was soon thereafter adopted to refer to only The New York version of the game. All the other versions of bat-and-ball were then retroactively dubbed “town ball.”
 
