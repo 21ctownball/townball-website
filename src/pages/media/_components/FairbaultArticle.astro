@@ -1,0 +1,51 @@
+---
+import fairbaultRegisterBody from '@assets/fairbault-county-register-26-04-06-body.jpg';
+import fairbaultRegisterTeaser from '@assets/fairbault-county-register-26-04-06-teaser.jpg';
+import { Image } from 'astro:assets';
+---
+
+<div class="fairbault-register-article--container">
+  <div class="fairbault-register-article--images-container">
+    <Image src={fairbaultRegisterTeaser} width={fairbaultRegisterTeaser.width / 2} densities={[1.5, 2]} alt="Teaser for Townball article in Fairbault County Register newspaper" />
+    <Image src={fairbaultRegisterBody} width={fairbaultRegisterBody.width / 2} densities={[1.5, 2]} alt="Townball article in Fairbault County Register newspaper" />
+  </div>
+</div>
+
+<style lang="scss">
+  .fairbault-register-article--container {
+    // "Undo" content-width with negative margin
+    margin: 0 calc((100dvw - var(--content-width)) / -2);
+
+    // Scroll on overflow
+    max-width: calc(100dvw - var(--sp-4));
+    overflow-x: auto;
+
+    // Position children
+    display: flex;
+    justify-content: center;
+
+    @media (width < 768px) {
+      margin: unset;
+      max-width: unset;
+    }
+  }
+
+  .fairbault-register-article--images-container {
+    background: white;
+
+    // Position children
+    display: flex;
+    gap: var(--spacing);
+    justify-content: center;
+
+    // Add padding
+    padding: var(--spacing);
+    box-sizing: border-box;
+
+    // Change children positioning on small devices
+    @media (width < 1200px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
