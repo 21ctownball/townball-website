@@ -1,4 +1,5 @@
 import dsv from '@rollup/plugin-dsv';
+import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 import { resolve } from 'path';
 
@@ -7,6 +8,7 @@ const PROJECT_ROOT = resolve('.');
 // https://astro.build/config
 export default defineConfig({
   root: PROJECT_ROOT,
+  integrations: [icon()],
   vite: {
     assetsInclude: ['**/*.jpe?g', '**/*.csv'],
     plugins: [dsv()],
