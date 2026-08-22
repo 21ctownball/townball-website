@@ -1,6 +1,32 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Default from '@layouts/Default.astro';
 import FairbaultArticle from './_components/FairbaultArticle.astro';
+
+const officialPlatforms = [
+  { name: 'Spotify', href: 'https://open.spotify.com/show/2dVVrndfCWLcrZXVZK00QH', icon: 'simple-icons:spotify' },
+  { name: 'Apple Podcasts', href: 'https://podcasts.apple.com/podcast/id1694074503', icon: 'simple-icons:applepodcasts' },
+  { name: 'Google Podcasts', href: 'https://podcasts.google.com/?feed=aHR0cHM6Ly9hbmNob3IuZm0vcy8yMTVlM2MxYy9wb2RjYXN0L3Jzcw', icon: 'simple-icons:googlepodcasts' },
+];
+
+const otherPlatforms = [
+  { name: 'Castbox', href: 'https://castbox.fm/vic/1694074503', icon: 'simple-icons:castbox' },
+  { name: 'RSS', href: 'https://anchor.fm/s/215e3c1c/podcast/rss', icon: 'simple-icons:rss' },
+  { name: 'Pocket Casts', href: 'https://pca.st/itunes/1694074503', icon: 'simple-icons:pocketcasts' },
+  { name: 'Overcast', href: 'https://overcast.fm/itunes1694074503', icon: 'simple-icons:overcast' },
+  { name: 'Bullhorn', href: 'https://www.bullhorn.fm/podchaser/itunes/1694074503', icon: 'tabler:headphones' },
+  { name: 'Castro', href: 'https://castro.fm/itunes/1694074503', icon: 'simple-icons:castro' },
+  { name: 'Player FM', href: 'https://player.fm/subscribe?id=https://anchor.fm/s/215e3c1c/podcast/rss', icon: 'simple-icons:playerfm' },
+  { name: 'Podcast Addict', href: 'https://podcastaddict.com/feed/https%3A%2F%2Fanchor.fm%2Fs%2F215e3c1c%2Fpodcast%2Frss', icon: 'simple-icons:podcastaddict' },
+  { name: 'Podbean', href: 'https://www.podbean.com/itunes/1694074503', icon: 'tabler:headphones' },
+  { name: 'Podhero', href: 'https://podhero.com/podcast/feed/https%3A%2F%2Fanchor.fm%2Fs%2F215e3c1c%2Fpodcast%2Frss', icon: 'tabler:headphones' },
+  { name: 'Podcast Guru', href: 'https://app.podcastguru.io/podcast/1694074503', icon: 'tabler:headphones' },
+  { name: 'Podcast Republic', href: 'https://www.podcastrepublic.net/podcast/1694074503', icon: 'tabler:headphones' },
+  { name: 'Podfriend', href: 'https://web.podfriend.com/podcast/1694074503', icon: 'tabler:headphones' },
+  { name: 'RadioPublic', href: 'http://radiopublic.com/https%3A%2F%2Fanchor.fm%2Fs%2F215e3c1c%2Fpodcast%2Frss', icon: 'simple-icons:radiopublic' },
+  { name: 'Sonnet', href: 'https://sonnet.fm/p/1694074503', icon: 'tabler:headphones' },
+  { name: 'Android', href: 'https://subscribeonandroid.com/anchor.fm/s/215e3c1c/podcast/rss', icon: 'simple-icons:android' },
+];
 ---
 
 <Default title="Media">
@@ -61,67 +87,26 @@ import FairbaultArticle from './_components/FairbaultArticle.astro';
     <p>21C Townball is proud to present <em>The Twenty-First Century Townball Podcast</em>, hosted by Grant More. The podcast takes a deep dive into the history of the game, its current growth, and what makes it unique. Episodes feature the players who developed the sport, giving them a chance to share their love of the game.</p>
     <p>Listen on your favorite platform:</p>
     <ul class="podcast-grid">
-      <li>
-        <a href="https://open.spotify.com/show/2dVVrndfCWLcrZXVZK00QH" target="_blank">Spotify</a>
-      </li>
-      <li>
-        <a href="https://podcasts.apple.com/podcast/id1694074503" target="_blank">Apple Podcasts</a>
-      </li>
-      <li>
-        <a href="https://podcasts.google.com/?feed=aHR0cHM6Ly9hbmNob3IuZm0vcy8yMTVlM2MxYy9wb2RjYXN0L3Jzcw" target="_blank">Google Podcasts</a>
-      </li>
+      {officialPlatforms.map((platform) => (
+        <li>
+          <a href={platform.href} target="_blank">
+            <Icon name={platform.icon} />
+            <span>{platform.name}</span>
+          </a>
+        </li>
+      ))}
     </ul>
     <details>
       <summary>Other Podcast Platforms</summary>
       <ul class="podcast-grid">
-        <li>
-          <a href="https://castbox.fm/vic/1694074503" target="_blank">Castbox</a>
-        </li>
-        <li>
-          <a href="https://anchor.fm/s/215e3c1c/podcast/rss" target="_blank">RSS</a>
-        </li>
-        <li>
-          <a href="https://pca.st/itunes/1694074503" target="_blank">Pocket Casts</a>
-        </li>
-        <li>
-          <a href="https://overcast.fm/itunes1694074503" target="_blank">Overcast</a>
-        </li>
-        <li>
-          <a href="https://www.bullhorn.fm/podchaser/itunes/1694074503" target="_blank">Bullhorn</a>
-        </li>
-        <li>
-          <a href="https://castro.fm/itunes/1694074503" target="_blank">Castro</a>
-        </li>
-        <li>
-          <a href="https://player.fm/subscribe?id=https://anchor.fm/s/215e3c1c/podcast/rss" target="_blank">Player FM</a>
-        </li>
-        <li>
-          <a href="https://podcastaddict.com/feed/https%3A%2F%2Fanchor.fm%2Fs%2F215e3c1c%2Fpodcast%2Frss" target="_blank">Podcast Addict</a>
-        </li>
-        <li>
-          <a href="https://www.podbean.com/itunes/1694074503" target="_blank">Podbean</a>
-        </li>
-        <li>
-          <a href="https://podhero.com/podcast/feed/https%3A%2F%2Fanchor.fm%2Fs%2F215e3c1c%2Fpodcast%2Frss" target="_blank">Podhero</a>
-        </li>
-        <li>
-          <a href="https://app.podcastguru.io/podcast/1694074503" target="_blank">Podcast Guru</a>
-        </li>
-        <li>
-          <a href="https://www.podcastrepublic.net/podcast/1694074503" target="_blank">Podcast Republic</a>
-        </li>
-        <li>
-          <a href="https://web.podfriend.com/podcast/1694074503" target="_blank">Podfriend</a>
-        </li>
-        <li>
-          <a href="http://radiopublic.com/https%3A%2F%2Fanchor.fm%2Fs%2F215e3c1c%2Fpodcast%2Frss" target="_blank">RadioPublic</a>
-        </li>
-        <li>
-          <a href="https://sonnet.fm/p/1694074503" target="_blank">Sonnet</a>
-        </li>
-        <li>
-          <a href="https://subscribeonandroid.com/anchor.fm/s/215e3c1c/podcast/rss" target="_blank">Android</a>
-        </li>
+        {otherPlatforms.map((platform) => (
+          <li>
+            <a href={platform.href} target="_blank">
+              <Icon name={platform.icon} />
+              <span>{platform.name}</span>
+            </a>
+          </li>
+        ))}
       </ul>
     </details>
     <h3>Featured Episodes</h3>
@@ -185,8 +170,12 @@ import FairbaultArticle from './_components/FairbaultArticle.astro';
     padding: 0;
     max-width: 700px;
 
-    @media (max-width: 576px) {
+    @media (max-width: 700px) {
       grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 420px) {
+      grid-template-columns: 1fr;
     }
 
     li {
@@ -194,7 +183,10 @@ import FairbaultArticle from './_components/FairbaultArticle.astro';
     }
 
     a {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-half);
       text-decoration: none;
       color: var(--fg);
       background: var(--bg-bold);
@@ -211,6 +203,12 @@ import FairbaultArticle from './_components/FairbaultArticle.astro';
         translate: 0 -2px;
         box-shadow: 0 4px var(--sp-half) var(--shadow);
         scale: 1.03;
+      }
+
+      svg {
+        width: 1.25em;
+        height: 1.25em;
+        flex-shrink: 0;
       }
     }
   }
