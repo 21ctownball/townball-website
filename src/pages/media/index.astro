@@ -60,7 +60,7 @@ import FairbaultArticle from './_components/FairbaultArticle.astro';
     <h3>Official Podcast</h3>
     <p>21C Townball is proud to present <em>The Twenty-First Century Townball Podcast</em>, hosted by Grant More. The podcast takes a deep dive into the history of the game, its current growth, and what makes it unique. Episodes feature the players who developed the sport, giving them a chance to share their love of the game.</p>
     <p>Listen on your favorite platform:</p>
-    <ul>
+    <ul class="podcast-grid">
       <li>
         <a href="https://open.spotify.com/show/2dVVrndfCWLcrZXVZK00QH" target="_blank">Spotify</a>
       </li>
@@ -73,7 +73,7 @@ import FairbaultArticle from './_components/FairbaultArticle.astro';
     </ul>
     <details>
       <summary>Other Podcast Platforms</summary>
-      <ul>
+      <ul class="podcast-grid">
         <li>
           <a href="https://castbox.fm/vic/1694074503" target="_blank">Castbox</a>
         </li>
@@ -175,6 +175,43 @@ import FairbaultArticle from './_components/FairbaultArticle.astro';
 
     iframe {
       width: 100%;
+    }
+  }
+
+  .podcast-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
+    gap: var(--sp-1);
+    padding: 0;
+    max-width: 700px;
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: var(--fg);
+      background: var(--bg-bold);
+      padding: var(--sp-half) var(--sp-1);
+      text-align: center;
+      border-radius: var(--border-radius);
+      box-shadow: 0 0 var(--sp-half) var(--shadow);
+      transition:
+        translate 250ms,
+        box-shadow 500ms,
+        scale 500ms;
+
+      &:hover {
+        translate: 0 -2px;
+        box-shadow: 0 4px var(--sp-half) var(--shadow);
+        scale: 1.03;
+      }
     }
   }
 
