@@ -44,7 +44,9 @@ const headingParts = Array(headingPartCount)
       <!-- visual separation -->
       <hr />
       <!-- content populated from markdown file -->
-      <RulesContent />
+      <div class="rules">
+        <RulesContent />
+      </div>
       <!-- back to top button -->
       <BackToTopButton />
     </div>
@@ -103,9 +105,13 @@ const headingParts = Array(headingPartCount)
     }
   }
 
-  :global(h2) {
+  h2 {
+    margin-top: var(--sp-2);
+  }
+
+  /* numbering is scoped to .rules so the "Contents" heading is not counted */
+  .rules :global(h2) {
     --number-size: 400px;
-    --top-offset: -100px;
     --right-offset: -250px;
     --left-offset: -250px;
     margin-top: var(--sp-2);
@@ -113,6 +119,9 @@ const headingParts = Array(headingPartCount)
 
     &::before {
       position: absolute;
+      /* vertically center the oversized number on the heading */
+      top: 50%;
+      translate: 0 -50%;
       color: var(--red);
       font-family: 'Bevan', serif;
       font-size: var(--number-size);
@@ -122,12 +131,10 @@ const headingParts = Array(headingPartCount)
     }
 
     &:nth-of-type(odd)::before {
-      top: var(--top-offset);
       left: var(--left-offset);
     }
 
     &:nth-of-type(even)::before {
-      top: var(--top-offset);
       right: var(--right-offset);
     }
 
